@@ -2,21 +2,48 @@ import { Component, AfterViewInit, OnInit } from '@angular/core';
 import * as c3 from 'c3';
 import { UserService } from 'src/app/core/services/user/user.service';
 import 'firebase/database';
+import { Drivers, User, Trip } from 'src/app/interface/user.interface';
 
 @Component({
   selector: 'app-info-card',
   templateUrl: './info-card.component.html'
 })
-export class InfocardComponent implements OnInit,AfterViewInit {
+export class InfocardComponent implements OnInit, AfterViewInit {
 
-  userPending: any
+  drivers: Drivers[]
+  driversPending: number
+  driversActives: number
 
-  constructor(private userService: UserService) {}
+  users: User[]
+  totalUsers: number
+
+  driversAvailable: any
+
+  trips: Trip[]
+  totalTrips: number
+
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getDriversPending().subscribe(data => {
-      console.log('estos son los drivers======> ',data);
-      this.userPending = data.length 
+      this.drivers = data
+      this.driversPending = this.drivers.filter(ref => ref.state === 1).length
+      this.driversActives = this.drivers.filter(ref => ref.state === 2 || ref.state === 3).length
+    })
+
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+      this.totalUsers = this.users.length
+    })
+
+    this.userService.getDriversAvailable().snapshotChanges().subscribe(data => {
+      this.driversAvailable = data.length
+    })
+
+    this.userService.getTrips().valueChanges().subscribe(data => {
+      this.trips = data
+      this.totalTrips = this.trips.length
     })
   }
 

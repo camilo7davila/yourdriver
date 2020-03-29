@@ -11,13 +11,14 @@ import { BasictableComponent } from './basic/basic.component';
 import { DarktableComponent } from './dark-basic/dark.component';
 import { ColortableComponent } from './color-table/color.component';
 import { TablesizeComponent } from './sizing/size.component';
+import { UserTableComponent } from './user-table/user-table.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild(TablesRoutes),
-    CommonModule,
+    CommonModule, 
     NgxDatatableModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
   ],
   declarations: [
     DatatableComponent,
@@ -25,7 +26,8 @@ import { TablesizeComponent } from './sizing/size.component';
     DarktableComponent,
     ColortableComponent,
     TablesizeComponent,
-    SmarttableComponent
-  ]
+    SmarttableComponent,
+    UserTableComponent,
+    ]
 })
 export class TablesModule {}

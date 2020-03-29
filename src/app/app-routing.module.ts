@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
 import { BlankComponent } from './layouts/blank/blank.component';
+import { path } from 'd3';
 
 export const Approutes: Routes = [
   {
@@ -21,6 +22,11 @@ export const Approutes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./dashboards/dashboard.module').then(m => m.DashboardModule)
       },
+      { path: 'tables', loadChildren: () => import('./table/tables.module').then(m => m.TablesModule) },
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+      },
       {
         path: 'starter',
         loadChildren: () => import('./starter/starter.module').then(m => m.StarterModule)
@@ -32,7 +38,6 @@ export const Approutes: Routes = [
       { path: 'cards', loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule) },
       { path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule) },
       { path: 'forms', loadChildren: () => import('./form/forms.module').then(m => m.FormModule) },
-      { path: 'tables', loadChildren: () => import('./table/tables.module').then(m => m.TablesModule) },
       { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartModule) },
       {
         path: 'widgets',

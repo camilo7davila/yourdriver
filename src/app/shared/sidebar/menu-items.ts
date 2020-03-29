@@ -19,6 +19,79 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
+    title: 'Tables',
+    icon: 'mdi mdi-dots-horizontal',
+    class: 'nav-small-cap',
+    extralink: true,
+    submenu: []
+  },
+  {
+    path: '',
+    title: 'Bootstrap Tables',
+    icon: 'mdi mdi-border-none',
+    class: 'has-arrow',
+    extralink: false,
+    submenu: [
+      {
+        path: '/tables/basictables',
+        title: 'Basic Tables',
+        icon: '',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+      {
+        path: '/tables/darktables',
+        title: 'Dark Basic Tables',
+        icon: '',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+      {
+        path: '/tables/colortables',
+        title: 'Colored Tables',
+        icon: '',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+      {
+        path: '/tables/tablesizing',
+        title: 'Table Sizing',
+        icon: '',
+        class: '',
+        extralink: false,
+        submenu: []
+      }
+    ]
+  },
+  {
+    path: '/tables/usertable',
+    title: 'Users tables',
+    icon: 'mdi mdi-border-left',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/tables/smarttable',
+    title: 'Smart Tables',
+    icon: 'mdi mdi-border-left',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/tables/datatable',
+    title: 'Data Tables',
+    icon: 'mdi mdi-border-vertical',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '',
     title: 'Apps',
     icon: 'mdi mdi-dots-horizontal',
     class: 'nav-small-cap',
@@ -473,71 +546,6 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       }
     ]
-  },
-  {
-    path: '',
-    title: 'Tables',
-    icon: 'mdi mdi-dots-horizontal',
-    class: 'nav-small-cap',
-    extralink: true,
-    submenu: []
-  },
-  {
-    path: '',
-    title: 'Bootstrap Tables',
-    icon: 'mdi mdi-border-none',
-    class: 'has-arrow',
-    extralink: false,
-    submenu: [
-      {
-        path: '/tables/basictables',
-        title: 'Basic Tables',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/tables/darktables',
-        title: 'Dark Basic Tables',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/tables/colortables',
-        title: 'Colored Tables',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/tables/tablesizing',
-        title: 'Table Sizing',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      }
-    ]
-  },
-  {
-    path: '/tables/smarttable',
-    title: 'Smart Tables',
-    icon: 'mdi mdi-border-left',
-    class: '',
-    extralink: false,
-    submenu: []
-  },
-  {
-    path: '/tables/datatable',
-    title: 'Data Tables',
-    icon: 'mdi mdi-border-vertical',
-    class: '',
-    extralink: false,
-    submenu: []
   },
   {
     path: '',

@@ -6,6 +6,7 @@ import { BasictableComponent } from './basic/basic.component';
 import { DarktableComponent } from './dark-basic/dark.component';
 import { ColortableComponent } from './color-table/color.component';
 import { TablesizeComponent } from './sizing/size.component';
+import { UserTableComponent } from './user-table/user-table.component';
 
 export const TablesRoutes: Routes = [
   {
@@ -19,6 +20,17 @@ export const TablesRoutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
             { title: 'Data Table' }
+          ]
+        }
+      },
+      {
+        path: 'usertable',
+        component: UserTableComponent,
+        data: {
+          title: 'YourDrive',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Color Tables' }
           ]
         }
       },

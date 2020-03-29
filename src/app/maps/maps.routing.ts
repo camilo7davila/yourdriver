@@ -9,13 +9,13 @@ export const MapRoutes: Routes = [
       {
         path: 'google',
         component: MapgoogleComponent,
-        data: {
-          title: 'Google Maps',
-          urls: [
-            { title: 'Dashboard', url: '/dashboard' },
-            { title: 'Google Maps' }
-          ]
-        }
+        // data: {
+        //   title: 'Google Maps',
+        //   urls: [
+        //     { title: 'Dashboard', url: '/dashboard' },
+        //     { title: 'Google Maps' }
+        //   ]
+        // }
       }
     ]
   }
