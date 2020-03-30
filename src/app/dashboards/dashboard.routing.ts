@@ -9,7 +9,7 @@ export const DashboardRoutes: Routes = [
       {
         path: 'dashboard1',
         component: Dashboard1Component,
-        data: {
+        data: { 
           title: 'YourDrive',
           urls: [
             { title: 'Dashboard', url: '/dashboard' },

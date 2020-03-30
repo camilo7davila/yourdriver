@@ -23,6 +23,10 @@ export class UserService {
     return this.angularDB.list<Drivers>('/Drivers').valueChanges()
   }
 
+  getDriversWhitId(){
+    return this.angularDB.list<Drivers>('/Drivers')
+  }
+
   getDriversAvailable(){
     return this.angularDB.list('/Drivers-Locations-Available')
   }
@@ -46,5 +50,9 @@ export class UserService {
 
   searchTripForPassenger(idPassenger){
     return this.angularDB.list<Trip>('/Trips-History', ref => ref.orderByChild('passengerUid').equalTo(idPassenger))
+  }
+
+  editUser(id, user){
+    return this.angularDB.object('/Users/' + id).update(user)
   }
 }

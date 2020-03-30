@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterOutlet, Router, ActivationStart } from '@angular/router';
 import { User, Trip } from 'src/app/interface/user.interface';
 import { map } from 'rxjs/operators';
+import 'firebase/database';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-table-user',
@@ -11,17 +14,27 @@ import { map } from 'rxjs/operators';
 })
 export class TableUserComponent implements OnInit {
 
+  @ViewChild(RouterOutlet, {static: true}) outlet: RouterOutlet;
+
   userId: string
   user: User
   tripsAndDrivers: any[] = []
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  form: FormGroup
+
+  constructor(private userService: UserService, 
+              private route: ActivatedRoute, 
+              private router: Router,
+              private formBuilter: FormBuilder) {
+                this.buildForm()
+              }
 
   ngOnInit() {
-    this.route.params.subscribe(data => {
+    this.route.params.subscribe(data => { 
       this.userId = data.id;
       this.userService.getUserById(this.userId).valueChanges().subscribe(user => {
         this.user = user
+        this.form.patchValue(user)
       })
       this.userService.searchTripForPassenger(this.userId).snapshotChanges().pipe(map(changes => {
         return changes.map(ref => ({ key: ref.key, ...ref.payload.val() }))
@@ -34,6 +47,30 @@ export class TableUserComponent implements OnInit {
       })
       console.log(this.tripsAndDrivers);
     })
+    this.router.events.subscribe(e => {
+      if (e instanceof ActivationStart && e.snapshot.outlet === "errorpage")
+          this.outlet.deactivate();
+  });
   }
 
+  private buildForm() {
+    this.form = this.formBuilter.group({
+      Name: ['', [Validators.required,Validators.minLength(4)]],
+      LastName: ['', [Validators.required]],
+      Email: ['', [Validators.required, Validators.email]],
+      PhoneNumber: ['', [Validators.required]],
+      AccountType: ['', [Validators.required]]
+    })
+  }
+
+  saveProduct(event){
+    event.preventDefault();
+    if(this.form.valid){
+      this.userService.editUser(this.userId, this.form.value).then(()=> {
+        alert('Datos actualizados')
+      }).catch(e => {
+        alert('ocurrio un error'+ e)
+      })
+    }
+  }
 }
