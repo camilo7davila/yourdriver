@@ -12,6 +12,7 @@ import { DarktableComponent } from './dark-basic/dark.component';
 import { ColortableComponent } from './color-table/color.component';
 import { TablesizeComponent } from './sizing/size.component';
 import { UserTableComponent } from './user-table/user-table.component';
+import { DriverTableComponent } from './driver-table/driver-table.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { UserTableComponent } from './user-table/user-table.component';
     TablesizeComponent,
     SmarttableComponent,
     UserTableComponent,
+    DriverTableComponent,
     ]
 })
 export class TablesModule {}

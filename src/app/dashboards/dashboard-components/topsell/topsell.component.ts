@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Trip } from 'src/app/interface/user.interface';
 import { map, switchMap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-topsell',
   templateUrl: './topsell.component.html'

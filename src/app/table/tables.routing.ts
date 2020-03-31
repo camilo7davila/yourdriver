@@ -7,6 +7,7 @@ import { DarktableComponent } from './dark-basic/dark.component';
 import { ColortableComponent } from './color-table/color.component';
 import { TablesizeComponent } from './sizing/size.component';
 import { UserTableComponent } from './user-table/user-table.component';
+import { DriverTableComponent } from './driver-table/driver-table.component';
 
 export const TablesRoutes: Routes = [
   {
@@ -26,6 +27,17 @@ export const TablesRoutes: Routes = [
       {
         path: 'usertable',
         component: UserTableComponent,
+        data: {
+          title: 'YourDrive',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Color Tables' }
+          ]
+        }
+      },
+      {
+        path: 'drivertable',
+        component: DriverTableComponent,
         data: {
           title: 'YourDrive',
           urls: [
