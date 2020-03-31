@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { ActivatedRoute, RouterOutlet, Router, ActivationStart } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { User, Trip } from 'src/app/interface/user.interface';
 import { map } from 'rxjs/operators';
 import 'firebase/database';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
