@@ -38,8 +38,15 @@ export class UserService {
   }
 
   getDriverById(id){
-    return this.angularDB.object('/Drivers/' + id)
+    return this.angularDB.object<Drivers>('/Drivers/' + id)
   }
+
+  getDriverByIdWhitKey(id){
+    return this.angularDB.object<Drivers>('/Drivers/' + id).snapshotChanges().pipe(map(changes => {
+      return ({ key: changes.key, ...changes.payload.val() })
+    }))
+  }
+
   getUserById(id){
     return this.angularDB.object<User>('/Users/' + id)
   }

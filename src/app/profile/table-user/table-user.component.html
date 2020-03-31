@@ -41,17 +41,11 @@
                                             <span>Date Start: </span> <span class="sl-date">{{trip.dateStart}}</span> <br>
                                             <span>Date Finished: </span> <span class="sl-date">{{trip.dateFinished}}</span>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-6 m-b-20">
-                                                    <img src="assets/images/big/img1.jpg" class="img-fluid radius" />
-                                                </div>
-                                                <div class="col-lg-3 col-md-6 m-b-20">
-                                                    <img src="assets/images/big/img2.jpg" class="img-fluid radius" />
-                                                </div>
-                                                <div class="col-lg-3 col-md-6 m-b-20">
-                                                    <img src="assets/images/big/img3.jpg" class="img-fluid radius" />
-                                                </div>
-                                                <div class="col-lg-3 col-md-6 m-b-20">
-                                                    <img src="assets/images/big/img4.jpg" class="img-fluid radius" />
+                                                <div class="col-md-9 col-xs-12">
+                                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+                                                        odio. Praesent libero. Sed cursus ante dapibus diam. </p>
+                                                    <a href="#" class="btn btn-success">
+                                                        view full trip</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,22 +63,32 @@
                                 <div class="col-md-3 col-xs-6 b-r">
                                     <strong>Full Name</strong>
                                     <br>
-                                    <p class="text-muted">Johnathan Deo</p>
+                                    <p class="text-muted">{{user.Name}} {{user.LastName}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r">
                                     <strong>Mobile</strong>
                                     <br>
-                                    <p class="text-muted">(123) 456 7890</p>
+                                    <p class="text-muted">{{user.PhoneNumber}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r">
                                     <strong>Email</strong>
                                     <br>
-                                    <p class="text-muted">johnathan@admin.com</p>
+                                    <p class="text-muted">{{user.Email}}</p>
                                 </div>
                                 <div class="col-md-3 col-xs-6">
                                     <strong>Location</strong>
                                     <br>
-                                    <p class="text-muted">London</p>
+                                    <p class="text-muted">EEUU</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong>Account type</strong>
+                                    <br>
+                                    <p class="text-muted">{{user.AccountType}}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong>Joined on </strong>
+                                    <br>
+                                    <p class="text-muted">{{user.date}}</p>
                                 </div>
                             </div>
                             <hr>

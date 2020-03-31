@@ -32,7 +32,6 @@ export class TableUserComponent implements OnInit {
           })
         })
       })
-      console.log(this.tripsAndDrivers);
     })
   }
 

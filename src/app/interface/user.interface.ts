@@ -34,7 +34,8 @@ export interface Drivers {
     driverLicenseImageUrl: String
     profileImageUrl: String,
     state: Number;
-    date?: String
+    date?: String;
+    key?: String
 }
 
 export interface User {
