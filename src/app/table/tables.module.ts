@@ -13,6 +13,7 @@ import { ColortableComponent } from './color-table/color.component';
 import { TablesizeComponent } from './sizing/size.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { DriverTableComponent } from './driver-table/driver-table.component';
+import { TripsTableComponent } from './trips-table/trips-table.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { DriverTableComponent } from './driver-table/driver-table.component';
     SmarttableComponent,
     UserTableComponent,
     DriverTableComponent,
+    TripsTableComponent,
     ]
 })
 export class TablesModule {}

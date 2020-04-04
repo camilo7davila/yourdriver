@@ -16,6 +16,7 @@ import 'firebase/database';
 export class TableUserComponent implements OnInit {
 
   @ViewChild(RouterOutlet, {static: true}) outlet: RouterOutlet;
+  @ViewChild('map1', { static: true }) map1;
 
   userId: string
   user: User
@@ -45,6 +46,7 @@ export class TableUserComponent implements OnInit {
             this.tripsAndDrivers.push({ ...trip, driverInfo: data })
           })
         })
+        console.log(this.tripsAndDrivers);
       })
     })
     this.router.events.subscribe(e => {

@@ -42,7 +42,6 @@ export class TableDriverComponent implements OnInit {
           })
         })
       })
-      console.log('este es el viaje con pasajero', this.tripsAndPassengers);
     })
   }
 

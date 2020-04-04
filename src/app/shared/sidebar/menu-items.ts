@@ -68,7 +68,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/tables/usertable',
-    title: 'Users tables',
+    title: 'Users table',
     icon: 'mdi mdi-border-left',
     class: '',
     extralink: false,
@@ -76,7 +76,15 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/tables/drivertable',
-    title: 'Drivers tables',
+    title: 'Drivers table',
+    icon: 'mdi mdi-border-left',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/tables/historytripstable',
+    title: 'History trips table',
     icon: 'mdi mdi-border-left',
     class: '',
     extralink: false,
