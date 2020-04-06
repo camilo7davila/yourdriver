@@ -1,13 +1,10 @@
 <div class="card">
     <div class="card-body">
-        <!-- title -->
         <div class="d-md-flex align-items-center">
             <div>
                 <h4 class="card-title">Users in trip</h4>
-                <h5 class="card-subtitle">In trip</h5>
             </div>
         </div>
-        <!-- title -->
     </div>
     <div class="table-responsive">
         <table class="table v-middle">
@@ -19,6 +16,7 @@
                     <th class="border-top-0">Distance</th>
                     <th class="border-top-0">Expect Time</th>
                     <th class="border-top-0">Earnings</th>
+                    <th class="border-top-0">Action</th>
                 </tr>
             </thead>
             <tbody *ngIf="tripAndDrivers">
@@ -29,18 +27,21 @@
                                 <a class="btn btn-circle btn-info text-white">EA</a>
                             </div>
                             <div class="">
-                                <h4 class="m-b-0 font-16">{{tripAndDriver.passengerInfo.Name}}</h4>
+                                <h4 class="m-b-0 font-14">{{tripAndDriver.passengerInfo.Name}} {{tripAndDriver.passengerInfo.LastName}}</h4>
                             </div>
                         </div>
                     </td>
                     <td>{{tripAndDriver.driverInfo.Name}}</td>
                     <td>{{tripAndDriver.destinationName}}</td>
                     <td>
-                        <label>{{tripAndDriver.distanceInMeter}}</label>
+                        distance
                     </td>
-                    <td>{{tripAndDriver.expectTimeTravel}}</td>
+                    <td>time</td>
                     <td>
-                        <h5 class="m-b-0">${{tripAndDriver.priceTrip}}</h5>
+                        <h5 class="m-b-0">price</h5>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-info" [routerLink]="['/maps/maps/', tripAndDriver.key]">View trip</button>
                     </td>
                 </tr>
             </tbody>

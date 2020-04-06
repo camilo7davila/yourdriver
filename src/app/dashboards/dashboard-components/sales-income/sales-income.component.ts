@@ -1,109 +1,89 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as c3 from 'c3';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { StatusDriverService } from 'src/app/core/services/status-driver/status-driver.service';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 
 @Component({
   selector: 'app-sales-income',
   templateUrl: './sales-income.component.html'
 })
-export class SalesIncomeComponent implements AfterViewInit {
-  constructor() { }
+export class SalesIncomeComponent implements OnInit {
 
-  ngAfterViewInit() {
-    const chart = c3.generate({
-      bindto: '#income',
-      data: {
-        columns: [
-          ['Growth Income', 100, 200, 300, 300, 400, 200],
-          ['Net Income', 130, 100, 440, 200, 320, 100]
-        ],
-        type: 'bar'
-      },
-      bar: {
-        space: 0.2,
-        // or
-        width: 15 // this makes bar width 100px
-      },
-      axis: {
-        y: {
-          tick: {
-            count: 3,
-            outer: false
-          }
-        }
-      },
-      legend: {
-        hide: true
-        // or hide: 'data1'
-        // or hide: ['data1', 'data2']
-      },
-      grid: {
-        x: {
-          show: false
-        },
-        y: {
-          show: true
-        }
-      },
-      size: {
-        height: 270
-      },
-      color: {
-        pattern: ['#4798e8', '#ccc']
-      }
-    });
+  // @ViewChild('canvas', {static: true}) canvas: any
 
-    const chart2 = c3.generate({
-      bindto: '#sales',
-      data: {
-        columns: [['One+', 50], ['T', 60], ['Samsung', 10]],
+  pending: number = 0
+  approved: number = 0
+  rejected: number = 0
 
-        type: 'donut'
-      },
-      donut: {
-        label: {
-          show: false
-        },
-        title: '',
-        width: 18
-      },
-      size: {
-        height: 150
-      },
-      legend: {
-        hide: true
-        // or hide: 'data1'
-        // or hide: ['data1', 'data2']
-      },
-      color: {
-        pattern: ['#ffffff', '#4798e8', '#24d2b5', '#20aee3']
-      }
-    });
-    // ==============================================================
-    // Sales Prediction
-    // ==============================================================
+  driversAvailable: number = 0
+  driversBusy: number = 0
 
-    const chart3 = c3.generate({
-      bindto: '#prediction',
-      data: {
-        columns: [['data', 91.4]],
-        type: 'gauge'
-      },
+  //DONA------------------------------------------------------------->
+  public doughnutChartLabels: string[] = [
+    'Pending',
+    'Approved',
+    'rejected',
+  ];
 
-      color: {
-        pattern: ['#20aee3', '#20aee3', '#20aee3', '#24d2b5'], // the three color levels for the percentage values.
-        threshold: {
-          //            unit: 'value', // percentage is default
-          //            max: 200, // 100 is default
-          values: [30, 60, 90, 100]
-        }
-      },
-      gauge: {
-        width: 22
-      },
-      size: {
-        height: 120,
-        width: 150
-      }
-    });
+  public doughnutChartData: number[] = [0];
+  public doughnutChartType: ChartType = 'doughnut';
+
+  //BARRAS --------------------------------------------------------------->
+  public barChartOptions: ChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    barThickness: 10,
+    scales: { xAxes: [{}], yAxes: [{ ticks: { beginAtZero: true } }] },
+  };
+
+  public barChartLabels: string[] = [
+    'Available',
+    'Busy'
+  ];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+
+  public barChartData: ChartDataSets[] = [
+    { data: [0,0], label: 'otros' }
+  ];
+  public barChartColors: Array<any> = [
+    { backgroundColor: '#36bea6' },
+    { backgroundColor: '#2962FF' }
+  ];
+
+  constructor(private userService: UserService,
+    private statusService: StatusDriverService) { }
+
+  ngOnInit() {
+    this.driversStatus()
+    this.userService.getDriversPending().snapshotChanges().pipe(map(changes => {
+      return changes.map(a => ({ key: a.key, ...a.payload.val() }))
+    })).subscribe(data => {
+      this.pending = data.filter(data => data.state === 1).length
+      this.approved = data.filter(data => data.state === 2).length
+      this.rejected = data.filter(data => data.state === 3).length
+      this.pushDonut(this.pending, this.approved, this.rejected)
+    })
   }
+
+  driversStatus() {
+    let driverAvailable$ = this.statusService.getDriversLocationsAvailable()
+    let driverBusy$ = this.statusService.getDriversLocationsBusy()
+    combineLatest([driverAvailable$, driverBusy$]).pipe(
+      map(([driverAvailable, driverBusy]) => ({ driverAvailable, driverBusy }))
+    ).subscribe(final => {
+      this.driversAvailable = final.driverAvailable.length
+      this.driversBusy = final.driverBusy.length
+      this.barChartData = [({ data: [this.driversAvailable, this.driversBusy], label: 'Drivers', backgroundColor: "rgba(255,99,132,0.6)", borderColor: "rgba(255,99,132,1)", hoverBackgroundColor: "rgba(255,99,132,0.8)", hoverBorderColor: "rgba(255,99,132,1)" })]
+    })
+  }
+
+
+  pushDonut(pending, aproved, rejected) {
+    this.doughnutChartData = [pending, aproved, rejected]
+  }
+
 }

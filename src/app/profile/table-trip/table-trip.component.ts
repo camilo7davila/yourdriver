@@ -3,7 +3,7 @@ import { UserService } from 'src/app/core/services/user/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-
+ 
 @Component({
   selector: 'app-table-trip',
   templateUrl: './table-trip.component.html',
@@ -37,7 +37,7 @@ export class TableTripComponent implements OnInit {
         console.log(this.tripAll);
       })
     })
-  }
+  } 
 
   getPassenger(id){
     return this.userService.getUserById(id).valueChanges()

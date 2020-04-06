@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TableUserComponent } from './table-user/table-user.component';
 import { TableDriverComponent } from './table-driver/table-driver.component';
 import { TableTripComponent } from './table-trip/table-trip.component';
+import { PendingDriverComponent } from './pending-driver/pending-driver.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,22 @@ const routes: Routes = [
       {
         path: ':id',
         component: TableTripComponent,
+        data: {
+          title: 'YourDriver',
+          urls: [
+            { title: 'Profile', url: '/profile' },
+            { title: 'Driver profile' }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    path: 'pendingdriverprofile',
+    children: [
+      {
+        path: ':id',
+        component: PendingDriverComponent,
         data: {
           title: 'YourDriver',
           urls: [

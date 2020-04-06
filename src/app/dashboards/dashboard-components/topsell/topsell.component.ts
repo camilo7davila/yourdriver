@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Trip } from 'src/app/interface/user.interface';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { TripService } from 'src/app/core/services/trip/trip.service';
 
 @Component({
   selector: 'app-topsell',
@@ -12,18 +13,30 @@ export class TopsellComponent implements OnInit {
   trips: Trip[]
 
   tripAndDrivers:any = [];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private tripService: TripService) { }
 
   ngOnInit() {
-    this.userService.getTrips().valueChanges().subscribe(trips => {
-      trips.map(trips =>{
-        this.userService.getDriverById(trips.driverUid).valueChanges().subscribe(data => {
-          this.userService.getUserById(trips.passengerUid).valueChanges().subscribe(userInfo => {
-            this.tripAndDrivers.push(({...trips, driverInfo: data, passengerInfo: userInfo}))
+    this.tripService.getAllTripsLive().snapshotChanges().pipe(map(changes => {
+      return changes.map(a => ({key: a.key, ...a.payload.val()}))
+    })).subscribe(data => {
+      data.forEach(trip => {
+        this.userService.getDriverById(trip.driverUid).valueChanges().subscribe(driver => {
+          this.userService.getUserById(trip.key).valueChanges().subscribe(passenger => {
+            this.tripAndDrivers.push(({...trip, driverInfo: driver, passengerInfo: passenger}))
           })
         })
       })
-    });
+    })
+    // this.userService.getTrips().valueChanges().subscribe(trips => {
+    //   trips.map(trips =>{
+    //     this.userService.getDriverById(trips.driverUid).valueChanges().subscribe(data => {
+    //       this.userService.getUserById(trips.passengerUid).valueChanges().subscribe(userInfo => {
+    //         this.tripAndDrivers.push(({...trips, driverInfo: data, passengerInfo: userInfo}))
+    //       })
+    //     })
+    //   })
+    // });
   }
 
 

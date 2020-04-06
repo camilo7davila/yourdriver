@@ -37,8 +37,8 @@
                                     <div class="sl-right">
                                         <div>
                                             <a href="#" class="link">{{trip.passengerInfo.Name}} {{trip.passengerInfo.LastName}}</a> <br>
-                                            <span>Date Start: </span> <span class="sl-date">{{trip.dateStart}}</span> <br>
-                                            <span>Date Finished: </span> <span class="sl-date">{{trip.dateFinished}}</span>
+                                            <span>Date Start: </span> <span class="sl">{{trip.dateStart}}</span> <br>
+                                            <span>Date Finished: </span> <span class="sl">{{trip.dateFinished}}</span>
                                             <div class="row">
                                                 <div class="col-md-10 col-xs-12">
                                                     <agm-map [latitude]="trip.destinationCoordinatesLatitude" [longitude]="trip.destinationCoordinatesLongitude" [zoom]="12" #map1>

@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Success Table</h4>
+                <h6 class="card-subtitle">To use add class
+                    <code>.bg-success .text-white</code> in the
+                    <code>&lt;thead&gt;</code>.</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-success text-white">
+                            <tr>
+                                <th>Date</th>
+                                <th>Destination Name</th>
+                                <th>Driveruid</th>
+                                <th>PassengerUid</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let trip of tripsPassengerDriver">
+                            <tr >
+                                <td>{{trip.dateFinished}}</td>
+                                <td> {{trip.destinationName}} </td>
+                                <td> <a [routerLink]="['/profile/driverprofile', trip.driverUid]">{{trip.driverData.Name}} {{trip.driverData.LastName}} </a></td>
+                                <td> <a [routerLink]="['/profile/userprofile', trip.passengerUid]">{{trip.passengerData.Name}} {{trip.passengerData.LastName}}</a> </td>
+                                <td><a class="btn btn-block btn-success" style="width: auto;" [routerLink]="['/profile/trip/', trip.key]">view trip</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row -->

@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class UserService {
 
   constructor(private angularDB: AngularFireDatabase) {  }
 
-  getid(): Observable<any>{
+  getid(): Observable<any>{ 
     return this.angularDB.list<Drivers>('/Drivers').snapshotChanges().pipe(map(changes => {
       return changes.map(a => ({key: a.payload.key, ...a.payload.val() }))
     }))
@@ -20,7 +20,12 @@ export class UserService {
   getDriversPending(){
     // query que devuelve los ids de los conductores que tienen state 1
     // return this.angularDB.list('/Drivers', ref => ref.orderByChild('state').equalTo(1)).snapshotChanges()
-    return this.angularDB.list<Drivers>('/Drivers').valueChanges()
+    return this.angularDB.list<Drivers>('/Drivers')
+  }
+
+  getDriversPendingFilter(){
+    // query que devuelve los ids de los conductores que tienen state 1
+    return this.angularDB.list<Drivers>('/Drivers', ref => ref.orderByChild('state').equalTo(1))
   }
 
   getDriversWhitId(){

@@ -1,0 +1,22 @@
+.sl-center{
+    text-align: center ;
+}
+p{
+    display: inline;
+    padding: 20px 0;
+}
+h6{
+    display: inline;
+    margin: 0 0 0 8px;
+}
+
+.license{
+    object-fit: contain;
+    object-position: center;
+    height: auto;
+    margin: 0 auto;
+}
+.botones{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -1,0 +1,92 @@
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-6 col-xlg-6 col-md-5">
+        <div class="card">
+            <div class="card-body" style="background-color: #44e22c;" *ngIf="allTrip">
+                <h4 class="card-title" style="color: green;">Live map </h4>
+                <agm-map [latitude]="allTrip.destinationCoordinates[0]" [longitude]="allTrip.destinationCoordinates[1]" [zoom]="12" #map1>
+                    <agm-marker [latitude]="allTrip.destinationCoordinates[0]" [longitude]="allTrip.destinationCoordinates[1]"></agm-marker>
+                    <agm-marker [latitude]="allTrip.pickupCoordinates[0]" [longitude]="allTrip.pickupCoordinates[1]"></agm-marker>
+                </agm-map>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <div class="col-lg-6 col-xlg-6 col-md-7">
+        <div class="card">
+            <ngb-tabset type="pills" class="custom-pills">
+                <ngb-tab title="Info Trip">
+                    <ng-template ngbTabContent>
+                        <div class="card-body">
+                            <h4 class="card-title">Passenger Info</h4>
+                            <div class="profiletimeline" *ngIf="allTrip">
+                                <div class="sl-item">
+                                    <div class="sl-left">
+                                        <img [src]="allTrip.passengerInfo.profileImageUrl" alt="user"
+                                            class="rounded-circle" height="40" />
+                                    </div>
+                                    <div class="sl-right">
+                                        <div>
+                                            <a [routerLink]="['/profile/userprofile/', tripId ]" class="link">{{allTrip.passengerInfo.Name}}
+                                                {{allTrip.passengerInfo.LastName}}</a> <br>
+                                            <span>Email:  </span> <span class="sl-date">{{allTrip.passengerInfo.Email}}</span>
+                                            <br>
+                                            <span>Phone: </span> <span class="sl-date">{{allTrip.passengerInfo.PhoneNumber}}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <h4 class="card-title">Driver Info</h4>
+                            <div class="profiletimeline" *ngIf="allTrip">
+                                <div class="sl-item">
+                                    <div class="sl-left">
+                                        <img [src]="allTrip.driverInfo.profileImageUrl" alt="user"
+                                            class="rounded-circle" height="40" />
+                                    </div>
+                                    <div class="sl-right">
+                                        <div>
+                                            <a [routerLink]="['/profile/driverprofile/', allTrip.driverUid]" class="link">{{allTrip.driverInfo.Name}}
+                                                {{allTrip.driverInfo.LastName}}</a> <br>
+                                            <span>Email:  </span> <span class="sl-date">{{allTrip.driverInfo.Email}}</span>
+                                            <br>
+                                            <span>Phone: </span> <span class="sl-date">{{allTrip.driverInfo.PhoneNumber}}</span>
+                                            <br>
+                                            <span>SSN: </span> <span class="sl-date">{{allTrip.driverInfo.SSN}}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <h4 class="card-title">Trip Info</h4>
+                            <div class="profiletimeline" *ngIf="tripAll">
+                                <div class="sl-item">
+                                    <div class="sl-left">
+                                        <img src="../../../assets/img/YourDriver.png" alt="user"
+                                            class="rounded-circle" height="40" />
+                                    </div>
+                                    <div class="sl-right">
+                                        <div>
+                                            <span>Date start: </span> <span class="sl-date">{{tripAll.tripInfo.dateStart}}</span>
+                                            <br>
+                                            <span>Date finish:  </span> <span class="sl-date">{{tripAll.tripInfo.dateFinished}}</span>
+                                            <br>
+                                            <span>Distance:  </span> <span class="sl-date">{{tripAll.tripInfo.distanceInMeter}}<sub>m</sub></span>
+                                            <br>
+                                            <span>Time trip: </span> <span class="sl-date">{{tripAll.tripInfo.timeTrip}}</span>
+                                            <br>
+                                            <span>Price trip: </span> <span class="sl-date">{{tripAll.tripInfo.priceTrip | currency}}</span>
+                                            <br>
+                                            <span>ID Payment: </span> <span class="sl-date">{{tripAll.tripInfo.payment_Id}}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>

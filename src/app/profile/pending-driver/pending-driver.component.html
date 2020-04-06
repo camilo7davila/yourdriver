@@ -1,0 +1,38 @@
+<h4>Documentation</h4>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body" *ngIf="driver">
+                    <div class="sl-center">
+                        <img [src]="driver.profileImageUrl" alt="user" class="rounded-circle"
+                            height="250" width="250"/>
+                    </div>
+                    <div class="mt-3">
+                        <p class="text-muted">Full name:  </p>
+                        <h6>{{driver.Name}} {{driver.Lastname}}</h6> <br>
+                        <p class="text-muted p-t-30 db">Email:  </p>
+                        <h6>{{driver.Email}}</h6> <br>
+                        <p class="text-muted p-t-30 db">Phone number:  </p>
+                        <h6>{{driver.PhoneNumber}}</h6> <br>
+                        <p class="text-muted p-t-30 db">Bank:  </p>
+                        <h6>{{driver.NameBank}}</h6> <br>
+                        <p class="text-muted p-t-30 db">Bank Account:  </p>
+                        <h6>{{driver.BankAccount}}</h6>  <br>
+                        <p class="text-muted p-t-30 db"> <strong>SSN:  </strong></p>
+                        <h6>{{driver.SSN}}</h6>
+                    </div>
+                    <div class="botones mt-3">
+                        <button class="btn btn-outline-danger" (click)="driveDeny()">deny access</button>
+                        <button class="btn btn-outline-success" (click)="driveAccepted()">provide access</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="card p-3" *ngIf="driver">
+                <img class="license" [src]="driver.driverLicenseImageUrl" alt="" width="500">
+            </div>
+        </div>
+    </div>
+</div>

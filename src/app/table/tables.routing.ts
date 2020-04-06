@@ -9,6 +9,7 @@ import { TablesizeComponent } from './sizing/size.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { DriverTableComponent } from './driver-table/driver-table.component';
 import { TripsTableComponent } from './trips-table/trips-table.component';
+import { PendingDriverTableComponent } from './pending-driver-table/pending-driver-table.component';
 
 export const TablesRoutes: Routes = [
   {
@@ -50,6 +51,17 @@ export const TablesRoutes: Routes = [
       {
         path: 'historytripstable',
         component: TripsTableComponent,
+        data: {
+          title: 'YourDrive',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Color Tables' }
+          ]
+        }
+      },
+      {
+        path: 'pendingdriverstrable',
+        component: PendingDriverTableComponent,
         data: {
           title: 'YourDrive',
           urls: [

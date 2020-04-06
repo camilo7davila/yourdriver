@@ -91,6 +91,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/tables/pendingdriverstrable',
+    title: 'Pending Drivers table',
+    icon: 'mdi mdi-border-left',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '/tables/smarttable',
     title: 'Smart Tables',
     icon: 'mdi mdi-border-left',

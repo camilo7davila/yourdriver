@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { MapgoogleComponent } from './map-google/map-google.component';
+import { MapTripComponent } from './map-trip/map-trip.component';
 
 export const MapRoutes: Routes = [
   {
@@ -9,13 +10,29 @@ export const MapRoutes: Routes = [
       {
         path: 'google',
         component: MapgoogleComponent,
-        // data: {
-        //   title: 'Google Maps',
-        //   urls: [
-        //     { title: 'Dashboard', url: '/dashboard' },
-        //     { title: 'Google Maps' }
-        //   ]
-        // }
+        data: {
+          title: 'Google Maps',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Google Maps' }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    path: 'maps',
+    children: [
+      {
+        path: ':id',
+        component: MapTripComponent,
+        data: {
+          title: 'YourDrive',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Google Maps' }
+          ]
+        }
       }
     ]
   }

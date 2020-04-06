@@ -14,6 +14,7 @@ import { TablesizeComponent } from './sizing/size.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { DriverTableComponent } from './driver-table/driver-table.component';
 import { TripsTableComponent } from './trips-table/trips-table.component';
+import { PendingDriverTableComponent } from './pending-driver-table/pending-driver-table.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { TripsTableComponent } from './trips-table/trips-table.component';
     UserTableComponent,
     DriverTableComponent,
     TripsTableComponent,
+    PendingDriverTableComponent,
     ]
 })
 export class TablesModule {}

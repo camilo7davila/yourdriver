@@ -26,7 +26,7 @@ export class InfocardComponent implements OnInit, AfterViewInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getDriversPending().subscribe(data => {
+    this.userService.getDriversPending().valueChanges().subscribe(data => {
       this.drivers = data
       this.driversPending = this.drivers.filter(ref => ref.state === 1).length
       this.driversActives = this.drivers.filter(ref => ref.state === 2 || ref.state === 3).length

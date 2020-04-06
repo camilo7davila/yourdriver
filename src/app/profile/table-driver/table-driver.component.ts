@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Drivers } from 'src/app/interface/user.interface';
-import 'firebase/database';
 import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import 'firebase/database';
 
 @Component({
   selector: 'app-table-driver',
