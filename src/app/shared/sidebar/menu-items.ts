@@ -69,7 +69,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/tables/usertable',
     title: 'Users table',
-    icon: 'mdi mdi-border-left',
+    icon: 'icon-Receipt-4',
     class: '',
     extralink: false,
     submenu: []
@@ -77,7 +77,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/tables/drivertable',
     title: 'Drivers table',
-    icon: 'mdi mdi-border-left',
+    icon: 'icon-Receipt-4',
     class: '',
     extralink: false,
     submenu: []
@@ -85,7 +85,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/tables/historytripstable',
     title: 'History trips table',
-    icon: 'mdi mdi-border-left',
+    icon: 'icon-Receipt-4',
     class: '',
     extralink: false,
     submenu: []
@@ -93,7 +93,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/tables/pendingdriverstrable',
     title: 'Pending Drivers table',
-    icon: 'mdi mdi-border-left',
+    icon: 'icon-Receipt-4',
     class: '',
     extralink: false,
     submenu: []

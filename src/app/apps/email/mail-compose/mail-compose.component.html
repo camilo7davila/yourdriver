@@ -1,21 +1,20 @@
 <div class="card-body compose">
 
-    <form method="get" action="#">
+    <form [formGroup]="form" (ngSubmit)="send()">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="To">
+            <input type="text" class="form-control" placeholder="yourdriverusa@gmail.com" name="from" disabled>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Cc / Bcc">
+            <input type="text" class="form-control" placeholder="To" name="email" formControlName="email">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Subject">
+            <input type="text" class="form-control" placeholder="Subject" name="subject" formControlName="subject">
         </div>
         <div class="form-group">
-            <textarea class="form-control" placeholder="Message" rows="10"></textarea>
+            <textarea class="form-control" placeholder="Message" rows="10" name="message" formControlName="message"></textarea>
         </div>
         <div class="form-group pull-right">
-            <a [routerLink]="['../mail-list/inbox']" class="btn btn-secondary mr-2">Cancel</a>
-            <button class="btn btn-main" type="submit">Send</button>
+            <button class="btn btn-main" type="submit" [disabled]="form.invalid">Send</button>
         </div>
     </form>
 

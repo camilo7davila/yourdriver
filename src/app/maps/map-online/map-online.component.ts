@@ -24,8 +24,8 @@ export class MapOnlineComponent implements OnInit {
   busyData: StatusDriver[]
 
   icon ={
-    url: '../../../assets/map/iconred.png',
-    scaledSize: { width: 30, height: 37 }
+    url: '../../../assets/map/convertible.png',
+    scaledSize: { width: 64, height: 38 }
   }
 
   constructor(private satatusService: StatusDriverService) { }
