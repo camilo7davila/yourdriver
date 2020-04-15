@@ -26,6 +26,7 @@ export class TripsTableComponent implements OnInit {
           })
         })
       })
+      console.log(this.tripsPassengerDriver);
     })
   }
 }

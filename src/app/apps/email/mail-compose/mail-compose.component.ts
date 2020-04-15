@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MailComposeComponent implements OnInit {
   
-  form: FormGroup;
+  form: FormGroup; 
 
   constructor(private cS: CorreoService,
               private formBuilter: FormBuilder) {
