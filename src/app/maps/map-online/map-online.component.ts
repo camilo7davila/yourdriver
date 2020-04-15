@@ -38,10 +38,7 @@ export class MapOnlineComponent implements OnInit {
       this.satatusService.getDriversLocationsBusy().subscribe(dataBusy => {
         this.busy = dataBusy.length
         this.busyData = dataBusy
-        console.log('available ==============>', this.availableData);
-        console.log('Busy =================>', this.busyData);
-        
-        this.lawPercent(this.available, this.busy, this.inTrip)
+        this.lawPercent(this.available,  this.busy, this.inTrip)
       })
     })
   }

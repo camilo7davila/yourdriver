@@ -31,6 +31,7 @@ export class MailComposeComponent implements OnInit {
   send(){
     this.cS.sendEmail(this.form.value).subscribe(data => {
       alert('el mensaje fue enviado exitosamente')
+      this.form.reset()
     },error => {
       alert('Ocurrio un error al enviar el msj' + error)
     })

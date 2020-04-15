@@ -79,8 +79,8 @@
                 <h4 class="card-title" >Live map </h4>
                 <agm-map [latitude]="28.844341" [longitude]="-82.012881" [zoom]="7" #map1>
                     <ng-container *ngFor="let available of availableData">
+                        <!-- Available markers -->
                         <agm-marker [latitude]="available.l[0]" [longitude]="available.l[1]" [iconUrl]="icon">
-                            
                             <agm-info-window #infoWindow [maxWidth]="400" class="fadeIn animated">
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body" style="text-align: center;">
@@ -88,9 +88,9 @@
                                     </div>
                                 </div>
                             </agm-info-window>
-
                         </agm-marker>
                     </ng-container>
+                    <!-- busy marker -->
                     <ng-container *ngFor="let busy of busyData">
                         <agm-marker [latitude]="busy.l[0]" [longitude]="busy.l[1]"></agm-marker>
                     </ng-container>
