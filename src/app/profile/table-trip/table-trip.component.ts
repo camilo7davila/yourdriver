@@ -16,6 +16,16 @@ export class TableTripComponent implements OnInit {
   tripId: String
   tripAll: any
 
+  iconOrigin = {
+    url: '../../../assets/map/driver.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
+  iconDest = {
+    url: '../../../assets/map/dest.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
   constructor(private userService: UserService,
               private route: ActivatedRoute ) { }
 

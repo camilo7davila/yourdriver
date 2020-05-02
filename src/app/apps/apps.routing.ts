@@ -6,12 +6,24 @@ import { TicketlistComponent } from './ticketlist/ticketlist.component';
 import { TicketdetailsComponent } from './ticketdetails/ticketdetails.component';
 import { TaskboardComponent } from './taskboard/taskboard.component';
 import { FullcalendarComponent } from './fullcalendar/fullcalendar.component';
+import { MessagingComponent } from './messaging/messaging.component';
 
 export const AppsRoutes: Routes = [
   {
     path: '',
     children: [
+
       {
+        path: 'messaging',
+        component: MessagingComponent,
+        data: {
+          title: 'Send Message',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Chat App' }
+          ]
+        }
+      },      {
         path: 'chat',
         component: ChatComponent,
         data: {

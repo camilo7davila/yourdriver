@@ -43,8 +43,8 @@
                                             <div class="row">
                                                 <div class="col-md-10 col-xs-12">
                                                     <agm-map [latitude]="trip.destinationCoordinatesLatitude" [longitude]="trip.destinationCoordinatesLongitude" [zoom]="12" #map1>
-                                                        <agm-marker [latitude]="trip.destinationCoordinatesLatitude" [longitude]="trip.destinationCoordinatesLongitude"></agm-marker>
-                                                        <agm-marker [latitude]="trip.pickupCoordinatesLatitude" [longitude]="trip.pickupCoordinatesLongitude"></agm-marker>
+                                                        <agm-marker [latitude]="trip.destinationCoordinatesLatitude" [longitude]="trip.destinationCoordinatesLongitude" [iconUrl]="iconDest"></agm-marker>
+                                                        <agm-marker [latitude]="trip.pickupCoordinatesLatitude" [longitude]="trip.pickupCoordinatesLongitude" [iconUrl]="iconOrigin"></agm-marker>
                                                     </agm-map>
                                                     <a [routerLink]="['/profile/trip/', trip.key]"  id="anclaTrip" class="btn btn-success">
                                                         view full trip</a>

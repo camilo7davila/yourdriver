@@ -4,6 +4,7 @@ import { TableUserComponent } from './table-user/table-user.component';
 import { TableDriverComponent } from './table-driver/table-driver.component';
 import { TableTripComponent } from './table-trip/table-trip.component';
 import { PendingDriverComponent } from './pending-driver/pending-driver.component';
+import { ProfileCancelTripComponent } from './profile-cancel-trip/profile-cancel-trip.component';
 
 
 const routes: Routes = [
@@ -61,6 +62,22 @@ const routes: Routes = [
       {
         path: ':id',
         component: PendingDriverComponent,
+        data: {
+          title: 'YourDriver',
+          urls: [
+            { title: 'Profile', url: '/profile' },
+            { title: 'Driver profile' }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    path: 'profilecanceltrip',
+    children: [
+      {
+        path: ':id',
+        component: ProfileCancelTripComponent,
         data: {
           title: 'YourDriver',
           urls: [
