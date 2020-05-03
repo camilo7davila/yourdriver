@@ -1,0 +1,14 @@
+.strong-reason{
+    color: black;
+    font-weight: 1000;
+}
+
+.sebm-google-map-container {
+    width: 100%;
+    height: 500px;
+    display: flex;
+}
+
+.card-body-left{
+    background-color: #ef6e6e ;
+}

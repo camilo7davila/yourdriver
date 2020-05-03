@@ -22,15 +22,26 @@ export class MapOnlineComponent implements OnInit {
 
   availableData: StatusDriver[]
   busyData: StatusDriver[]
+  inTripData: StatusDriver[]
 
-  icon ={
-    url: '../../../assets/map/convertible.png',
-    scaledSize: { width: 64, height: 38 }
+  iconAvailable ={
+    url: '../../../assets/map/gre.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
+  iconBusy ={
+    url: '../../../assets/map/red.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
+  iconTrip ={
+    url: '../../../assets/map/car.png',
+    scaledSize: { width: 25, height: 30 }
   }
 
   constructor(private satatusService: StatusDriverService) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.percent = 35
     this.satatusService.getDriversLocationsAvailable().subscribe(data => {
       this.available = data.length
@@ -38,11 +49,22 @@ export class MapOnlineComponent implements OnInit {
       this.satatusService.getDriversLocationsBusy().subscribe(dataBusy => {
         this.busy = dataBusy.length
         this.busyData = dataBusy
-        this.lawPercent(this.available,  this.busy, this.inTrip)
+        this.satatusService.getDriversLocationsinTrip().subscribe(dataInTrip => {
+          this.inTrip = dataInTrip.length
+          this.inTripData = dataInTrip
+          this.lawPercent(this.available,  this.busy, this.inTrip)
+        })
       })
     })
   }
 
+  /**
+   * Función para poner el porcentaje en multiplos multiplos de 5 para pintarlos
+   * @param available conductores disponibles
+   * @param busy conductores no disponibles
+   * @param inTrip conductores en viaje
+   */
+  
   lawPercent(available, busy, inTrip){
 
     this.total = available + busy + inTrip
@@ -62,7 +84,7 @@ export class MapOnlineComponent implements OnInit {
     }
 
     if((Math.round((busy*100)/this.total))%5 === 0){
-      this.busyPercent = Math.round((available*100)/this.total)
+      this.busyPercent = Math.round((busy*100)/this.total)
     }else{
       let resultado = (Math.round((busy*100)/this.total))
       for (let i = 0; i <= 6; i++) {
@@ -87,6 +109,21 @@ export class MapOnlineComponent implements OnInit {
           break
         }
       }
+    }
+    this.zero(available, busy, inTrip)
+  }
+
+  zero(available, busy, inTrip){
+    console.log(inTrip);
+    
+    if(available === 0){
+      this.availablePercent = 0
+    }
+    if(busy === 0){
+      this.busyPercent = 0
+    }
+    if(inTrip === 0){
+      this.inTripPercent = 0
     }
   }
 

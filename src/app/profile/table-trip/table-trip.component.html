@@ -5,8 +5,8 @@
             <div class="card-body" *ngIf="tripAll">
                 <h4 class="card-title">Map of Trip</h4>
                 <agm-map [latitude]="tripAll.tripInfo.destinationCoordinatesLatitude" [longitude]="tripAll.tripInfo.destinationCoordinatesLongitude" [zoom]="12" #map1>
-                    <agm-marker [latitude]="tripAll.tripInfo.destinationCoordinatesLatitude" [longitude]="tripAll.tripInfo.destinationCoordinatesLongitude"></agm-marker>
-                    <agm-marker [latitude]="tripAll.tripInfo.pickupCoordinatesLatitude" [longitude]="tripAll.tripInfo.pickupCoordinatesLongitude"></agm-marker>
+                    <agm-marker [latitude]="tripAll.tripInfo.destinationCoordinatesLatitude" [longitude]="tripAll.tripInfo.destinationCoordinatesLongitude" [iconUrl] = "iconDest"></agm-marker>
+                    <agm-marker [latitude]="tripAll.tripInfo.pickupCoordinatesLatitude" [longitude]="tripAll.tripInfo.pickupCoordinatesLongitude" [iconUrl] = "iconOrigin"></agm-marker>
                     <agm-polyline>
                         <agm-polyline-point [latitude]="tripAll.tripInfo.destinationCoordinatesLatitude" [longitude]="tripAll.tripInfo.destinationCoordinatesLongitude"></agm-polyline-point>
                         <agm-polyline-point [latitude]="tripAll.tripInfo.pickupCoordinatesLatitude" [longitude]="tripAll.tripInfo.pickupCoordinatesLongitude"></agm-polyline-point>

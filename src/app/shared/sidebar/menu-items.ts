@@ -66,37 +66,74 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
+
   {
-    path: '/tables/usertable',
-    title: 'Users table',
-    icon: 'icon-Receipt-4',
-    class: '',
+    path: '',
+    title: 'People',
+    icon: 'mdi mdi-account',
+    class: 'has-arrow',
     extralink: false,
-    submenu: []
+    submenu: [
+      {
+        path: '/tables/usertable',
+        title: 'Users table',
+        icon: 'icon-Receipt-4',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+      {
+        path: '/tables/drivertable',
+        title: 'Drivers table',
+        icon: 'icon-Receipt-4',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+    ]
+  },
+
+  {
+    path: '',
+    title: 'Trips',
+    icon: 'mdi mdi-airplane',
+    class: 'has-arrow',
+    extralink: false,
+    submenu: [
+      {
+        path: '/tables/historytripstable',
+        title: 'History trips table',
+        icon: 'icon-Receipt-4',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+      {
+        path: '/tables/canceltriptable',
+        title: 'Cancel Trips table',
+        icon: 'icon-Receipt-4',
+        class: '',
+        extralink: false,
+        submenu: []
+      }
+    ]
   },
   {
-    path: '/tables/drivertable',
-    title: 'Drivers table',
-    icon: 'icon-Receipt-4',
-    class: '',
+    path: '',
+    title: 'management',
+    icon: 'mdi mdi-access-point',
+    class: 'has-arrow',
     extralink: false,
-    submenu: []
-  },
-  {
-    path: '/tables/historytripstable',
-    title: 'History trips table',
-    icon: 'icon-Receipt-4',
-    class: '',
-    extralink: false,
-    submenu: []
-  },
-  {
-    path: '/tables/pendingdriverstrable',
-    title: 'Pending Drivers table',
-    icon: 'icon-Receipt-4',
-    class: '',
-    extralink: false,
-    submenu: []
+    submenu: [
+      {
+        path: '/tables/pendingdriverstrable',
+        title: 'Pending Drivers table',
+        icon: 'icon-Receipt-4',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+    ]
   },
   {
     path: '/tables/smarttable',
@@ -126,6 +163,14 @@ export const ROUTES: RouteInfo[] = [
     path: '/apps/email',
     title: 'Email',
     icon: 'icon-Mailbox-Empty',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/apps/messaging',
+    title: 'Messaging',
+    icon: 'mdi mdi-message',
     class: '',
     extralink: false,
     submenu: []
@@ -299,14 +344,14 @@ export const ROUTES: RouteInfo[] = [
         extralink: false,
         submenu: []
       },
-      { 
-		path: '/component/notifier', 
-		title: 'Notifier', 
-		icon: 'mdi mdi-bandcamp', 
-		class: '', 
-		extralink: false, 
-		submenu: [] 
-	  }
+      {
+        path: '/component/notifier',
+        title: 'Notifier',
+        icon: 'mdi mdi-bandcamp',
+        class: '',
+        extralink: false,
+        submenu: []
+      }
     ]
   },
   {
@@ -561,7 +606,7 @@ export const ROUTES: RouteInfo[] = [
         extralink: false,
         submenu: []
       },
-	  {
+      {
         path: '/forms/ngx',
         title: 'Form Wizard / Steps',
         icon: 'mdi mdi-attachment',

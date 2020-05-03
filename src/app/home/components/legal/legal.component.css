@@ -1,0 +1,49 @@
+#mainNav {
+    border-color: white;
+    background-color: black;
+    transition: all .35s;
+    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+#mainNav .navbar-brand {
+    color: white;
+    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+.legal{
+    color: rgb(51,51,51);
+}
+.legal p{
+    font-size: 16px;
+}
+.legal h1 strong{
+    font-weight: 500 !important;
+    font-size: 40px;
+    margin: 7px 0;
+}
+.legal h2 strong{
+    font-weight: 500 !important;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.legal h3 strong{
+    font-weight: 500 !important;
+    font-size: 24px;
+    margin: 7px;
+}
+
+@media screen and (max-width:768px){
+    .legal h1 strong{
+        font-size: 36px;
+    }
+    .legal h2 strong{
+        font-size: 24px;
+    }
+    .legal h3 strong{
+        font-size: 18px;
+    }
+}
