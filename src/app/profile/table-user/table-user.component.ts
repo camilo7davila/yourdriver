@@ -18,6 +18,16 @@ export class TableUserComponent implements OnInit {
   @ViewChild(RouterOutlet, {static: true}) outlet: RouterOutlet;
   @ViewChild('map1', { static: true }) map1;
 
+  iconOrigin = {
+    url: '../../../assets/map/driver.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
+  iconDest = {
+    url: '../../../assets/map/dest.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
   userId: string
   user: User
   tripsAndDrivers: any[] = []

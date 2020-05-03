@@ -23,7 +23,7 @@ export class StatusDriverService {
   }
 
   getDriversLocationsinTrip(){
-    return this.angularDB.list<StatusDriver>('Drivers-Locations-Busy').snapshotChanges().pipe(map(changes => {
+    return this.angularDB.list<StatusDriver>('Drivers-Locations-InTrip').snapshotChanges().pipe(map(changes => {
       return changes.map(a => ({key: a.key, ...a.payload.val()}))
     }))
   }

@@ -10,10 +10,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TableDriverComponent } from './table-driver/table-driver.component';
 import { TableTripComponent } from './table-trip/table-trip.component';
 import { PendingDriverComponent } from './pending-driver/pending-driver.component';
+import { ProfileCancelTripComponent } from './profile-cancel-trip/profile-cancel-trip.component';
 
 
 @NgModule({
-  declarations: [TableUserComponent, TableDriverComponent, TableTripComponent, PendingDriverComponent],
+  declarations: [TableUserComponent, TableDriverComponent, TableTripComponent, PendingDriverComponent, ProfileCancelTripComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,

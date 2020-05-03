@@ -19,7 +19,8 @@ export interface Trip{
     expectTimeTravel: Number
     priceTrip: Number;
     timeTrip: string;
-    passengerUid: String
+    passengerUid: String;
+    reason?: String
 }
 
 export interface Drivers {
@@ -35,7 +36,8 @@ export interface Drivers {
     profileImageUrl: String,
     state: Number;
     date?: String;
-    key?: String
+    key?: String;
+    Token?: String
 }
 
 export interface User {

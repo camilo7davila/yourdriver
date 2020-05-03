@@ -12,6 +12,17 @@ import 'firebase/database';
   styleUrls: ['./table-driver.component.css']
 })
 export class TableDriverComponent implements OnInit {
+
+  iconOrigin = {
+    url: '../../../assets/map/driver.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
+  iconDest = {
+    url: '../../../assets/map/dest.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
   driverId: string
   driver: Drivers 
   tripsAndPassengers: any[] = []
@@ -19,8 +30,7 @@ export class TableDriverComponent implements OnInit {
   form: FormGroup
 
   constructor(private userService: UserService,
-              private route: ActivatedRoute, 
-              private router: Router,
+              private route: ActivatedRoute,
               private formBuilter: FormBuilder) { 
                 this.buildForm()
               }
@@ -28,7 +38,6 @@ export class TableDriverComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(parametros => {
       this.driverId = parametros.id
-      console.log('params', parametros.id);
       this.userService.getDriverById(this.driverId).valueChanges().subscribe(dataDriver => {
         this.driver = dataDriver
         this.form.patchValue(dataDriver)

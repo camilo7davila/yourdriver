@@ -36,5 +36,4 @@ export class AdministradorService {
       return ref.where('email', '==', email)
     }).valueChanges()
   }
-
 }

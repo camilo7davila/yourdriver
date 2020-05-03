@@ -20,7 +20,7 @@ export class PendingDriverTableComponent implements OnInit {
       return changes.map(a => ( { key: a.key, ...a.payload.val() } ))
     })).subscribe(data => {
       this.driverPending = data
-    })
+    }) 
   }
 
 }

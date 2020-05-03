@@ -10,6 +10,7 @@ import { UserTableComponent } from './user-table/user-table.component';
 import { DriverTableComponent } from './driver-table/driver-table.component';
 import { TripsTableComponent } from './trips-table/trips-table.component';
 import { PendingDriverTableComponent } from './pending-driver-table/pending-driver-table.component';
+import { TripsCancelTableComponent } from './trips-cancel-table/trips-cancel-table.component';
 
 export const TablesRoutes: Routes = [
   {
@@ -62,6 +63,17 @@ export const TablesRoutes: Routes = [
       {
         path: 'pendingdriverstrable',
         component: PendingDriverTableComponent,
+        data: {
+          title: 'YourDrive',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Color Tables' }
+          ]
+        }
+      },
+      {
+        path: 'canceltriptable',
+        component: TripsCancelTableComponent,
         data: {
           title: 'YourDrive',
           urls: [

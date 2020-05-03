@@ -20,6 +20,16 @@ export class MapTripComponent implements OnInit {
   tripId: string
   allTrip: TripLive
 
+  iconDest ={
+    url: '../../../assets/map/dest.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
+  iconOrigin ={
+    url: '../../../assets/map/driver.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
   constructor(private route: ActivatedRoute,
               private userService: UserService,
               private tripService: TripService) { }

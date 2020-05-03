@@ -1,0 +1,95 @@
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-6 col-xlg-6 col-md-5">
+        <div class="card">
+            <div class="card-body card-body-left" *ngIf="tripCancel">
+                <h4 class="card-title">Map of Canceled Trip</h4>
+                <agm-map [latitude]="tripCancel.destinationCoordinatesLatitude" [longitude]="tripCancel.destinationCoordinatesLongitude" [zoom]="12" #map1>
+                    <agm-marker [latitude]="tripCancel.destinationCoordinatesLatitude" [longitude]="tripCancel.destinationCoordinatesLongitude" [iconUrl]="iconDest"></agm-marker>
+                    <agm-marker [latitude]="tripCancel.pickupCoordinatesLatitude" [longitude]="tripCancel.pickupCoordinatesLongitude" [iconUrl]="iconOrigin"></agm-marker>
+                    <agm-polyline>
+                        <agm-polyline-point [latitude]="tripCancel.destinationCoordinatesLatitude" [longitude]="tripCancel.destinationCoordinatesLongitude"></agm-polyline-point>
+                        <agm-polyline-point [latitude]="tripCancel.pickupCoordinatesLatitude" [longitude]="tripCancel.pickupCoordinatesLongitude"></agm-polyline-point>
+                    </agm-polyline>
+                </agm-map>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <div class="col-lg-6 col-xlg-6 col-md-7">
+        <div class="card">
+            <ngb-tabset type="pills" class="custom-pills">
+                <ngb-tab title="Info Trip">
+                    <ng-template ngbTabContent>
+                        <div class="card-body">
+                            <h4 class="card-title">Passenger Info</h4>
+                            <div class="profiletimeline" *ngIf="passenger">
+                                <div class="sl-item">
+                                    <div class="sl-left">
+                                        <img [src]="passenger.profileImageUrl" alt="user"
+                                            class="rounded-circle" height="40" />
+                                    </div>
+                                    <div class="sl-right">
+                                        <div>
+                                            <a [routerLink]="['/profile/userprofile/', tripCancel.passengerUid ]" class="link">{{passenger.Name}}
+                                                {{passenger.LastName}}</a> <br>
+                                            <span>Email:  </span> <span class="sl-date">{{passenger.Email}}</span>
+                                            <br>
+                                            <span>Phone: </span> <span class="sl-date">{{passenger.PhoneNumber}}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <h4 class="card-title">Driver Info</h4>
+                            <div class="profiletimeline" *ngIf="driver">
+                                <div class="sl-item">
+                                    <div class="sl-left">
+                                        <img [src]="driver.profileImageUrl" alt="user"
+                                            class="rounded-circle" height="40" />
+                                    </div>
+                                    <div class="sl-right">
+                                        <div>
+                                            <a [routerLink]="['/profile/driverprofile/', tripCancel.driverUid ]" class="link">{{driver.Name}}
+                                                {{driver.LastName}}</a> <br>
+                                            <span>Email:  </span> <span class="sl-date">{{driver.Email}}</span>
+                                            <br>
+                                            <span>Phone: </span> <span class="sl-date">{{driver.PhoneNumber}}</span>
+                                            <br>
+                                            <span>SSN: </span> <span class="sl-date">{{driver.SSN}}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <h4 class="card-title">Trip Info</h4>
+                            <div class="profiletimeline" *ngIf="tripCancel">
+                                <div class="sl-item">
+                                    <div class="sl-left">
+                                        <img src="../../../assets/img/YourDriver.png" alt="user"
+                                            class="rounded-circle" height="40" />
+                                    </div>
+                                    <div class="sl-right">
+                                        <div>
+                                            <span>Date start: </span> <span class="sl-date">{{tripCancel.dateStart}}</span>
+                                            <br>
+                                            <span>Distance:  </span> <span class="sl-date">{{tripCancel.distanceInMeter}}<sub>m</sub></span>
+                                            <br>
+                                            <span>Price trip: </span> <span class="sl-date">{{tripCancel.priceTrip | currency}}</span>
+                                            <br>
+                                            <span>ID Payment: </span> <span class="sl-date">{{tripCancel.payment_Id}}</span>
+                                            <br>
+                                            <span>Reason: </span> <span class="sl-date"> <strong class="strong-reason"> {{tripCancel.reason}} </strong></span>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>
