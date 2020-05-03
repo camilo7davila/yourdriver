@@ -69,14 +69,14 @@ section h2 {
 }
 
 #mainNav .navbar-brand {
-  color: #fdcc52;
+  color: #ffffff;
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
   font-weight: 200;
   letter-spacing: 1px;
 }
 
 #mainNav .navbar-brand:hover, #mainNav .navbar-brand:focus {
-  color: #fcbd20;
+  color: #000000;
 }
 
 #mainNav .navbar-toggler {
@@ -93,7 +93,7 @@ section h2 {
 }
 
 #mainNav .navbar-nav > li > a.active {
-  color: #fdcc52 !important;
+  color: #000000 !important;
   background-color: transparent;
 }
 
@@ -108,7 +108,7 @@ section h2 {
 
 #mainNav .navbar-nav > li > a:hover,
 #mainNav .navbar-nav > li > a:focus:hover {
-  color: #fdcc52;
+  color: #000000;
 }
 
 @media (min-width: 992px) {
@@ -138,7 +138,7 @@ section h2 {
     color: #222222;
   }
   #mainNav.navbar-shrink .navbar-brand:hover, #mainNav.navbar-shrink .navbar-brand:focus {
-    color: #fdcc52;
+    color: #000000;
   }
   #mainNav.navbar-shrink .navbar-nav > li > a,
   #mainNav.navbar-shrink .navbar-nav > li > a:focus {
@@ -146,18 +146,16 @@ section h2 {
   }
   #mainNav.navbar-shrink .navbar-nav > li > a:hover,
   #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover {
-    color: #fdcc52;
+    color: #000000;
   }
 }
 
 header.masthead {
   position: relative;
   width: 100%;
-  padding-top: 150px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 15px;
   color: white;
-  background: url("../img/bg-pattern.png"), #7b4397;
-  background: url("../img/bg-pattern.png"), linear-gradient(to left, #1d0c25, #333232);
 }
 
 header.masthead .header-content {
@@ -183,7 +181,7 @@ header.masthead .device-container .screen img {
 @media (min-width: 992px) {
   header.masthead {
     height: 100vh;
-    min-height: 775px;
+    min-height: 580px;
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -226,6 +224,10 @@ section.download .badges .badge-link img {
   section.download .badges .badge-link {
     display: inline-block;
     margin-bottom: 0;
+  }
+  #img-logo{
+    width: 200px;
+    height: 400px;
   }
 }
 
@@ -396,7 +398,7 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
 
 .bg-primary {
   background: #fdcc52;
-  background: linear-gradient(#fdcc52, #fdc539);
+  background: linear-gradient(darkGray, #ffffff);
 }
 
 .text-primary {
@@ -434,4 +436,86 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
 
 .text-muted{
 text-align: justify;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  
+
+  font-family: 'Raleway', sans-serif;
+
+
+}
+
+header{
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+video{
+  width: 100%;
+}
+
+.absolute{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  position: absolute;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+h1{
+  font-size: 80px;
+  font-weight: 900;
+  z-index: 100;
+  color:#fff;
+  margin-bottom: 30px;
+}
+
+h1::after{
+  display: block;
+  width: 30%;
+  height: 10px;
+  content: "";
+  margin: auto;
+  background: #fff;
+}
+
+.overlay{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.575);
+}
+
+@media screen and (max-width: 800px){
+  h1{
+      font-size: 50px;
+  }
+  .YourDriverLogo{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px){
+  h1{
+      font-size: 30px;
+      margin-bottom: 0;
+  }
+
+  h1::after{
+      display: none;
+  }
+  
 }

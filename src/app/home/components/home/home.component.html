@@ -1,5 +1,36 @@
 <!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <img src="assets/img/YourDriver.png" alt="" srcset="" style="width: 50px;"> &nbsp;
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start YourDriver</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" [routerLink]="['/dashboard/dashboard1']"
+                        routerLinkActive="router-link-active">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <img src="../../../../assets/img/YourDriver.png" alt="" srcset="" style="width: 50px;"> &nbsp;
         <a class="navbar-brand js-scroll-trigger">Start YourDriver</a>
@@ -12,70 +43,54 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" [routerLink]="['/dashboard/dashboard1']" routerLinkActive="router-link-active" >Login</a>
+                    <a class="nav-link js-scroll-trigger" [routerLink]="['/dashboard/dashboard1']"
+                        routerLinkActive="router-link-active">Login</a>
                 </li>
             </ul>
         </div>
     </div>
-</nav>
+</nav> -->
+
+
 
 <header class="masthead">
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-lg-7 my-auto">
-                <div class="header-content mx-auto">
-                    <h1 class="mb-5" style="font-family: Catamaran,Helvetica,Arial,sans-serif;
-                    font-weight: 200;
-                    letter-spacing: 1px;">YourDriver is a digital platform that offers driver services through an Android and
-                        IOS
-                        application to take you in your own vehicle to the place you want when you don't want or can't
-                        drive.</h1>
-                    <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>
-                </div>
-            </div>
-            <div class="col-lg-5 my-auto">
-                <div class="device-container">
-                    <div class="device-mockup iphone_x">
-                        <div class="device scrollflow -pop">
-
-                            <div class="screen">
-                                <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-
-                            </div>
-
-                            <div class="button">
-                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                            </div>
-                        </div>
-                        <div style="float: left; padding: 16px 18px;">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7241652.006282843!2d-83.804601!3d27.59468!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c1766591562abf%3A0xf72e13d35bc74ed0!2sFlorida!5e0!3m2!1sen!2sus!4v1576726180022!5m2!1sen!2sus"
-                                width="290" height="620" frameborder="0" style="border-radius :20px;"
-                                allowfullscreen=""></iframe>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
+    <div class="overlay"></div>
+    <div class="absolute">
+      <div class="row container-fluid" style="align-items: center; opacity: 0.8;">
+        <div class="col-md-5 mx-auto visible-desktop YourDriverLogo" >
+          <div style="position: relative;">
+            <img id="img-logo" src="assets/img/YourDriverLogo.png" alt="" srcset="" width="300" height="550">
+          </div>
         </div>
-    </div>
-</header>
+        <div class="col-md-7 mx-auto">
+          <h1 style="font-size: 40px;">Welcome to YourDriver</h1>
+          
+        </div>
 
-<section class="download bg-primary text-center" id="download">
+
+      </div>
+
+    </div>
+
+    <video onloadedmetadata="this.muted=true" autoplay loop>
+      <source src="assets/img/YourDriverVideo.mp4">
+    </video>
+  </header>
+
+  <section class="download bg-primary text-center" id="download">
     <div class="container scrollflow -pop -opacity">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <h2 class="section-heading">Discover what all the buzz is about!</h2>
-                <p>Our app is available on any mobile device! Download now to get started!</p>
-                <div class="badges">
-                    <a class="badge-link" href="#"><img src="../../../../assets/img/google-play-badge.svg" alt=""></a>
-                    <a class="badge-link" href="#"><img src="../../../../assets/img/app-store-badge.svg" alt=""></a>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <h2 class="section-heading">Discover what all the buzz is about!</h2>
+          <p>Our app is available on any mobile device! Download now to get started!</p>
+          <div class="badges">
+            <a class="badge-link" href="#"><img src="assets/img/google-play-badge.svg" alt=""></a>
+            <a class="badge-link" href="#"><img src="assets/img/app-store-badge.svg" alt=""></a>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
 <section class="features " id="features">
     <div class="container ">
