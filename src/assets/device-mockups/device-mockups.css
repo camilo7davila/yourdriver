@@ -303,16 +303,16 @@
 
 /* iPhone X*/
 .device-mockup.iphone_x {
-	padding-bottom: 201.76% !important;
+	padding-bottom: 201.76px ;
 }
 
 .device-mockup.iphone_x > .device {
-	background-image: url("iphone_x/iPhoneXSinFondo.png") !important;
+	background-image: url("iphone_x/iPhoneXMockUp.png") ;
 }
 
 .device-mockup.iphone_x > .device > .screen {
 	display: block;
-    top: 3%; bottom: 3%; left: 5.97%; right: 5.97% !important; 
+	top: 7%;   bottom: 3%;   left: 6%;   right: 6%;
 }
 
 /* iPhone 6 Plus*/
