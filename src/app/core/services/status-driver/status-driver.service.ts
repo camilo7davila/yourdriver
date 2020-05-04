@@ -27,4 +27,8 @@ export class StatusDriverService {
       return changes.map(a => ({key: a.key, ...a.payload.val()}))
     }))
   }
+
+  getDriveLocationinTripByid(id){
+    return this.angularDB.object<StatusDriver>('Drivers-Locations-InTrip/' + id)
+  }
 }

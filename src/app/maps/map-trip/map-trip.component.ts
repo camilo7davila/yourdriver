@@ -6,6 +6,7 @@ import 'firebase/database';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TripLive } from 'src/app/interface/trip-live.interface';
+import { StatusDriverService } from 'src/app/core/services/status-driver/status-driver.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class MapTripComponent implements OnInit {
 
   tripId: string
   allTrip: TripLive
+  positionDriver: any
 
   iconDest ={
     url: '../../../assets/map/dest.png',
@@ -30,9 +32,15 @@ export class MapTripComponent implements OnInit {
     scaledSize: { width: 25, height: 30 }
   }
 
+  iconDriver ={
+    url: '../../../assets/map/car.png',
+    scaledSize: { width: 25, height: 30 }
+  }
+
   constructor(private route: ActivatedRoute,
               private userService: UserService,
-              private tripService: TripService) { }
+              private tripService: TripService,
+              private sD: StatusDriverService) { }
 
   ngOnInit() {
     this.route.params.subscribe(url => {
@@ -48,8 +56,10 @@ export class MapTripComponent implements OnInit {
       combineLatest([passenger$ , driver$]).pipe(
         map(([passenger, driver ]) =>  (({passengerInfo: passenger, driverInfo:driver, ...data})))
       ).subscribe(final => {
-        this.allTrip = final
-        console.log(final);
+        this.allTrip = final;
+        this.sD.getDriveLocationinTripByid(final.driverUid).valueChanges().subscribe(data => {
+          this.positionDriver = data.l
+        })
       })
     })
   }

@@ -4,9 +4,10 @@
         <div class="card">
             <div class="card-body" style="background-color: #44e22c;" *ngIf="allTrip">
                 <h4 class="card-title" style="color: green;">Live map </h4>
-                <agm-map [latitude]="allTrip.destinationCoordinates[0]" [longitude]="allTrip.destinationCoordinates[1]" [zoom]="12" #map1>
+                <agm-map [latitude]="allTrip.destinationCoordinates[0]" [longitude]="allTrip.destinationCoordinates[1]" [zoom]="10" #map1>
                     <agm-marker [latitude]="allTrip.destinationCoordinates[0]" [longitude]="allTrip.destinationCoordinates[1]" [iconUrl]="iconDest"></agm-marker>
                     <agm-marker [latitude]="allTrip.pickupCoordinates[0]" [longitude]="allTrip.pickupCoordinates[1]" [iconUrl]="iconOrigin"></agm-marker>
+                    <agm-marker [latitude]="positionDriver[0]" [longitude]="positionDriver[1]" [iconUrl]="iconDriver"></agm-marker>
                 </agm-map>
             </div>
         </div>
