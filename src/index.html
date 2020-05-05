@@ -34,6 +34,12 @@
 
     <!-- Plugin for scroll style-->
     <script src="./assets/js/eskju.jquery.scrollflow.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ($('#yourDriverVideo'))
+                $('#yourDriverVideo')[0].load();
+        })
+    </script>
 </body>
 
 </html>
