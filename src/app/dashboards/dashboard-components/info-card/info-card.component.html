@@ -1,15 +1,17 @@
 <div class="card-group">
     <!-- Card -->
-    <div class="card">
+    <div class="card card-1">
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <span class="btn btn-circle btn-lg bg-danger">
-                        <i class="ti-clipboard text-white" [routerLink]="['/tables/pendingdriverstrable']"></i>
+                    <span class="btn btn-circle btn-lg" style="background-color: #2962FF;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 30px; height: 30px;">
+                            <img class="img" src="../../../../assets//iconos-mainscreen/request.svg" alt="icono1" width="30" height="30">
+                        </a>
                     </span>
                 </div>
                 <div>
-                    Wainting drivers
+                    Job applications
                 </div>
                 <div class="ml-auto">
                     <h2 class="m-b-0 font-light">{{driversPending}}</h2>
@@ -23,8 +25,10 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <span class="btn btn-circle btn-lg btn-info">
-                        <i class="ti-wallet text-white" [routerLink]="['/tables/drivertable']"></i>
+                    <span class="btn btn-circle btn-lg" style="background-color: black;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 30px; height: 30px;">
+                            <img class="img" src="../../../../assets//iconos-mainscreen/totalDrivers.svg" alt="icono1" width="30" height="30">
+                        </a>
                     </span>
                 </div>
                 <div>
@@ -42,12 +46,14 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <span class="btn btn-circle btn-lg bg-success">
-                        <i class="ti-shopping-cart text-white" [routerLink]="['/tables/usertable']"></i>
+                    <span class="btn btn-circle btn-lg" style="background-color: black;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 30px; height: 30px;">
+                            <img class="img" src="../../../../assets//iconos-mainscreen/totalUsers.svg" alt="icono1" width="30" height="30">
+                        </a>
                     </span>
                 </div>
                 <div>
-                    Total users
+                    Total customers
                 </div>
                 <div class="ml-auto">
                     <h2 class="m-b-0 font-light">{{totalUsers}}</h2>
@@ -61,8 +67,10 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <span class="btn btn-circle btn-lg bg-warning">
-                        <i class="mdi mdi-currency-usd text-white" [routerLink]="['/tables/historytripstable']"></i>
+                    <span class="btn btn-circle btn-lg" style="background-color: black;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 30px; height: 30px;">
+                            <img class="img" src="../../../../assets//iconos-mainscreen/TotalTrips.svg" alt="icono1" width="30" height="30">
+                        </a>
                     </span>
                 </div>
                 <div>
@@ -76,4 +84,84 @@
     </div>
     <!-- Card -->
     <!-- Column -->
+</div>
+
+<!-- Columna abajo -->
+<div class="card-group">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="m-r-10">
+                    <span class="btn btn-circle btn-lg" style="background-color: black;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 28px; height: 28px;">
+                            <img class="img" src="../../../../assets//iconos-mainscreen/Profits.svg" alt="icono1" width="28" height="28">
+                        </a>
+                    </span>
+                </div>
+                <div>
+                    Profits
+                </div>
+                <div class="ml-auto">
+                    <h2 class="m-b-0 font-light">{{totalTrips}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="m-r-10">
+                    <span class="btn btn-circle btn-lg" style="background-color: black;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 30px; height: 30px;">
+                            <img class="img" src="../../../../assets//iconos-mainscreen/DriverAvailable.svg" alt="icono1" width="30" height="30">
+                        </a>
+                    </span>
+                </div>
+                <div>
+                    Drivers Available
+                </div>
+                <div class="ml-auto">
+                    <h2 class="m-b-0 font-light">{{totalTrips}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="m-r-10">
+                    <span class="btn btn-circle btn-lg" style="background-color: black;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 30px; height: 30px;">
+                            <img class="img" src="../../../../assets/iconos-mainscreen/DriverBusy.svg" alt="icono1" width="30" height="30">
+                        </a>
+                    </span>
+                </div>
+                <div>
+                    Drivers busy
+                </div>
+                <div class="ml-auto">
+                    <h2 class="m-b-0 font-light">{{totalTrips}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="m-r-10">
+                    <span class="btn btn-circle btn-lg" style="background-color: black;">
+                        <a [routerLink]="['/tables/pendingdriverstrable']" style="width: 30px; height: 30px;">
+                            <img class="img" src="../../../../assets//iconos-mainscreen/TripCanceled.svg" alt="icono1" width="30" height="30">
+                        </a>
+                    </span>
+                </div>
+                <div>
+                    Trip cancel
+                </div>
+                <div class="ml-auto">
+                    <h2 class="m-b-0 font-light">{{totalTrips}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

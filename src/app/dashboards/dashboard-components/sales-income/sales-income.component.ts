@@ -8,7 +8,8 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 
 @Component({
   selector: 'app-sales-income',
-  templateUrl: './sales-income.component.html'
+  templateUrl: './sales-income.component.html',
+  styleUrls: ['./sales-income.component.scss']
 })
 export class SalesIncomeComponent implements OnInit {
 
@@ -20,12 +21,13 @@ export class SalesIncomeComponent implements OnInit {
 
   driversAvailable: number = 0
   driversBusy: number = 0
+  driverInTrip: number = 0
 
   //DONA------------------------------------------------------------->
   public doughnutChartLabels: string[] = [
     'Pending',
     'Approved',
-    'rejected',
+    'Rejected',
   ];
 
   public doughnutChartData: number[] = [0];
@@ -41,17 +43,19 @@ export class SalesIncomeComponent implements OnInit {
 
   public barChartLabels: string[] = [
     'Available',
-    'Busy'
+    'Busy',
+    'InTrip'
   ];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [
-    { data: [0,0], label: 'otros' }
+    { data: [0,0,0], label: 'otros' }
   ];
   public barChartColors: Array<any> = [
-    { backgroundColor: '#36bea6' },
-    { backgroundColor: '#2962FF' }
+    { backgroundColor: '#1A1717' },
+    { backgroundColor: '#030000' },
+    { backgroundColor: '#030000' },
   ];
 
   constructor(private userService: UserService,
@@ -72,12 +76,15 @@ export class SalesIncomeComponent implements OnInit {
   driversStatus() {
     let driverAvailable$ = this.statusService.getDriversLocationsAvailable()
     let driverBusy$ = this.statusService.getDriversLocationsBusy()
-    combineLatest([driverAvailable$, driverBusy$]).pipe(
-      map(([driverAvailable, driverBusy]) => ({ driverAvailable, driverBusy }))
+    let driverInTrip$ = this.statusService.getDriversLocationsinTrip()
+    combineLatest([driverAvailable$, driverBusy$, driverInTrip$]).pipe(
+      map(([driverAvailable, driverBusy, driverInTrip]) => ({ driverAvailable, driverBusy, driverInTrip }))
     ).subscribe(final => {
+      console.log(final);
       this.driversAvailable = final.driverAvailable.length
       this.driversBusy = final.driverBusy.length
-      this.barChartData = [({ data: [this.driversAvailable, this.driversBusy], label: 'Drivers', backgroundColor: "rgba(255,99,132,0.6)", borderColor: "rgba(255,99,132,1)", hoverBackgroundColor: "rgba(255,99,132,0.8)", hoverBorderColor: "rgba(255,99,132,1)" })]
+      this.driverInTrip = final.driverInTrip.length
+      this.barChartData = [({ data: [this.driversAvailable, this.driversBusy, this.driverInTrip], label: 'Drivers', backgroundColor: "rgba(255,99,132,0.6)", borderColor: "rgba(255,99,132,1)", hoverBackgroundColor: "rgba(255,99,132,0.8)", hoverBorderColor: "rgba(255,99,132,1)" })]
     })
   }
 

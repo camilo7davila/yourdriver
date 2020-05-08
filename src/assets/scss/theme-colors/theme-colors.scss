@@ -5,22 +5,22 @@
     /*This is for the logo bg*/
     .topbar .top-navbar .navbar-header {
       &[data-logobg='skin1'] {
-        background: $skin1;
+        background: black;
       }
       &[data-logobg='skin2'] {
-        background: $skin2;
+        background: black;
       }
       &[data-logobg='skin3'] {
-        background: $skin3;
+        background: black;
       }
       &[data-logobg='skin4'] {
-        background: $skin4;
+        background: black;
       }
       &[data-logobg='skin5'] {
-        background: $skin5;
+        background: black;
       }
       &[data-logobg='skin6'] {
-        background: $skin6;
+        background: black;
         .navbar-brand {
           .dark-logo {
             display: inline;

@@ -18,8 +18,8 @@ import { DOCUMENT } from '@angular/common';
   selector: 'app-spinner',
   template: `<div class="preloader" *ngIf="isSpinnerVisible">
         <div class="spinner">
-          <div class="double-bounce1"></div>
-          <div class="double-bounce2"></div>
+          <img class="double-bounce1" src="assets/img/YourDriver.png" width="40">
+          <img class="double-bounce2" src="assets/img/YourDriver.png" width="50">
         </div>
     </div>`,
   encapsulation: ViewEncapsulation.None

@@ -167,7 +167,7 @@ Down arrow
 User Profile
 ******************/
 .user-profile {
-  padding: 15px;
+  padding: 0px 15px;
   text-align: center;
   .user-content,
   .user-name,
@@ -178,13 +178,13 @@ User Profile
   }
   .user-pic {
     img {
-      width: 60px;
+      width: 100px;
     }
   }
   .btn-circle.btn-sm {
     width: 25px;
     height: 25px;
-    font-size: 10px;
+    font-size: 16px;
     padding: 5px 0;
     background: rgba(0, 0, 0, 0.2);
     color: $white;

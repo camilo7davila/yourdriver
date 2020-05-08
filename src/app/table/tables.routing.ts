@@ -34,7 +34,7 @@ export const TablesRoutes: Routes = [
           title: 'YourDrive',
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
-            { title: 'Color Tables' }
+            { title: 'Customers Table' }
           ]
         }
       },
@@ -45,7 +45,7 @@ export const TablesRoutes: Routes = [
           title: 'YourDrive',
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
-            { title: 'Color Tables' }
+            { title: 'Drivers table' }
           ]
         }
       },

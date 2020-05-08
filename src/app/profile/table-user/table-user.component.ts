@@ -33,6 +33,7 @@ export class TableUserComponent implements OnInit {
   tripsAndDrivers: any[] = []
 
   form: FormGroup
+  totalSpend: number;
 
   constructor(private userService: UserService, 
               private route: ActivatedRoute, 
@@ -51,12 +52,18 @@ export class TableUserComponent implements OnInit {
       this.userService.searchTripForPassenger(this.userId).snapshotChanges().pipe(map(changes => {
         return changes.map(ref => ({ key: ref.key, ...ref.payload.val() }))
       })).subscribe(trips => {
+        console.log(trips);
+        let reducer = ((acumulador, item) => {
+          return  acumulador + item.priceTrip
+        })
+        this.totalSpend = trips.reduce(reducer, 0)
         trips.map(trip => {
           this.userService.getDriverById(trip.driverUid).valueChanges().subscribe(data => {
             this.tripsAndDrivers.push({ ...trip, driverInfo: data })
+            data
           })
         })
-        console.log(this.tripsAndDrivers);
+        // console.log(this.tripsAndDrivers);
       })
     })
     this.router.events.subscribe(e => {

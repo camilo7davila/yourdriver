@@ -6,7 +6,8 @@ import { Drivers, User, Trip } from 'src/app/interface/user.interface';
 
 @Component({
   selector: 'app-info-card',
-  templateUrl: './info-card.component.html'
+  templateUrl: './info-card.component.html',
+  styleUrls: ['./info-card.component.scss']
 })
 export class InfocardComponent implements OnInit, AfterViewInit {
 

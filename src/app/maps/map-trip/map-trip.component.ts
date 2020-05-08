@@ -22,25 +22,26 @@ export class MapTripComponent implements OnInit {
   allTrip: TripLive
   positionDriver: any
 
-  iconDest ={
+
+  iconDest = {
     url: '../../../assets/map/dest.png',
     scaledSize: { width: 25, height: 30 }
   }
 
-  iconOrigin ={
+  iconOrigin = {
     url: '../../../assets/map/driver.png',
     scaledSize: { width: 25, height: 30 }
   }
 
-  iconDriver ={
+  iconDriver = {
     url: '../../../assets/map/car.png',
     scaledSize: { width: 25, height: 30 }
   }
 
   constructor(private route: ActivatedRoute,
-              private userService: UserService,
-              private tripService: TripService,
-              private sD: StatusDriverService) { }
+    private userService: UserService,
+    private tripService: TripService,
+    private sD: StatusDriverService) { }
 
   ngOnInit() {
     this.route.params.subscribe(url => {
@@ -49,12 +50,12 @@ export class MapTripComponent implements OnInit {
     })
   }
 
-  getTrip(id){
+  getTrip(id) {
     this.tripService.getTripById(id).valueChanges().subscribe(data => {
       let passenger$ = this.getPassenger(id)
       let driver$ = this.getDriver(data.driverUid)
-      combineLatest([passenger$ , driver$]).pipe(
-        map(([passenger, driver ]) =>  (({passengerInfo: passenger, driverInfo:driver, ...data})))
+      combineLatest([passenger$, driver$]).pipe(
+        map(([passenger, driver]) => (({ passengerInfo: passenger, driverInfo: driver, ...data })))
       ).subscribe(final => {
         this.allTrip = final;
         this.sD.getDriveLocationinTripByid(final.driverUid).valueChanges().subscribe(data => {
@@ -64,11 +65,11 @@ export class MapTripComponent implements OnInit {
     })
   }
 
-  getPassenger(idPassenger){
+  getPassenger(idPassenger) {
     return this.userService.getUserById(idPassenger).valueChanges()
   }
 
-  getDriver(idDriver){
+  getDriver(idDriver) {
     return this.userService.getDriverById(idDriver).valueChanges()
   }
 

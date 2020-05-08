@@ -6,7 +6,8 @@ import { TripService } from 'src/app/core/services/trip/trip.service';
 
 @Component({
   selector: 'app-topsell',
-  templateUrl: './topsell.component.html'
+  templateUrl: './topsell.component.html',
+  styleUrls: ['./topsell.component.scss']
 })
 export class TopsellComponent implements OnInit {
 
