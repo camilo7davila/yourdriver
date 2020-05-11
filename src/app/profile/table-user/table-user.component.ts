@@ -15,7 +15,7 @@ import 'firebase/database';
 })
 export class TableUserComponent implements OnInit {
 
-  @ViewChild(RouterOutlet, {static: true}) outlet: RouterOutlet;
+  @ViewChild(RouterOutlet, { static: true }) outlet: RouterOutlet;
   @ViewChild('map1', { static: true }) map1;
 
   iconOrigin = {
@@ -34,16 +34,18 @@ export class TableUserComponent implements OnInit {
 
   form: FormGroup
   totalSpend: number;
+  flag: boolean = true
+  tripsTotal: number = 0;
 
-  constructor(private userService: UserService, 
-              private route: ActivatedRoute, 
-              private router: Router,
-              private formBuilter: FormBuilder) {
-                this.buildForm()
-              }
+  constructor(private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilter: FormBuilder) {
+    this.buildForm()
+  }
 
   ngOnInit() {
-    this.route.params.subscribe(data => { 
+    this.route.params.subscribe(data => {
       this.userId = data.id;
       this.userService.getUserById(this.userId).valueChanges().subscribe(user => {
         this.user = user
@@ -52,11 +54,13 @@ export class TableUserComponent implements OnInit {
       this.userService.searchTripForPassenger(this.userId).snapshotChanges().pipe(map(changes => {
         return changes.map(ref => ({ key: ref.key, ...ref.payload.val() }))
       })).subscribe(trips => {
-        console.log(trips);
-        let reducer = ((acumulador, item) => {
-          return  acumulador + item.priceTrip
-        })
-        this.totalSpend = trips.reduce(reducer, 0)
+        this.tripsTotal = trips.length
+        if (trips.length === 0) {
+          this.flag = false
+        }else {
+          this.reducer(trips)
+          this.orderByDate(trips)
+        }
         trips.map(trip => {
           this.userService.getDriverById(trip.driverUid).valueChanges().subscribe(data => {
             this.tripsAndDrivers.push({ ...trip, driverInfo: data })
@@ -68,13 +72,32 @@ export class TableUserComponent implements OnInit {
     })
     this.router.events.subscribe(e => {
       if (e instanceof ActivationStart && e.snapshot.outlet === "errorpage")
-          this.outlet.deactivate();
-  });
+        this.outlet.deactivate();
+    });
+  }
+
+  orderByDate(trips: Trip[]) {
+    trips.sort((a, b) => {
+      if(a.dateStart < b.dateStart) {
+        return 1
+      }
+      if(a.dateStart > b.dateStart) {
+        return -1
+      }
+      return 0
+    })
+  }
+
+  reducer(trips) {
+    let reducer = ((acumulador, item) => {
+      return acumulador + item.priceTrip
+    })
+    this.totalSpend = trips.reduce(reducer, 0)
   }
 
   private buildForm() {
     this.form = this.formBuilter.group({
-      Name: ['', [Validators.required,Validators.minLength(4)]],
+      Name: ['', [Validators.required, Validators.minLength(4)]],
       LastName: ['', [Validators.required]],
       Email: ['', [Validators.required, Validators.email]],
       PhoneNumber: ['', [Validators.required]],
@@ -82,13 +105,13 @@ export class TableUserComponent implements OnInit {
     })
   }
 
-  saveProduct(event){
+  saveProduct(event) {
     event.preventDefault();
-    if(this.form.valid){
-      this.userService.editUser(this.userId, this.form.value).then(()=> {
+    if (this.form.valid) {
+      this.userService.editUser(this.userId, this.form.value).then(() => {
         alert('Datos actualizados')
       }).catch(e => {
-        alert('ocurrio un error'+ e)
+        alert('ocurrio un error' + e)
       })
     }
   }

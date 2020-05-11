@@ -6,19 +6,23 @@
                 <div class="m-t-30 text-center">
                     <img [src]="driver.profileImageUrl" class="rounded-circle" width="150" height="150" />
                     <h4 class="card-title m-t-10">{{driver.Name}} {{driver.LastName}}</h4>
-                    <h6 class="card-subtitle">Accoubts Manager {{driver.Name}}</h6>
+                    <h6 class="card-subtitle">Driver Account</h6>
                 </div>
             </div>
             <div>
                 <hr>
-            </div> 
+            </div>
             <div class="card-body" *ngIf="driver">
                 <small class="text-muted">Email address </small>
                 <h6>{{driver.Email}}</h6>
                 <small class="text-muted p-t-30 db">Phone</small>
                 <h6>{{driver.PhoneNumber}}</h6>
-                <small class="text-muted p-t-30 db">Address</small>
-                <h6>Undefine</h6>
+                <small class="text-muted p-t-30 db">Joined since</small>
+                <h6>{{driver.date}}</h6>
+                <small class="text-muted p-t-30 db">Total Trips</small>
+                <h6>{{totalTrips}}</h6>
+                <small class="text-muted p-t-30 db">Total Earn</small>
+                <h6>{{totalEarn | currency :'USD':'symbol':'1.0-3'}}</h6>
             </div>
         </div>
     </div>
@@ -29,73 +33,69 @@
                 <ngb-tab title="Trips">
                     <ng-template ngbTabContent>
                         <div class="card-body">
-                            <div class="profiletimeline" *ngIf="tripsAndPassengers">
-                                <div class="sl-item" *ngFor="let trip of tripsAndPassengers">
-                                    <div class="sl-left">
-                                        <img [src]="trip.passengerInfo.profileImageUrl" alt="user" class="rounded-circle" height="40" />
-                                    </div>
-                                    <div class="sl-right">
-                                        <div>
-                                            <a href="#" class="link">{{trip.passengerInfo.Name}} {{trip.passengerInfo.LastName}}</a> <br>
-                                            <span>Date Start: </span> <span class="sl">{{trip.dateStart}}</span> <br>
-                                            <span>Date Finished: </span> <span class="sl">{{trip.dateFinished}}</span>
-                                            <div class="row">
-                                                <div class="col-md-10 col-xs-12">
-                                                    <agm-map [latitude]="trip.destinationCoordinatesLatitude" [longitude]="trip.destinationCoordinatesLongitude" [zoom]="12" #map1>
-                                                        <agm-marker [latitude]="trip.destinationCoordinatesLatitude" [longitude]="trip.destinationCoordinatesLongitude" [iconUrl] = "iconDest"></agm-marker>
-                                                        <agm-marker [latitude]="trip.pickupCoordinatesLatitude" [longitude]="trip.pickupCoordinatesLongitude" [iconUrl] = "iconOrigin"></agm-marker>
-                                                    </agm-map>
-                                                    <a [routerLink]="['/profile/trip/', trip.key]"  id="anclaTrip" class="btn btn-success">
-                                                        view full trip</a>
+                            <ng-container *ngIf="flag; else noTrip">
+                                <div class="profiletimeline" *ngIf="tripsAndPassengers">
+                                    <div class="sl-item" *ngFor="let trip of tripsAndPassengers">
+                                        <div class="sl-left">
+                                            <img [src]="trip.passengerInfo.profileImageUrl" alt="user"
+                                                class="rounded-circle driver-image" />
+                                        </div>
+                                        <div class="sl-right">
+                                            <div>
+                                                <b><span>Passenger: </span></b>
+                                                <a href="#" class="link">{{trip.passengerInfo.Name}}
+                                                    {{trip.passengerInfo.LastName}}</a> <br>
+                                                <span>Date Start: </span> <span class="sl">{{trip.dateStart}}</span>
+                                                <br>
+                                                <span>Date Finished: </span> <span
+                                                    class="sl">{{trip.dateFinished}}</span>
+                                                <br>
+                                                <span style="margin-left: 5px;">Earn: </span> <span
+                                                    class="sl">{{trip.priceTrip | currency :'USD':'symbol':'1.0-3'}}</span>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-10 col-xs-12">
+                                                        <agm-map [latitude]="trip.destinationCoordinatesLatitude"
+                                                            [longitude]="trip.destinationCoordinatesLongitude"
+                                                            [zoom]="12" #map1>
+                                                            <agm-marker [latitude]="trip.destinationCoordinatesLatitude"
+                                                                [longitude]="trip.destinationCoordinatesLongitude"
+                                                                [iconUrl]="iconDest"></agm-marker>
+                                                            <agm-marker [latitude]="trip.pickupCoordinatesLatitude"
+                                                                [longitude]="trip.pickupCoordinatesLongitude"
+                                                                [iconUrl]="iconOrigin"></agm-marker>
+                                                        </agm-map>
+                                                        <a [routerLink]="['/profile/trip/', trip.key]" id="anclaTrip"
+                                                            class="btn">
+                                                            view full trip</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr>
                                     </div>
-                                    <hr>
                                 </div>
-                            </div>
+                            </ng-container>
+                            <ng-template #noTrip>
+                                <div>
+                                    <figure style="text-align: center;">
+                                        <img src="../../../assets/img/noTripsImage.png" alt="no-imgtrip" width="250">
+                                    </figure>
+                                </div>
+                                <div style="text-align: center;">
+                                    <b class="no-trips">NO TRIPS YET</b>
+                                </div>
+                            </ng-template>
                         </div>
                     </ng-template>
                 </ngb-tab>
-                <ngb-tab title="Profile">
+                <ngb-tab title="Info">
                     <ng-template ngbTabContent>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4 col-xs-6 b-r">
-                                    <strong>Full Name</strong>
-                                    <br>
-                                    <p class="text-muted">{{driver.Name}} {{driver.LastName}}</p>
-                                </div>
-                                <div class="col-md-4 col-xs-6 b-r">
-                                    <strong>Mobile</strong>
-                                    <br>
-                                    <p class="text-muted">{{driver.Email}}</p>
-                                </div>
-                                <div class="col-md-4 col-xs-6 b-r">
-                                    <strong>Email</strong>
-                                    <br>
-                                    <p class="text-muted">{{driver.PhoneNumber}}/p>
-                                </div>
-                                <div class="col-md-4 col-xs-6">
-                                    <strong>Location</strong>
-                                    <br>
-                                    <p class="text-muted">EEUU</p>
-                                </div>
-                                <div class="col-md-4 col-xs-6">
-                                    <strong>Account Type</strong>
-                                    <br>
-                                    <p class="text-muted">{{driver.AccountType}}</p>
-                                </div>
-                                <div class="col-md-4 col-xs-6">
-                                    <strong>Joined since</strong>
-                                    <br>
-                                    <p class="text-muted">{{driver.date}}</p>
-                                </div>
-                            </div>
                             <hr>
-                            <h4 class="font-medium m-t-30">Driver License</h4>
-                            <div class="col-lg-12 col-md-12 m-b-20">
-                                <img [src]="driver.driverLicenseImageUrl" class="img-fluid radius" />
+                            <h4 class="font-medium m-t-20">Driver License</h4>
+                            <div class="col-lg-12 col-md-12 m-b-20 contenedor-imagen">
+                                <img [src]="driver.driverLicenseImageUrl" class="imgclass" />
                             </div>
                             <h4 class="font-medium m-t-30">Skill Set</h4>
                             <hr>
@@ -141,17 +141,20 @@
                 <ngb-tab title="Settings">
                     <ng-template ngbTabContent>
                         <div class="card-body">
-                            <form class="form-horizontal form-material" [formGroup]="form" (ngSubmit)="saveProduct($event)">
+                            <form class="form-horizontal form-material" [formGroup]="form"
+                                (ngSubmit)="saveProduct($event)">
                                 <div class="form-group">
                                     <label class="col-md-12">Name</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-line" name="Name" formControlName="Name">
+                                        <input type="text" class="form-control form-control-line" name="Name"
+                                            formControlName="Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">LastName</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-line" name="Lastname" formControlName="LastName">
+                                        <input type="text" class="form-control form-control-line" name="Lastname"
+                                            formControlName="LastName">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -165,7 +168,8 @@
                                     <label class="col-md-12">Phone No</label>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="123 456 7890"
-                                            class="form-control form-control-line" name="PhoneNumber" formControlName="PhoneNumber">
+                                            class="form-control form-control-line" name="PhoneNumber"
+                                            formControlName="PhoneNumber">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -205,7 +209,8 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Update Profile</button>
+                                        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Update
+                                            Profile</button>
                                     </div>
                                 </div>
                             </form>

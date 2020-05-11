@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Drivers } from 'src/app/interface/user.interface';
+import { Drivers, Trip } from 'src/app/interface/user.interface';
 import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'firebase/database';
@@ -28,6 +28,10 @@ export class TableDriverComponent implements OnInit {
   tripsAndPassengers: any[] = []
 
   form: FormGroup
+  totalEarn: number = 0;
+  totalTrips: number;
+  flag: boolean = true;
+  parcialEarn: any;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -45,6 +49,14 @@ export class TableDriverComponent implements OnInit {
       this.userService.searchTripForDriver(this.driverId).snapshotChanges().pipe(map(changes => {
         return changes.map(data => ({key: data.key, ...data.payload.val()}))
       })).subscribe(trips => {
+
+        if(trips.length === 0) {
+          this.flag = false
+        }else {
+          this.orderByDate(trips)
+          this.reducer(trips)
+        }
+        this.totalTrips = trips.length
         trips.forEach(trip => {
           this.userService.getUserById(trip.passengerUid).valueChanges().subscribe(data => {
             this.tripsAndPassengers.push(({...trip, passengerInfo: data}))
@@ -52,6 +64,26 @@ export class TableDriverComponent implements OnInit {
         })
       })
     })
+  }
+
+  orderByDate(trips: Trip[]) {
+    trips.sort((a, b) => {
+      if(a.dateStart < b.dateStart) {
+        return 1
+      }
+      if(a.dateStart > b.dateStart) {
+        return -1
+      }
+      return 0
+    })
+  }
+
+  reducer(trips: Trip[]) {
+    let reducer = ((acumulador, item) => {
+      return  acumulador + item.priceTrip
+    })
+    this.parcialEarn = trips.reduce(reducer, 0)
+    this.totalEarn = this.parcialEarn * 0.8
   }
 
   private buildForm() {
