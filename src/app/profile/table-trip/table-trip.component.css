@@ -7,6 +7,7 @@
 .badge {
     font-size: 13px;
     margin: 2px;
+    border-radius: 6px;
 }
 
 .contenedor-badge {
@@ -55,4 +56,17 @@
 .no-trips {
     font-size: 20px;
     font-weight: bold;
+}
+
+.card {
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.52);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.52);
+    border-radius: 10px;
+}
+
+.rounded-circle {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.52);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.52);
 }

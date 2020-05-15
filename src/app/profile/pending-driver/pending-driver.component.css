@@ -1,22 +1,35 @@
-.sl-center{
-    text-align: center ;
+.sl-center {
+    text-align: center;
 }
-p{
+p {
     display: inline;
     padding: 20px 0;
 }
-h6{
+h6 {
     display: inline;
     margin: 0 0 0 8px;
 }
 
-.license{
+.license {
     object-fit: contain;
     object-position: center;
     height: auto;
     margin: 0 auto;
 }
-.botones{
+.botones {
     display: flex;
     justify-content: space-evenly;
+}
+
+.card {
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.52);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.52);
+    border-radius: 10px;
+}
+
+.rounded-circle {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.52);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.52);
 }

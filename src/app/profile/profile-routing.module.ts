@@ -87,6 +87,22 @@ const routes: Routes = [
         }
       }
     ]
+  },
+  {
+    path: 'profileusercanceltrip',
+    children: [
+      {
+        path: ':id',
+        component: ProfileCancelTripComponent,
+        data: {
+          title: 'YourDriver',
+          urls: [
+            { title: 'Profile', url: '/profile' },
+            { title: 'Driver profile' }
+          ]
+        }
+      }
+    ]
   }
 ]
 

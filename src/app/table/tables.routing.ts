@@ -83,6 +83,17 @@ export const TablesRoutes: Routes = [
         }
       },
       {
+        path: 'cancelusertriptable',
+        component: TripsCancelTableComponent,
+        data: {
+          title: 'YourDrive',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Color Tables' }
+          ]
+        }
+      },
+      {
         path: 'basictables',
         component: BasictableComponent,
         data: {

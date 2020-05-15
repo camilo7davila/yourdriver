@@ -110,7 +110,15 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/tables/canceltriptable',
-        title: 'Cancel Trips table',
+        title: 'Cancel Trips By Drivers',
+        icon: 'icon-Receipt-4',
+        class: '',
+        extralink: false,
+        submenu: []
+      },
+      {
+        path: '/tables/cancelusertriptable',
+        title: 'Cancel Trips By Passengers',
         icon: 'icon-Receipt-4',
         class: '',
         extralink: false,

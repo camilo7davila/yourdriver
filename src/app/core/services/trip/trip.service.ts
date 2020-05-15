@@ -27,4 +27,12 @@ export class TripService {
     return this.angularDB.object<Trip>('/Trips-Canceled/' + id)
   }
 
+  getTripsCancelUser() {
+    return this.angularDB.list<Trip>('/Trips-Canceled-Users')
+  }
+
+  getTripsCancelUserById(id) {
+    return this.angularDB.object<Trip>('/Trips-Canceled-Users/' + id)
+  }
+
 }

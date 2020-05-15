@@ -33,6 +33,34 @@ export class ProfileCancelTripComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit() {
+    this.route.parent.url.subscribe(data => {
+      console.log(data);
+      if(data[0].path === 'profilecanceltrip') {
+        this.drivercancelTrip()
+      } else {
+        alert('usuario cancelo')
+        this.usercancelTrip()
+      }
+    })
+  }
+
+  usercancelTrip() {
+    this.route.params.pipe(switchMap((params: Params) => {
+      return this.tripService.getTripsCancelUserById(params.id).valueChanges()
+    })).subscribe(data => {
+      let passsenger$ = this.userService.getUserById(data.passengerUid).valueChanges()
+      let driver$ = this.userService.getDriverById(data.driverUid).valueChanges()
+      combineLatest([passsenger$, driver$]).pipe(
+        map(([passenger,driver]) => (({passengerInfo: passenger, driverInfo:driver, tripInfo:data})))
+      ).subscribe(final => {
+        this.tripCancel = final.tripInfo,
+        this.passenger = final.passengerInfo,
+        this.driver = final.driverInfo
+      })
+    })
+  }
+
+  drivercancelTrip() {
     this.route.params.pipe(switchMap((params: Params) => {
       return this.tripService.getTripsCancelById(params.id).valueChanges()
     })).subscribe(data => {
@@ -41,7 +69,6 @@ export class ProfileCancelTripComponent implements OnInit {
       combineLatest([passsenger$, driver$]).pipe(
         map(([passenger,driver]) => (({passengerInfo: passenger, driverInfo:driver, tripInfo:data})))
       ).subscribe(final => {
-        console.log('esto es final ====>' + final);
         this.tripCancel = final.tripInfo,
         this.passenger = final.passengerInfo,
         this.driver = final.driverInfo

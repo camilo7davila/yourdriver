@@ -58,6 +58,7 @@ export class MapTripComponent implements OnInit {
         map(([passenger, driver]) => (({ passengerInfo: passenger, driverInfo: driver, ...data })))
       ).subscribe(final => {
         this.allTrip = final;
+        console.log(this.allTrip);
         this.sD.getDriveLocationinTripByid(final.driverUid).valueChanges().subscribe(data => {
           this.positionDriver = data.l
         })

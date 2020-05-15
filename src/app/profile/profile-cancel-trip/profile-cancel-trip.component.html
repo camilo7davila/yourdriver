@@ -1,8 +1,8 @@
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-5">
-        <div class="card">
-            <div class="card-body card-body-left" *ngIf="tripCancel">
+        <div class="card card-body-left">
+            <div class="card-body" *ngIf="tripCancel">
                 <h4 class="card-title">Map of Canceled Trip</h4>
                 <agm-map [latitude]="tripCancel.destinationCoordinatesLatitude" [longitude]="tripCancel.destinationCoordinatesLongitude" [zoom]="12" #map1>
                     <agm-marker [latitude]="tripCancel.destinationCoordinatesLatitude" [longitude]="tripCancel.destinationCoordinatesLongitude" [iconUrl]="iconDest"></agm-marker>
@@ -27,7 +27,7 @@
                                 <div class="sl-item">
                                     <div class="sl-left">
                                         <img [src]="passenger.profileImageUrl" alt="user"
-                                            class="rounded-circle" height="40" />
+                                            class="rounded-circle" height="40" width="40"/>
                                     </div>
                                     <div class="sl-right">
                                         <div>
@@ -46,7 +46,7 @@
                                 <div class="sl-item">
                                     <div class="sl-left">
                                         <img [src]="driver.profileImageUrl" alt="user"
-                                            class="rounded-circle" height="40" />
+                                            class="rounded-circle" height="40" width="40"/>
                                     </div>
                                     <div class="sl-right">
                                         <div>
@@ -67,7 +67,7 @@
                                 <div class="sl-item">
                                     <div class="sl-left">
                                         <img src="../../../assets/img/YourDriver.png" alt="user"
-                                            class="rounded-circle" height="40" />
+                                            class="rounded-circle" height="40" width="40"/>
                                     </div>
                                     <div class="sl-right">
                                         <div>
@@ -77,7 +77,21 @@
                                             <br>
                                             <span>Price trip: </span> <span class="sl-date">{{tripCancel.priceTrip | currency}}</span>
                                             <br>
+                                            <span>Cancellation fee: </span> <span class="sl-date">$5.30</span>
+                                            <br>
+                                            <!-- <div [ngSwitch]="conditionExpression">
+                                                <div *ngSwitchCase="expression">output</div>
+                                                <div *ngSwitchDefault>output2</div>
+                                            </div> -->
                                             <span>ID Payment: </span> <span class="sl-date">{{tripCancel.payment_Id}}</span>
+                                            <br>
+                                            <span>Trip state: </span> 
+                                            <ng-container [ngSwitch]="tripCancel.tripState">
+                                                <span class="sl-date" *ngSwitchCase="1">Accepted trip</span>
+                                                <span class="sl-date" *ngSwitchCase="2">Driver arrived</span>
+                                                <span class="sl-date" *ngSwitchCase="3">Trip in progress</span>
+                                                <span class="sl-date" *ngSwitchCase="4">Arrived at the destination</span>
+                                            </ng-container>
                                             <br>
                                             <span>Reason: </span> <span class="sl-date"> <strong class="strong-reason"> {{tripCancel.reason}} </strong></span>
                                             <br>

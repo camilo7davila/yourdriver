@@ -7,7 +7,7 @@
                 <agm-map [latitude]="allTrip.destinationCoordinates[0]" [longitude]="allTrip.destinationCoordinates[1]" [zoom]="10" #map1>
                     <agm-marker [latitude]="allTrip.destinationCoordinates[0]" [longitude]="allTrip.destinationCoordinates[1]" [iconUrl]="iconDest"></agm-marker>
                     <agm-marker [latitude]="allTrip.pickupCoordinates[0]" [longitude]="allTrip.pickupCoordinates[1]" [iconUrl]="iconOrigin"></agm-marker>
-                    <agm-marker [latitude]="positionDriver[0]" [longitude]="positionDriver[1]" [iconUrl]="iconDriver"></agm-marker>
+                    <agm-marker *ngIf="positionDriver" [latitude]="positionDriver[0]" [longitude]="positionDriver[1]" [iconUrl]="iconDriver"></agm-marker>
                 </agm-map>
             </div>
         </div>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <h4 class="card-title">Trip Info</h4>
-                            <div class="profiletimeline" *ngIf="tripAll">
+                            <div class="profiletimeline" *ngIf="allTrip">
                                 <div class="sl-item">
                                     <div class="sl-left">
                                         <img src="../../../assets/img/YourDriver.png" alt="user"
@@ -68,17 +68,15 @@
                                     </div>
                                     <div class="sl-right">
                                         <div>
-                                            <span>Date start: </span> <span class="sl-date">{{tripAll.tripInfo.dateStart}}</span>
+                                            <span>Date start: </span> <span class="sl-date">{{allTrip.dateStart}}</span>
                                             <br>
-                                            <span>Date finish:  </span> <span class="sl-date">{{tripAll.tripInfo.dateFinished}}</span>
+                                            <span>Distance:  </span> <span class="sl-date">{{allTrip.distanceInMeter}}<sub>m</sub></span>
                                             <br>
-                                            <span>Distance:  </span> <span class="sl-date">{{tripAll.tripInfo.distanceInMeter}}<sub>m</sub></span>
+                                            <span>Time trip: </span> <span class="sl-date">{{allTrip.destinationName}}</span>
                                             <br>
-                                            <span>Time trip: </span> <span class="sl-date">{{tripAll.tripInfo.timeTrip}}</span>
+                                            <span>Price trip: </span> <span class="sl-date">{{allTrip.priceTrip | currency}}</span>
                                             <br>
-                                            <span>Price trip: </span> <span class="sl-date">{{tripAll.tripInfo.priceTrip | currency}}</span>
-                                            <br>
-                                            <span>ID Payment: </span> <span class="sl-date">{{tripAll.tripInfo.payment_Id}}</span>
+                                            <span>ID Payment: </span> <span class="sl-date">{{allTrip.payment_Id}}</span>
                                         </div>
                                     </div>
                                     <hr>
