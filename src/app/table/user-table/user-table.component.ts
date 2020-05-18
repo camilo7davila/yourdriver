@@ -16,10 +16,20 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
-      this.users = data
+      this.sort(data)
     })
   }
 
-  
+  sort(data) {
+    this.users = data.sort((a, b) => {
+      if(a.date < b.date) {
+        return 1
+      }
+      if(a.date > b.date) {
+        return -1
+      }
+      return 0
+    })
+  }
 
 }

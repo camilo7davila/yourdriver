@@ -17,7 +17,7 @@ export const AppsRoutes: Routes = [
         path: 'messaging',
         component: MessagingComponent,
         data: {
-          title: 'Send Message',
+          title: 'Send Notification Message',
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
             { title: 'Chat App' }

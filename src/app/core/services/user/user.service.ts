@@ -37,7 +37,7 @@ export class UserService {
   }
 
   getUsers(){
-    return this.angularDB.list<User>('/Users').snapshotChanges().pipe(map(changes => {
+    return this.angularDB.list<User>('/Users',  ref => ref.orderByChild('date')).snapshotChanges().pipe(map(changes => {
       return changes.map(a => ({key: a.payload.key, ...a.payload.val() }))
     }))
   }

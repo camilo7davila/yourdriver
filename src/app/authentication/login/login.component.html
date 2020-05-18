@@ -1,9 +1,9 @@
-<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
     <div class="auth-box">
         <div id="loginform" [ngClass]="{'d-none': recoverform}">
             <div class="logo">
-                <span class="db"><img src="../../../assets//img/YourDriver.png" width="70" alt="logo" /></span>
-                <h5 class="font-medium m-b-20">Sign In to Admin</h5>
+                <span class="db"><img src="../../../assets//img/logoSinTitulo.png" width="70" alt="logo" /></span>
+                <h5 class="font-medium m-b-10 m-t-10"> <b>Sign In to Admin </b></h5>
             </div>
             <!-- Form -->
             <div class="row">
@@ -19,11 +19,11 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
                             </div>
-                            <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" formControlName="password">
+                            <input type="password" class="form-control form-control-lg" placeholder="password" aria-label="Password" formControlName="password">
                         </div>
                         <div class="form-group text-center">
                             <div class="col-xs-12 p-b-20">
-                                <button class="btn btn-block btn-lg btn-info" type="submit" [disabled]="form.invalid">Log In</button>
+                                <button class="btn btn-main" type="submit" [disabled]="form.invalid">Log In</button>
                             </div>
                         </div>
                     </form>

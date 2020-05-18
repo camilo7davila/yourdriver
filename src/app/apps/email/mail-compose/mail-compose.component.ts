@@ -5,7 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-mail-compose',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './mail-compose.component.html'
+  templateUrl: './mail-compose.component.html',
+  styleUrls: ['./mail-compose.component.scss'],
 })
 export class MailComposeComponent implements OnInit {
   

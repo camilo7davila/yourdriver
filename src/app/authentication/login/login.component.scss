@@ -1,8 +1,10 @@
-.form-control {
-    border-radius: 15px;
-    background-color: #f0f0f0;
-    -webkit-box-shadow: inset 10px 10px 25px -20px rgba(0, 0, 0, 0.2), inset -10px -10px 50px -20px #ffffff;
-    box-shadow: inset 10px 10px 25px -20px rgba(0, 0, 0, 0.2), inset -10px -10px 50px -20px #ffffff;
+.auth-wrapper {
+    background-color: black;
+    height: 100vh;
+    margin: auto 0;
+}
+.auth-box {
+    border-radius: 10px;
 }
 
 .btn-main {
@@ -15,9 +17,4 @@
     border-radius: 10px;
     -webkit-box-shadow: inset 10px 10px 25px -20px rgba(0, 0, 0, 0.2), inset -10px -10px 20px -20px #ffffff;
     box-shadow: inset 10px 10px 25px -20px rgba(0, 0, 0, 0.2), inset -10px -10px 20px -20px #ffffff;
-}
-
-.compose {
-    background-color: #f0f0f0;
-    border-radius: 10px;
 }

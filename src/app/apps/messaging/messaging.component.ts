@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessagingService } from 'src/app/core/services/messaging/messaging.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import 'firebase/database';
 
 @Component({
   selector: 'app-messaging',

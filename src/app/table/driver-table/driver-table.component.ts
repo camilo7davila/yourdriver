@@ -18,7 +18,19 @@ export class DriverTableComponent implements OnInit {
     this.userService.getDriversWhitId().snapshotChanges().pipe(map(changes => {
       return changes.map(data => ({key: data.key, ...data.payload.val()}))
     })).subscribe(drivers => {
-      this.drivers = drivers
+      this.sort(drivers)
+    })
+  }
+
+  sort(data) {
+    this.drivers = data.sort((a, b) => {
+      if(a.date < b.date) {
+        return 1
+      }
+      if(a.date > b.date) {
+        return -1
+      }
+      return 0
     })
   }
 
