@@ -18,28 +18,8 @@ import { Dashboard1Component } from './dashboard1/dashboard1.component';
 
 import {
   InfocardComponent,
-  ChatComponent,
-  CommentComponent,
   TopsellComponent,
-  ActivityComponent,
-  BrowserStatsComponent,
-  DeviceVisitsComponent,
-  EarningsComponent,
-  FeedsComponent,
-  InfoBoxComponent,
-  MixstatsComponent,
-  ProductInfoComponent,
-  ProjectComponent,
-  ReviewComponent,
-  SalesComponent,
   SalesIncomeComponent,
-  TasklistComponent,
-  UserProfileComponent,
-  UserDetailsComponent,
-  VisitorsComponent,
-  VisitsBounceComponent,
-  WeathercardComponent,
-  WelcomeComponent
 } from './dashboard-components';
 
 @NgModule({
@@ -58,28 +38,8 @@ import {
   declarations: [
     Dashboard1Component,
     InfocardComponent,
-    ChatComponent,
-    CommentComponent,
     TopsellComponent,
-    ActivityComponent,
-    BrowserStatsComponent,
-    DeviceVisitsComponent,
-    EarningsComponent,
-    FeedsComponent,
-    InfoBoxComponent,
-    MixstatsComponent,
-    ProductInfoComponent,
-    ProjectComponent,
-    ReviewComponent,
-    SalesComponent,
     SalesIncomeComponent,
-    TasklistComponent,
-    UserProfileComponent,
-    UserDetailsComponent,
-    VisitorsComponent,
-    VisitsBounceComponent,
-    WeathercardComponent,
-    WelcomeComponent
   ]
 })
 export class DashboardModule {}
