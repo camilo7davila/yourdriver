@@ -8,13 +8,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Drivers</h5>
                         <div class="d-flex no-block">
-                            <div class="align-self-center no-shrink">
-                                <h2 class="m-b-0">{{total}}</h2>
-                            </div>
                             <div style="margin: 0 auto;" id="prueba">
                                 <canvas baseChart height="300px" [data]="doughnutChartData"
                                     [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
-                                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"
                                     [colors]="[{backgroundColor: ['#2962FF', '#040000', '#B70104']}]">
                                 </canvas>
                             </div>

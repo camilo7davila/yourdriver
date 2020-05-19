@@ -10,6 +10,8 @@ import 'firebase/database';
 })
 export class MapOnlineComponent implements OnInit {
 
+  mapStyle: string = 'dark'
+
   public darkStyle = [
       {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
       {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -93,7 +95,6 @@ export class MapOnlineComponent implements OnInit {
 
   public defaultStyle = [];
 
-  mapStyle: string = 'dark'
   percent: any
   available: number= 0
   busy: number = 0

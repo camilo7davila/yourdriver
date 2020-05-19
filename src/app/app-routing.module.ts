@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
 import { BlankComponent } from './layouts/blank/blank.component';
-import { path } from 'd3';
 import { AdminGuard } from './core/guards/admin.guard';
 
 export const Approutes: Routes = [
@@ -33,6 +31,7 @@ export const Approutes: Routes = [
       { path: 'apps',canActivate: [AdminGuard], loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule) },
       {
         path: 'apps/email',
+        canActivate: [AdminGuard],
         loadChildren: () => import('./apps/email/mail.module').then(m => m.MailModule)
       },
       { path: 'maps', canActivate: [AdminGuard], loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule) },
