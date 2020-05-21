@@ -12,50 +12,34 @@ import { TripService } from 'src/app/core/services/trip/trip.service';
 export class TopsellComponent implements OnInit {
 
   trips: Trip[]
+  tripAndDrivers: any[] = [];
 
-  tripAndDrivers:any = [];
+  driver: any = 0
+  user: any = 0
+
   constructor(private userService: UserService,
-              private tripService: TripService) { }
+    private tripService: TripService) { }
 
   ngOnInit() {
-    this.tripService.getAllTripsLive().snapshotChanges().pipe(map(changes => {
-      return changes.map(a => ({key: a.key, ...a.payload.val()}))
+    this.tripService.getAllTripsLive().snapshotChanges().pipe(map(data => {
+      return data.map(e => ({ key: e.key, ...e.payload.val() }))
     })).subscribe(data => {
-      data.forEach(trip => {
-        this.userService.getDriverById(trip.driverUid).valueChanges().subscribe(driver => {
-          this.userService.getUserById(trip.key).valueChanges().subscribe(passenger => {
-            this.tripAndDrivers.push(({...trip, driverInfo: driver, passengerInfo: passenger}))
-          })
-        })
-      })
+      this.tripAndDrivers = data
     })
-    // this.userService.getTrips().valueChanges().subscribe(trips => {
-    //   trips.map(trips =>{
-    //     this.userService.getDriverById(trips.driverUid).valueChanges().subscribe(data => {
-    //       this.userService.getUserById(trips.passengerUid).valueChanges().subscribe(userInfo => {
-    //         this.tripAndDrivers.push(({...trips, driverInfo: data, passengerInfo: userInfo}))
+    // this.tripService.getAllTripsLive().valueChanges().subscribe(data => {
+    //   data.forEach(trip => {
+    //     if(trip.state !== 0){
+    //       this.userService.getDriverById(trip.driverUid).valueChanges().subscribe(driver => {
+    //         this.userService.getUserById(trip.passengerUid).valueChanges().subscribe(passenger => {
+    //           this.tripAndDrivers.push(({...trip, driverInfo: driver, passengerInfo: passenger}))
+    //         })
     //       })
-    //     })
+    //     }
     //   })
-    // });
+    // })
   }
 
 
-  // getAllDrivers(allTrips: Trip[]) {
-  //   allTrips.forEach(trip => this.getDriverID(trip.driverUid).subscribe(driver => {
-  //     this.tripAndDrivers.push(({...trip, driver: driver}))
-  //     console.log(({...trip, driver: driver}));
-  //   }))
-  // }
-
-  // getDriverID(id){
-  //   this.userService.getDriverById(id).valueChanges()
-  // }
-
-  //   this.userService.getid().subscribe(data => {
-  //   console.log('estos son los que tienen id ======> ', data);
-  // })
-  // }
 
 }
 

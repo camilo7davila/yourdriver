@@ -3,6 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Drivers, User, Trip } from 'src/app/interface/user.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { database } from 'firebase';
 
 @Injectable({
   providedIn: 'root' 
@@ -47,7 +48,7 @@ export class UserService {
   }
 
   getDriverById(id){
-    return this.angularDB.object<Drivers>('/Drivers/' + id)
+    return this.angularDB.object<Drivers>(`/Drivers/${id}`)
   }
 
   getDriverByIdWhitKey(id){

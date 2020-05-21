@@ -157,22 +157,6 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: [
       {
-        path: '/authentication/login',
-        title: 'Login',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/authentication/login2',
-        title: 'Login 2',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
         path: '/authentication/signup',
         title: 'Register',
         icon: '',
@@ -180,30 +164,6 @@ export const ROUTES: RouteInfo[] = [
         extralink: false,
         submenu: []
       },
-      {
-        path: '/authentication/signup2',
-        title: 'Register 2',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/authentication/404',
-        title: '404',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/authentication/lock',
-        title: 'Lockscreen',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      }
     ]
   },
 ];

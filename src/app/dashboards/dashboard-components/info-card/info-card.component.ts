@@ -3,6 +3,8 @@ import * as c3 from 'c3';
 import { UserService } from 'src/app/core/services/user/user.service';
 import 'firebase/database';
 import { Drivers, User, Trip } from 'src/app/interface/user.interface';
+import { PriceService } from 'src/app/core/services/price-value/price.service';
+import { StatusDriverService } from 'src/app/core/services/status-driver/status-driver.service';
 
 @Component({
   selector: 'app-info-card',
@@ -23,8 +25,15 @@ export class InfocardComponent implements OnInit, AfterViewInit {
   trips: Trip[]
   totalTrips: number
 
+  totalPrice: number = 0
+  driversAvaible: number = 0;
+  driversBusy: number = 0;
 
-  constructor(private userService: UserService) { }
+
+
+  constructor(private userService: UserService,
+            private priceService: PriceService,
+            private statusService: StatusDriverService) { }
 
   ngOnInit() {
     this.userService.getDriversPending().valueChanges().subscribe(data => {
@@ -45,6 +54,18 @@ export class InfocardComponent implements OnInit, AfterViewInit {
     this.userService.getTrips().valueChanges().subscribe(data => {
       this.trips = data
       this.totalTrips = this.trips.length
+    })
+
+    this.priceService.getPriceValue().subscribe(data => {
+      this.totalPrice = data.totalPayments
+    })
+
+    this.statusService.getDriversLocationsAvailable().subscribe(data =>{
+      this.driversAvaible = data.length
+    })
+
+    this.statusService.getDriversLocationsBusy().subscribe(data =>{
+      this.driversBusy = data.length
     })
   }
 

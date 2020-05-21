@@ -80,7 +80,6 @@ export class SalesIncomeComponent implements OnInit {
     combineLatest([driverAvailable$, driverBusy$, driverInTrip$]).pipe(
       map(([driverAvailable, driverBusy, driverInTrip]) => ({ driverAvailable, driverBusy, driverInTrip }))
     ).subscribe(final => {
-      console.log(final);
       this.driversAvailable = final.driverAvailable.length
       this.driversBusy = final.driverBusy.length
       this.driverInTrip = final.driverInTrip.length

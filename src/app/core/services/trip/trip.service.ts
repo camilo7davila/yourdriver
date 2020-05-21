@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TripLive } from 'src/app/interface/trip-live.interface';
-import { Observable } from 'rxjs';
 import { Trip } from 'src/app/interface/user.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class TripService {
   constructor(private angularDB: AngularFireDatabase) { }
 
   getAllTripsLive(){
-    return this.angularDB.list<TripLive>('/Trips')
+    return this.angularDB.list<Trip>('/Trips/')
   }
 
   getTripById(id){
@@ -28,7 +28,7 @@ export class TripService {
   }
 
   getTripsCancelUser() {
-    return this.angularDB.list<Trip>('/Trips-Canceled-Users')
+    return this.angularDB.list<Trip>('/Trips-Canceled-Users'  )
   }
 
   getTripsCancelUserById(id) {

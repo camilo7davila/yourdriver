@@ -6,7 +6,8 @@ interface Coordinates{
 export interface TripLive{
     destinationName: String;
     driverUid: String;
-    state: String;
+    passengerUid: string;
+    state: Number;
     destinationCoordinates: Coordinates;
     pickupCoordinates: Coordinates;
 }
