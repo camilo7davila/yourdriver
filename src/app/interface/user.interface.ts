@@ -1,13 +1,13 @@
-export interface DestinationCoordinates{
+export interface DestinationCoordinates {
     0: Number;
     1: Number
 }
-export interface PickupCoordinates{
+export interface PickupCoordinates {
     0: Number;
     1: Number
 }
 
-export interface Trip{
+export interface Trip {
     destinationCoordinates: DestinationCoordinates;
     destinationName: String;
     driverUid: string;
@@ -20,11 +20,22 @@ export interface Trip{
     priceTrip: Number;
     timeTrip: string;
     passengerUid: String;
-    reason?: String
+    reason?: String;
+    payment_Id_Cancel?: string,
+    destinationAddress?: string,
+    destinationCoordinatesLatitude?: number,
+    destinationCoordinatesLongitude?: number,
+    paymentStatus?: string,
+    paymentStatusCancel?: string,
+    payment_Id?: string,
+    pickupCoordinatesLatitude?: number,
+    pickupCoordinatesLongitude?: number,
+    priceCancelFee: number,
+    tripState: number,
 }
 
 export interface Drivers {
-    AccountType : Number;
+    AccountType: Number;
     BankAccount: String;
     Email: String;
     LastName: String;

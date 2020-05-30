@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { MessagingComponent } from './messaging/messaging.component';
+import { AdminGuard } from '../core/guards/admin.guard';
+import { TariffComponent } from './tariff/tariff.component';
 
 export const AppsRoutes: Routes = [
   {
@@ -18,5 +20,16 @@ export const AppsRoutes: Routes = [
         }
       }
     ]
+  },
+  {
+    path: 'tariff',
+    canActivate: [AdminGuard],
+    component: TariffComponent,
+    data: {
+      title: 'Edit the tariff',
+      urls: [
+        {title: 'Tariff'}
+      ]
+    }
   }
 ];

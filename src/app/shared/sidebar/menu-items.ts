@@ -166,4 +166,20 @@ export const ROUTES: RouteInfo[] = [
       },
     ]
   },
+  {
+    path: '',
+    title: 'Tariffs',
+    icon: 'mdi mdi-dots-horizontal',
+    class: 'nav-small-cap',
+    extralink: true,
+    submenu: []
+  },
+  {
+    path: '/apps/tariff',
+    title: 'Form',
+    icon: 'icon-Location-2',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
 ];

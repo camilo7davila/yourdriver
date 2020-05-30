@@ -63,3 +63,9 @@
 .contenedor-imagen {
     background-color: #f1f1f0;
 }
+
+.container-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

@@ -33,7 +33,7 @@ export class TableUserComponent implements OnInit {
   tripsAndDrivers: any[] = []
 
   form: FormGroup
-  totalSpend: number;
+  totalSpend: number = 0;
   flag: boolean = true
   tripsTotal: number = 0;
 

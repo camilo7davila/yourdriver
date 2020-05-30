@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  urlSquare: 'https://us-central1-yourdriver-7b0c9.cloudfunctions.net/api',
   production: false,
   firebase: {
     apiKey: "AIzaSyBRBOiyACx61gHqOgIy5E1ds9X3-60hmTQ",

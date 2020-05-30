@@ -6,80 +6,88 @@ import { map } from 'rxjs/operators';
 import { database } from 'firebase';
 
 @Injectable({
-  providedIn: 'root' 
+  providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private angularDB: AngularFireDatabase) {  }
+  constructor(private angularDB: AngularFireDatabase) { }
 
-  getid(): Observable<any>{ 
+  getid(): Observable<any> {
     return this.angularDB.list<Drivers>('/Drivers').snapshotChanges().pipe(map(changes => {
-      return changes.map(a => ({key: a.payload.key, ...a.payload.val() }))
+      return changes.map(a => ({ key: a.payload.key, ...a.payload.val() }))
     }))
   }
 
-  getDriversPending(){
+  getDriversPending() {
     // query que devuelve los ids de los conductores que tienen state 1
     // return this.angularDB.list('/Drivers', ref => ref.orderByChild('state').equalTo(1)).snapshotChanges()
     return this.angularDB.list<Drivers>('/Drivers')
   }
 
-  getDriversPendingFilter(){
+  getDriversPendingFilter() {
     // query que devuelve los ids de los conductores que tienen state 1
     return this.angularDB.list<Drivers>('/Drivers', ref => ref.orderByChild('state').equalTo(1))
   }
 
-  getDriversWhitId(){
+  getDriversWhitId() {
     return this.angularDB.list<Drivers>('/Drivers')
   }
 
-  getDriversAvailable(){
+  getDriversAvailable() {
     return this.angularDB.list('/Drivers-Locations-Available')
   }
 
-  getUsers(){
-    return this.angularDB.list<User>('/Users',  ref => ref.orderByChild('date')).snapshotChanges().pipe(map(changes => {
-      return changes.map(a => ({key: a.payload.key, ...a.payload.val() }))
+  getUsers() {
+    return this.angularDB.list<User>('/Users', ref => ref.orderByChild('date')).snapshotChanges().pipe(map(changes => {
+      return changes.map(a => ({ key: a.payload.key, ...a.payload.val() }))
     }))
   }
 
-  getTrips(){
+  getTrips() {
     return this.angularDB.list<Trip>('/Trips-History')
   }
 
-  getDriverById(id){
+  getDriverById(id) {
     return this.angularDB.object<Drivers>(`/Drivers/${id}`)
   }
 
-  getDriverByIdWhitKey(id){
+  getDriverByIdWhitKey(id) {
     return this.angularDB.object<Drivers>('/Drivers/' + id).snapshotChanges().pipe(map(changes => {
       return ({ key: changes.key, ...changes.payload.val() })
     }))
   }
 
-  getUserById(id){
+  getUserById(id) {
     return this.angularDB.object<User>('/Users/' + id)
   }
 
   //Trips
 
-  searchTripForPassenger(idPassenger){
+  searchTripForPassenger(idPassenger) {
     return this.angularDB.list<Trip>('/Trips-History', ref => ref.orderByChild('passengerUid').equalTo(idPassenger))
   }
 
-  searchTripForDriver(idPassenger){
+  searchTripForDriver(idPassenger) {
     return this.angularDB.list<Trip>('/Trips-History', ref => ref.orderByChild('driverUid').equalTo(idPassenger))
   }
 
-  getTripById(id){
+  getTripById(id) {
     return this.angularDB.object<Trip>('/Trips-History/' + id)
   }
 
-  editUser(id, user){
+  editUser(id, user) {
     return this.angularDB.object('/Users/' + id).update(user)
   }
-  editDriver(id, driver){
+  editDriver(id, driver) {
     return this.angularDB.object('/Drivers/' + id).update(driver)
+  }
+
+  postHistoryTrip(id, data) {
+    return this.angularDB.object('/Trips-History/' + id).set(data)
+  }
+
+  deleteTripsCanceledUser(id) {
+    return this.angularDB.object('/Trips-Canceled-Users/' + id).remove()
   }
 
 }

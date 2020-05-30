@@ -14,4 +14,8 @@ export class PriceService {
   getPriceValue(): Observable<PriceValue> {
     return this.angularDB.object<PriceValue>('PriceValues').valueChanges()
   }
+
+  editPriceValue(data) {
+    return this.angularDB.object('/PriceValues/').update(data)
+  }
 }

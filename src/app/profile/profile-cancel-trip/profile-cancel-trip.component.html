@@ -77,14 +77,20 @@
                                             <br>
                                             <span>Price trip: </span> <span class="sl-date">{{tripCancel.priceTrip | currency}}</span>
                                             <br>
+                                            <span>Payment status: </span> <span class="sl-date"><strong class="strong-reason">{{tripCancel.paymentStatus}}</strong></span>
+                                            <br>
+                                            <span>Payment ID: </span> <span class="sl-date">{{tripCancel.payment_Id}}</span>
+                                            <br>
                                             <span>Cancellation fee: </span> <span class="sl-date">$5.30</span>
+                                            <br>
+                                            <span>Cancellation status: </span> <span class="sl-date"> <strong class="strong-reason"> {{tripCancel.paymentStatusCancel}} </strong></span>
+                                            <br>
+                                            <span>Payment fee ID: </span> <span class="sl-date">{{tripCancel.payment_Id_Cancel}}</span>
                                             <br>
                                             <!-- <div [ngSwitch]="conditionExpression">
                                                 <div *ngSwitchCase="expression">output</div>
                                                 <div *ngSwitchDefault>output2</div>
                                             </div> -->
-                                            <span>ID Payment: </span> <span class="sl-date">{{tripCancel.payment_Id}}</span>
-                                            <br>
                                             <span>Trip state: </span> 
                                             <ng-container [ngSwitch]="tripCancel.tripState">
                                                 <span class="sl-date" *ngSwitchCase="1">Accepted trip</span>
@@ -95,9 +101,11 @@
                                             <br>
                                             <span>Reason: </span> <span class="sl-date"> <strong class="strong-reason"> {{tripCancel.reason}} </strong></span>
                                             <br>
-                                            <div>
-                                                <button class="btn btn-success">Approve reason</button>
-                                                <button class="btn btn-danger">Deny reason</button>
+                                            
+
+                                            <div class="container-buttons">
+                                                <button class="btn btn-success" (click)="moveToHistoryTrip()">Approve reason</button>
+                                                <button class="btn btn-danger" (click)="removeFromTripsCanceled()">Deny reason</button>
                                             </div>
                                         </div>
                                     </div>

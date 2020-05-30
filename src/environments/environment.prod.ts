@@ -1,4 +1,5 @@
 export const environment = {
+  urlSquare: 'https://us-central1-yourdriver-7b0c9.cloudfunctions.net/api',
   production: true,
   firebase: {
     apiKey: "AIzaSyBRBOiyACx61gHqOgIy5E1ds9X3-60hmTQ",

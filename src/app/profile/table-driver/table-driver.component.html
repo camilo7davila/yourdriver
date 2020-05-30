@@ -43,7 +43,7 @@
                                         <div class="sl-right">
                                             <div>
                                                 <b><span>Passenger: </span></b>
-                                                <a href="#" class="link">{{trip.passengerInfo.Name}}
+                                                <a [routerLink]="['/profile/userprofile/', trip.passengerUid]" class="link">{{trip.passengerInfo.Name}}
                                                     {{trip.passengerInfo.LastName}}</a> <br>
                                                 <span>Date Start: </span> <span class="sl">{{trip.dateStart}}</span>
                                                 <br>

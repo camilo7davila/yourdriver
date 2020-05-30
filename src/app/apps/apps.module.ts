@@ -11,6 +11,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { AppsRoutes } from './apps.routing';
 import { MessagingComponent } from './messaging/messaging.component';
+import { TariffComponent } from './tariff/tariff.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { MessagingComponent } from './messaging/messaging.component';
     PerfectScrollbarModule
   ],
   declarations: [
-    MessagingComponent
+    MessagingComponent,
+    TariffComponent
   ]
 })
 export class AppsModule { }
