@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Drivers, Trip } from 'src/app/interface/user.interface';
@@ -13,7 +13,7 @@ import 'firebase/database';
 })
 export class TableDriverComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('inputView', { static: false }) myProgressBar: HTMLInputElement
+  @ViewChild('inputView', { static: true }) myProgressBar: any
 
   iconOrigin = {
     url: '../../../assets/map/driver.png',
@@ -39,19 +39,19 @@ export class TableDriverComponent implements OnInit, AfterViewInit {
   constructor(private userService: UserService,
     private route: ActivatedRoute,
     private formBuilter: FormBuilder,
-    private render: Renderer2) {
+    private changeDetectorRef: ChangeDetectorRef) {
     this.buildForm()
   }
 
-  ngOnInit() {
-    console.log(this.myProgressBar);
 
+
+  ngOnInit() {
     this.route.params.subscribe(parametros => {
-      this.driverId = parametros.id
+      this.driverId = parametros.id;
       this.userService.getDriverById(this.driverId).valueChanges().subscribe(dataDriver => {
-        this.driver = dataDriver
+        this.driver = dataDriver;
         this.form.patchValue(dataDriver)
-        this.skillsSet(this.driver)
+        this.skillsSet(this.driver);
       })
       this.userService.searchTripForDriver(this.driverId).snapshotChanges().pipe(map(changes => {
         return changes.map(data => ({ key: data.key, ...data.payload.val() }))
@@ -77,6 +77,8 @@ export class TableDriverComponent implements OnInit, AfterViewInit {
   }
 
   skillsSet(driver) {
+    this.changeDetectorRef.detectChanges();
+    console.log(this.myProgressBar);
     this.ratingAverage = Math.round((driver.rating.ratingProm * 100) / 5)
     // this.myProgressBar.nativeElement.style.width = `${this.ratingAverage}%`
 
