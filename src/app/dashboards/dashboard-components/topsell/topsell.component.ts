@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { Trip } from 'src/app/interface/user.interface';
+import { Trip, User, Drivers } from 'src/app/interface/user.interface';
 import { map } from 'rxjs/operators';
 import { TripService } from 'src/app/core/services/trip/trip.service';
 
@@ -16,6 +16,11 @@ export class TopsellComponent implements OnInit {
 
   driver: any = 0
   user: any = 0
+
+  passengerSet: User
+  driverSet: Drivers;
+
+  isPassenger: Boolean
 
   constructor(private userService: UserService,
     private tripService: TripService) { }
@@ -39,6 +44,21 @@ export class TopsellComponent implements OnInit {
     // })
   }
 
+  setPassenger(uid) {
+    this.isPassenger = true
+    console.log('entramos a la funcion de editar passenger');
+    this.userService.getUserById(uid).valueChanges().subscribe(data => {
+      this.passengerSet = data
+      console.log(this.passengerSet);
+    })
+  }
+
+  setDriver(uid) {
+    this.isPassenger = false
+    this.userService.getDriverById(uid).valueChanges().subscribe(data => {
+      this.driverSet = data
+    })
+  }
 
 
 }

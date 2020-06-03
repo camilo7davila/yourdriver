@@ -43,7 +43,8 @@
                                         <div class="sl-right">
                                             <div>
                                                 <b><span>Passenger: </span></b>
-                                                <a [routerLink]="['/profile/userprofile/', trip.passengerUid]" class="link">{{trip.passengerInfo.Name}}
+                                                <a [routerLink]="['/profile/userprofile/', trip.passengerUid]"
+                                                    class="link">{{trip.passengerInfo.Name}}
                                                     {{trip.passengerInfo.LastName}}</a> <br>
                                                 <span>Date Start: </span> <span class="sl">{{trip.dateStart}}</span>
                                                 <br>
@@ -97,18 +98,21 @@
                             <div class="col-lg-12 col-md-12 m-b-20 contenedor-imagen">
                                 <img [src]="driver.driverLicenseImageUrl" class="imgclass" />
                             </div>
-                            <h4 class="font-medium m-t-30">Skill Set</h4>
+                            <h4 class="font-medium m-t-30">Rating</h4>
                             <hr>
-                            <h5 class="m-t-30">Wordpress
-                                <span class="pull-right">80%</span>
+                            <h5 class="m-t-30">Average
+                                <span class="pull-right">{{ratingAverage}}%</span>
                             </h5>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80"
-                                    aria-valuemin="0" aria-valuemax="100" style="width:80%; height:6px;">
-                                    <span class="sr-only">50% Complete</span>
+                                <div #progressBarView class="progress-bar bg-success" role="progressbar"
+                                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" id="progressBarView"
+                                    style="height:6px;">
+                                    <span class="sr-only">1000000000000000ks0% Complete</span>
+
+                                    <input #inputView type="text" name="" id="">
                                 </div>
                             </div>
-                            <h5 class="m-t-30">HTML 5
+                            <!-- <h5 class="m-t-30">HTML 5
                                 <span class="pull-right">90%</span>
                             </h5>
                             <div class="progress">
@@ -134,7 +138,7 @@
                                     aria-valuemin="0" aria-valuemax="100" style="width:70%; height:6px;">
                                     <span class="sr-only">50% Complete</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </ng-template>
                 </ngb-tab>
@@ -173,10 +177,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Account Type</label>
+                                    <label class="col-md-12">Driver Status</label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control form-control-line" name="AccountType"
-                                            formControlName="AccountType">
+                                        <select class="form-control form-control-line" id="exampleFormControlSelect1"
+                                            name="driverStatus" formControlName="driverStatus">
+                                            <option [value]="0">Available</option>
+                                            <option [value]="1">Busy</option>
+                                            <option [value]="2">In Trip</option>
+                                            <option [value]="3">Block</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -67,7 +67,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RouterModule.forRoot(Approutes, { useHash: true ,preloadingStrategy: PreloadAllModules }),
     PerfectScrollbarModule,
     NgMultiSelectDropDownModule.forRoot(),
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBRBOiyACx61gHqOgIy5E1ds9X3-60hmTQ' }),
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBcNHKBL4U1ByRAhX0308NUSqbufPk5dAk' }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireAuthModule,

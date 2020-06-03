@@ -30,8 +30,13 @@ export interface Trip {
     payment_Id?: string,
     pickupCoordinatesLatitude?: number,
     pickupCoordinatesLongitude?: number,
-    priceCancelFee: number,
-    tripState: number,
+    priceCancelFee?: number,
+    tripState?: number,
+    tripStatus?: number,
+    driverName?: string,
+    driverPicture?: string,
+    passengerName?: string,
+    passengerPicture?: string,
 }
 
 export interface Drivers {

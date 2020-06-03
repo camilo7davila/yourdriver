@@ -27,15 +27,24 @@
                 <tr *ngFor="let tripAndDriver of tripAndDrivers" [ngSwitch]="tripAndDriver.state">
                     <td>
                         <div class="d-flex align-items-center">
-                            <div class="m-r-10">
-                                <a class="btn btn-circle btn-info text-white">EA</a>
-                            </div>
                             <div class="">
-                                <h4 class="m-b-0 font-14">{{tripAndDriver.passengerUid | slice:0:5}}</h4>
+                                <a type="button" (click)="setPassenger(tripAndDriver.passengerUid)" data-toggle="modal"
+                                    data-target="#exampleModalCenter">
+                                    <h4 class="m-b-0 font-14">{{tripAndDriver.passengerUid | slice:0:5}}</h4>
+                                </a>
                             </div>
                         </div>
                     </td>
-                    <td>{{tripAndDriver.driverUid | slice:0:5}}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="">
+                                <a type="button" (click)="setDriver(tripAndDriver.driverUid)" data-toggle="modal"
+                                    data-target="#exampleModalCenter">
+                                    <h4 class="m-b-0 font-14">{{tripAndDriver.driverUid | slice:0:5}}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
                     <td>{{tripAndDriver.dateStart}}</td>
                     <td>
                         {{tripAndDriver.expectTimeTravel}}
@@ -59,5 +68,35 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 *ngIf="isPassenger == true" class="modal-title" id="exampleModalCenterTitle">Passenger Info</h5>
+                <h5 *ngIf="isPassenger == false" class="modal-title" id="exampleModalCenterTitle">Driver Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <ng-container *ngIf="passengerSet">
+                <div class="modal-body" *ngIf="isPassenger == true">
+                    estamos en passenger {{passengerSet.Name}}
+                </div>
+            </ng-container>
+            <ng-container *ngIf="driverSet">
+                <div class="modal-body" *ngIf="isPassenger == false">
+                    estamos en driver {{driverSet.Name}}
+                </div>
+            </ng-container>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
     </div>
 </div>

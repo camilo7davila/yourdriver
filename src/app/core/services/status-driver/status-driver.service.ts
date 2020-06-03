@@ -8,27 +8,35 @@ import { map } from 'rxjs/operators';
 })
 export class StatusDriverService {
 
-  constructor(private angularDB: AngularFireDatabase) { } 
+  constructor(private angularDB: AngularFireDatabase) { }
 
-  getDriversLocationsAvailable(){
-    return this.angularDB.list<StatusDriver>('Drivers-Locations-Available').snapshotChanges().pipe(map(changes => {
-      return changes.map(a => ({key: a.key, ...a.payload.val()}))
-    }))
-  }
+  // getDriversLocationsAvailable(){
+  //   return this.angularDB.list<StatusDriver>('Drivers-Locations-Available').snapshotChanges().pipe(map(changes => {
+  //     return changes.map(a => ({key: a.key, ...a.payload.val()}))
+  //   }))
+  // }
 
-  getDriversLocationsBusy(){
-    return this.angularDB.list<StatusDriver>('Drivers-Locations-Busy').snapshotChanges().pipe(map(changes => {
-      return changes.map(a => ({key: a.key, ...a.payload.val()}))
-    }))
-  }
+  // getDriversLocationsBusy(){
+  //   return this.angularDB.list<StatusDriver>('Drivers-Locations-Busy').snapshotChanges().pipe(map(changes => {
+  //     return changes.map(a => ({key: a.key, ...a.payload.val()}))
+  //   }))
+  // }
 
-  getDriversLocationsinTrip(){
-    return this.angularDB.list<StatusDriver>('Drivers-Locations-InTrip').snapshotChanges().pipe(map(changes => {
-      return changes.map(a => ({key: a.key, ...a.payload.val()}))
-    }))
-  }
+  // getDriversLocationsinTrip(){
+  //   return this.angularDB.list<StatusDriver>('Drivers-Locations-InTrip').snapshotChanges().pipe(map(changes => {
+  //     return changes.map(a => ({key: a.key, ...a.payload.val()}))
+  //   }))
+  // }
 
-  getDriveLocationinTripByid(id){
+  getDriveLocationinTripByid(id) {
     return this.angularDB.object<StatusDriver>('Drivers-Locations-InTrip/' + id)
+  }
+
+  getDriveStatus() {
+    return this.angularDB.object<any>('Drivers-Status/')
+  }
+
+  getDriverLocationById(id) {
+    return this.angularDB.object<StatusDriver>('/Drivers-Locations/' + id)
   }
 }

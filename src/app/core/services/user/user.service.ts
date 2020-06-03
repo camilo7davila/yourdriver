@@ -29,13 +29,17 @@ export class UserService {
     return this.angularDB.list<Drivers>('/Drivers', ref => ref.orderByChild('state').equalTo(1))
   }
 
+  getDriversOnLine() {
+    return this.angularDB.list<Drivers>('/Drivers', ref => ref.orderByChild('driverStatus').equalTo(0))
+  }
+
   getDriversWhitId() {
     return this.angularDB.list<Drivers>('/Drivers')
   }
 
-  getDriversAvailable() {
-    return this.angularDB.list('/Drivers-Locations-Available')
-  }
+  // getDriversAvailable() {
+  //   return this.angularDB.list('/Drivers-Locations-Available')
+  // }
 
   getUsers() {
     return this.angularDB.list<User>('/Users', ref => ref.orderByChild('date')).snapshotChanges().pipe(map(changes => {
@@ -88,6 +92,10 @@ export class UserService {
 
   deleteTripsCanceledUser(id) {
     return this.angularDB.object('/Trips-Canceled-Users/' + id).remove()
+  }
+
+  deleteTripCanceledDriver(id) {
+    return this.angularDB.object('/Trips-Canceled-Drivers/' + id).remove()
   }
 
 }

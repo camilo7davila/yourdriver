@@ -15,7 +15,8 @@
                             </div>
                             <!-- Column -->
                             <div class="col text-right align-self-center">
-                                <div data-label="20%" class="css-bar m-b-0 css-bar-success css-bar-{{availablePercent}}">
+                                <div data-label="20%"
+                                    class="css-bar m-b-0 css-bar-success css-bar-{{availablePercent}}">
                                     <i class="mdi mdi-account-circle"></i>
                                 </div>
                             </div>
@@ -76,28 +77,31 @@
     <div class="col-lg-12 col-xlg-12 col-md-11">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title" >Live map </h4>
-                <agm-map [latitude]="28.844341" [longitude]="-82.012881" [zoom]="7" [styles]="mapStyle === 'dark' ? darkStyle : defaultStyle" #map1>
+                <h4 class="card-title">Live map </h4>
+                <agm-map [latitude]="28.844341" [longitude]="-82.012881" [zoom]="7"
+                    [styles]="mapStyle === 'dark' ? darkStyle : defaultStyle" #map1>
                     <ng-container *ngFor="let available of availableData">
                         <!-- Available markers -->
                         <agm-marker [latitude]="available.l[0]" [longitude]="available.l[1]" [iconUrl]="iconAvailable">
                             <agm-info-window #infoWindow [maxWidth]="400" class="fadeIn animated">
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body" style="text-align: center;">
-                                        <button class="btn btn-outline-success" [routerLink]="['/profile/driverprofile/', available.key]">View Profile</button>
+                                        <button class="btn btn-outline-success"
+                                            [routerLink]="['/profile/driverprofile/', available.key]">View
+                                            Profile</button>
                                     </div>
                                 </div>
                             </agm-info-window>
                         </agm-marker>
                     </ng-container>
-                    <!-- busy marker -->
+                    <!-- busy marker
                     <ng-container *ngFor="let busy of busyData">
                         <agm-marker [latitude]="busy.l[0]" [longitude]="busy.l[1]" [iconUrl]="iconBusy"></agm-marker>
                     </ng-container>
-                    <!-- Intrip Marker -->
+                    Intrip Marker
                     <ng-container *ngFor="let inTrip of inTripData">
                         <agm-marker [latitude]="inTrip.l[0]" [longitude]="inTrip.l[1]" [iconUrl]="iconTrip"></agm-marker>
-                    </ng-container>
+                    </ng-container> -->
                 </agm-map>
             </div>
         </div>

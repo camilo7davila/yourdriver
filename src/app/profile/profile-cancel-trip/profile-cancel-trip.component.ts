@@ -19,6 +19,7 @@ export class ProfileCancelTripComponent implements OnInit {
   passenger: User
   driver: Drivers
   uid: string = ''
+  isCancelByDriver: Boolean = false
 
   iconOrigin = {
     url: '../../../assets/map/driver.png',
@@ -38,11 +39,12 @@ export class ProfileCancelTripComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.url.subscribe(data => {
-      console.log(data);
       if (data[0].path === 'profilecanceltrip') {
         this.drivercancelTrip()
+        this.isCancelByDriver = true
       } else {
         this.usercancelTrip()
+        this.isCancelByDriver = false
       }
     })
   }
@@ -81,12 +83,12 @@ export class ProfileCancelTripComponent implements OnInit {
     })
   }
 
-  moveToHistoryTrip() {
+  //Cuando el conductor cancela el viaje
+  moveToHistoryTripApprovedByDriver() {
     const infoPayment = {
-      payment_id: this.tripCancel.payment_Id_Cancel
+      payment_id: this.tripCancel.payment_Id
     }
     this.squareService.completePayment(infoPayment).subscribe(data => {
-      console.log(data);
       if (data.status == 'COMPLETED') {
         const finalTrip = {
           dateStart: this.tripCancel.dateStart,
@@ -95,8 +97,95 @@ export class ProfileCancelTripComponent implements OnInit {
           destinationCoordinatesLongitude: this.tripCancel.destinationCoordinatesLongitude,
           destinationName: this.tripCancel.destinationName,
           distanceInMeter: this.tripCancel.distanceInMeter,
+          driverName: this.tripCancel.driverName,
+          driverPicture: this.tripCancel.driverPicture,
           driverUid: this.tripCancel.driverUid,
           expectTimeTravel: this.tripCancel.expectTimeTravel,
+          passengerName: this.tripCancel.passengerName,
+          passengerPicture: this.tripCancel.passengerPicture,
+          passengerUid: this.tripCancel.passengerUid,
+          paymentStatus: data.status,
+          payment_Id: this.tripCancel.payment_Id,
+          pickupCoordinatesLatitude: this.tripCancel.pickupCoordinatesLatitude,
+          pickupCoordinatesLongitude: this.tripCancel.pickupCoordinatesLongitude,
+          priceTrip: this.tripCancel.priceTrip,
+          reason: this.tripCancel.reason,
+          tripStatus: this.tripCancel.tripStatus
+        }
+        this.userService.postHistoryTrip(this.uid, finalTrip).then(() => {
+          this.userService.deleteTripCanceledDriver(this.uid).then(() => {
+            this.router.navigate(['/tables/canceltriptable']) 
+          }).catch(e => console.log('Ocurrio un error borrando'))
+        }).catch(e => console.log('error en crear post'))
+      }else {
+        alert('servicio respondio diferente de completed')
+      }
+    }, error => {
+      alert(`error : ${error.error.errorMessage}`)
+    })
+  }
+
+  moveToHistoryTripCancelledByDriver() {
+    const infoPayment = {
+      payment_id: this.tripCancel.payment_Id
+    }
+    this.squareService.completePaymentDenied(infoPayment).subscribe(data => {
+      if (data.status == 'CANCELED') {
+        const finalTrip = {
+          dateStart: this.tripCancel.dateStart,
+          destinationAddress: this.tripCancel.destinationAddress,
+          destinationCoordinatesLatitude: this.tripCancel.destinationCoordinatesLatitude,
+          destinationCoordinatesLongitude: this.tripCancel.destinationCoordinatesLongitude,
+          destinationName: this.tripCancel.destinationName,
+          distanceInMeter: this.tripCancel.distanceInMeter,
+          driverName: this.tripCancel.driverName,
+          driverPicture: this.tripCancel.driverPicture,
+          driverUid: this.tripCancel.driverUid,
+          expectTimeTravel: this.tripCancel.expectTimeTravel,
+          passengerName: this.tripCancel.passengerName,
+          passengerPicture: this.tripCancel.passengerPicture,
+          passengerUid: this.tripCancel.passengerUid,
+          paymentStatus: data.status,
+          payment_Id: this.tripCancel.payment_Id,
+          pickupCoordinatesLatitude: this.tripCancel.pickupCoordinatesLatitude,
+          pickupCoordinatesLongitude: this.tripCancel.pickupCoordinatesLongitude,
+          priceTrip: 0,
+          reason: this.tripCancel.reason,
+          tripStatus: 6,
+        }
+        this.userService.postHistoryTrip(this.uid, finalTrip).then(() => {
+          this.userService.deleteTripCanceledDriver(this.uid).then(() => {
+            this.router.navigate(['/tables/canceltriptable']) 
+          }).catch(e => console.log('Ocurrio un error borrando'))
+        }).catch(e => console.log('error en crear post'))
+      }else {
+        alert('servicio respondio diferente de canceled')
+      }
+    }, error => {
+      alert(`error : ${error.error.errorMessage}`)
+    })
+  }
+
+  //Cuando el usuario cancela el viaje
+  moveToHistoryTripApprovedByPassenger() {
+    const infoPayment = {
+      payment_id: this.tripCancel.payment_Id_Cancel
+    }
+    this.squareService.completePayment(infoPayment).subscribe(data => {
+      if (data.status == 'COMPLETED') {
+        const finalTrip = {
+          dateStart: this.tripCancel.dateStart,
+          destinationAddress: this.tripCancel.destinationAddress,
+          destinationCoordinatesLatitude: this.tripCancel.destinationCoordinatesLatitude,
+          destinationCoordinatesLongitude: this.tripCancel.destinationCoordinatesLongitude,
+          destinationName: this.tripCancel.destinationName,
+          distanceInMeter: this.tripCancel.distanceInMeter,
+          driverName: this.tripCancel.driverName,
+          driverPicture: this.tripCancel.driverPicture,
+          driverUid: this.tripCancel.driverUid,
+          expectTimeTravel: this.tripCancel.expectTimeTravel,
+          passengerName: this.tripCancel.passengerName,
+          passengerPicture: this.tripCancel.passengerPicture,
           passengerUid: this.tripCancel.passengerUid,
           paymentStatus: this.tripCancel.paymentStatus,
           paymentStatusCancel: data.status,
@@ -104,27 +193,67 @@ export class ProfileCancelTripComponent implements OnInit {
           payment_Id_Cancel: this.tripCancel.payment_Id_Cancel,
           pickupCoordinatesLatitude: this.tripCancel.pickupCoordinatesLatitude,
           pickupCoordinatesLongitude: this.tripCancel.pickupCoordinatesLongitude,
-          priceCancelFee: this.tripCancel.priceCancelFee,
-          priceTrip: this.tripCancel.priceTrip,
+          priceCancelFee:this.tripCancel.priceCancelFee,
+          priceTrip: 5.30,
           reason: this.tripCancel.reason,
-          tripState: this.tripCancel.tripState
+          tripStatus: this.tripCancel.tripStatus
         }
-        this.userService.postHistoryTrip(this.uid, finalTrip).then(() => {
-          this.userService.deleteTripsCanceledUser(this.uid).then(() => {
+        this.userService.postHistoryTrip(this.uid,finalTrip).then(()=> {
+          this.userService.deleteTripsCanceledUser(this.uid).then(()=> {
             this.router.navigate(['/tables/cancelusertriptable']) 
           }).catch(e => console.log('Ocurrio un error borrando'))
         }).catch(e => console.log('error en crear post'))
+      }else {
+        alert('servicio respondio diferente de COMPLETED')
       }
     }, error => {
-      console.log('error', error.errorMessage);
+      alert(`error : ${error.error.errorMessage}`)
     })
   }
 
-  removeFromTripsCanceled() {
-
-    this.userService.deleteTripsCanceledUser(this.uid).then(() => {
-      alert('todo correcto')
-    }).catch(e => console.log('Ocurrio un error borrando'))
+  moveToHistoryTripCancelledByPassenger() {
+    const infoPayment = {
+      payment_id: this.tripCancel.payment_Id_Cancel
+    }
+    this.squareService.completePaymentDenied(infoPayment).subscribe(data => {
+      if (data.status == 'CANCELED') {
+        const finalTrip = {
+          dateStart: this.tripCancel.dateStart,
+          destinationAddress: this.tripCancel.destinationAddress,
+          destinationCoordinatesLatitude: this.tripCancel.destinationCoordinatesLatitude,
+          destinationCoordinatesLongitude: this.tripCancel.destinationCoordinatesLongitude,
+          destinationName: this.tripCancel.destinationName,
+          distanceInMeter: this.tripCancel.distanceInMeter,
+          driverName: this.tripCancel.driverName,
+          driverPicture: this.tripCancel.driverPicture,
+          driverUid: this.tripCancel.driverUid,
+          expectTimeTravel: this.tripCancel.expectTimeTravel,
+          passengerName: this.tripCancel.passengerName,
+          passengerPicture: this.tripCancel.passengerPicture,
+          passengerUid: this.tripCancel.passengerUid,
+          paymentStatus: this.tripCancel.paymentStatus,
+          paymentStatusCancel: data.status,
+          payment_Id: this.tripCancel.payment_Id,
+          payment_Id_Cancel: this.tripCancel.payment_Id_Cancel,
+          pickupCoordinatesLatitude: this.tripCancel.pickupCoordinatesLatitude,
+          pickupCoordinatesLongitude: this.tripCancel.pickupCoordinatesLongitude,
+          priceCancelFee:this.tripCancel.priceCancelFee,
+          priceTrip: 0,
+          reason: this.tripCancel.reason,
+          tripStatus: 6,
+        }
+        this.userService.postHistoryTrip(this.uid,finalTrip).then(()=> {
+          this.userService.deleteTripsCanceledUser(this.uid).then(()=> {
+            this.router.navigate(['/tables/cancelusertriptable']) 
+          }).catch(e => console.log('Ocurrio un error borrando'))
+        }).catch(e => console.log('error en crear post'))
+      }else {
+        alert('servicio respondio diferente de CANCELED')
+        console.log(data);
+      }
+    }, error => {
+      alert(`error : ${error.error.errorMessage}`)
+    })
   }
 
 }

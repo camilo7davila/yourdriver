@@ -102,10 +102,13 @@
                                             <span>Reason: </span> <span class="sl-date"> <strong class="strong-reason"> {{tripCancel.reason}} </strong></span>
                                             <br>
                                             
-
-                                            <div class="container-buttons">
-                                                <button class="btn btn-success" (click)="moveToHistoryTrip()">Approve reason</button>
-                                                <button class="btn btn-danger" (click)="removeFromTripsCanceled()">Deny reason</button>
+                                            <div class="container-buttons" *ngIf="isCancelByDriver == true">
+                                                <button class="btn btn-success" (click)="moveToHistoryTripApprovedByDriver()">Approve payment</button>
+                                                <button class="btn btn-danger" (click)="moveToHistoryTripCancelledByDriver()">Deny payment</button>
+                                            </div>
+                                            <div *ngIf="isCancelByDriver == false">
+                                                <button class="btn btn-success" (click)="moveToHistoryTripApprovedByPassenger()">Approve payment</button>
+                                                <button class="btn btn-danger" (click)="moveToHistoryTripCancelledByPassenger()">Deny payment</button>
                                             </div>
                                         </div>
                                     </div>

@@ -12,7 +12,12 @@ export class SquareService {
   constructor(private http: HttpClient) { }
 
   completePayment(data) {
-    const finalUrl = `${this.url}/completePayment`
+    const finalUrl = `${this.url}/completePayment` 
+    return this.http.post<any>(finalUrl, data)
+  }
+
+  completePaymentDenied(data) {
+    const finalUrl = `${this.url}/cancelPayment`
     return this.http.post<any>(finalUrl, data)
   }
 

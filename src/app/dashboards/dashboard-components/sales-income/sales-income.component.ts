@@ -74,17 +74,22 @@ export class SalesIncomeComponent implements OnInit {
   }
 
   driversStatus() {
-    let driverAvailable$ = this.statusService.getDriversLocationsAvailable()
-    let driverBusy$ = this.statusService.getDriversLocationsBusy()
-    let driverInTrip$ = this.statusService.getDriversLocationsinTrip()
-    combineLatest([driverAvailable$, driverBusy$, driverInTrip$]).pipe(
-      map(([driverAvailable, driverBusy, driverInTrip]) => ({ driverAvailable, driverBusy, driverInTrip }))
-    ).subscribe(final => {
-      this.driversAvailable = final.driverAvailable.length
-      this.driversBusy = final.driverBusy.length
-      this.driverInTrip = final.driverInTrip.length
+    this.statusService.getDriveStatus().valueChanges().subscribe(data => {
+      this.driversAvailable = data.Available.Total
+      this.driversBusy = data.Busy.Total
+      this.driverInTrip = data.InTrip.Total
       this.barChartData = [({ data: [this.driversAvailable, this.driversBusy, this.driverInTrip], label: 'Drivers', backgroundColor: "rgba(255,99,132,0.6)", borderColor: "rgba(255,99,132,1)", hoverBackgroundColor: "rgba(255,99,132,0.8)", hoverBorderColor: "rgba(255,99,132,1)" })]
     })
+    // let driverAvailable$ = this.statusService.getDriversLocationsAvailable()
+    // let driverBusy$ = this.statusService.getDriversLocationsBusy()
+    // let driverInTrip$ = this.statusService.getDriversLocationsinTrip()
+    // combineLatest([driverAvailable$, driverBusy$, driverInTrip$]).pipe(
+    //   map(([driverAvailable, driverBusy, driverInTrip]) => ({ driverAvailable, driverBusy, driverInTrip }))
+    // ).subscribe(final => {
+    //   this.driversAvailable = final.driverAvailable.length
+    //   this.driversBusy = final.driverBusy.length
+    //   this.driverInTrip = final.driverInTrip.length
+    // })
   }
 
 

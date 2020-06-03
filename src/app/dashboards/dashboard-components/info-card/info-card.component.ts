@@ -20,8 +20,6 @@ export class InfocardComponent implements OnInit, AfterViewInit {
   users: User[]
   totalUsers: number
 
-  driversAvailable: any
-
   trips: Trip[]
   totalTrips: number
 
@@ -47,9 +45,6 @@ export class InfocardComponent implements OnInit, AfterViewInit {
       this.totalUsers = this.users.length
     })
 
-    this.userService.getDriversAvailable().snapshotChanges().subscribe(data => {
-      this.driversAvailable = data.length
-    })
 
     this.userService.getTrips().valueChanges().subscribe(data => {
       this.trips = data
@@ -60,13 +55,15 @@ export class InfocardComponent implements OnInit, AfterViewInit {
       this.totalPrice = data.totalPayments
     })
 
-    this.statusService.getDriversLocationsAvailable().subscribe(data =>{
-      this.driversAvaible = data.length
+    this.statusService.getDriveStatus().valueChanges().subscribe(data =>{
+      this.driversAvaible = data.Available.Total
+      this.driversBusy = data.Busy.Total
+      console.log(data);
     })
 
-    this.statusService.getDriversLocationsBusy().subscribe(data =>{
-      this.driversBusy = data.length
-    })
+    // this.statusService.getDriversLocationsBusy().subscribe(data =>{
+    //   this.driversBusy = data.length
+    // })
   }
 
   public lineChartData: Array<any> = [
@@ -126,43 +123,5 @@ export class InfocardComponent implements OnInit, AfterViewInit {
   public lineChartType = 'line';
 
   ngAfterViewInit() {
-    // (<any>$('#ravenue')).sparkline([6, 10, 9, 11, 9, 10, 12], {
-    //   type: 'bar',
-    //   height: '55',
-    //   barWidth: '4',
-    //   width: '100%',
-    //   resize: true,
-    //   barSpacing: '8',
-    //   barColor: '#2961ff'
-    // });
-
-    // const chart = c3.generate({
-    //   bindto: '#foo',
-    //   data: {
-    //     columns: [['data', 91.4]],
-    //     type: 'gauge'
-    //   },
-    //   gauge: {
-    //     label: {
-    //       format: function(value, ratio) {
-    //         return value;
-    //       },
-    //       show: false
-    //     },
-    //     min: 0,
-    //     max: 100,
-    //     units: ' %',
-    //     width: 15
-    //   },
-    //   legend: {
-    //     hide: true
-    //   },
-    //   size: {
-    //     height: 80
-    //   },
-    //   color: {
-    //     pattern: ['#7e74fb']
-    //   }
-    // });
   }
 }
