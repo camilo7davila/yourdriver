@@ -20,7 +20,7 @@ export class TripService {
 
   getTripsCancel(){
     return this.angularDB.list<Trip>('/Trips-Canceled-Drivers')
-  }
+  } 
 
   getTripsCancelById(id){
     return this.angularDB.object<Trip>('/Trips-Canceled-Drivers/' + id)

@@ -80,14 +80,14 @@
                 <h4 class="card-title">Live map </h4>
                 <agm-map [latitude]="28.844341" [longitude]="-82.012881" [zoom]="7"
                     [styles]="mapStyle === 'dark' ? darkStyle : defaultStyle" #map1>
-                    <ng-container *ngFor="let available of availableData">
+                    <ng-container *ngFor="let available of availableData; let i = index">
                         <!-- Available markers -->
                         <agm-marker [latitude]="available.l[0]" [longitude]="available.l[1]" [iconUrl]="iconAvailable">
                             <agm-info-window #infoWindow [maxWidth]="400" class="fadeIn animated">
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body" style="text-align: center;">
                                         <button class="btn btn-outline-success"
-                                            [routerLink]="['/profile/driverprofile/', available.key]">View
+                                            [routerLink]="['/profile/driverprofile/', driverOnline[i].key]">View
                                             Profile</button>
                                     </div>
                                 </div>

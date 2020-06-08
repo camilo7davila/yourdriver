@@ -3,7 +3,6 @@
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <div class="card">
             <div class="card-body" *ngIf="driver">
-                <input #inputView type="text" value="3">
                 <div class="m-t-30 text-center">
                     <img [src]="driver.profileImageUrl" class="rounded-circle" width="150" height="150" />
                     <h4 class="card-title m-t-10">{{driver.Name}} {{driver.LastName}}</h4>
@@ -24,14 +23,16 @@
                 <h6>{{totalTrips}}</h6>
                 <small class="text-muted p-t-30 db">Total Earn</small>
                 <h6>{{totalEarn | currency :'USD':'symbol':'1.0-3'}}</h6>
-                <h5 class="m-t-30" style="margin: 5px 0;">Qualification
-                    <span class="pull-right">{{ratingAverage}}%</span>
+                <h5 class="m-t-30" style="margin: 5px 0;">Rating average:
+                    <span class="pull-right"><b>{{driver.rating.ratingProm}}</b></span>
                 </h5>
                 
                 <div class="progress">
                     <div #progressBarView class="progress-bar bg-success" role="progressbar" aria-valuenow="80"
-                        aria-valuemin="0" aria-valuemax="100" id="progressBarView" style="width: 80% ;height:6px;">
-                        <span class="sr-only">1000000000000000ks0% Complete</span>
+                        aria-valuemin="0" aria-valuemax="100" id="progressBarView" style="width: 80% ;height:6px;" [ngClass]="{ 'bg-success': driver.rating.ratingProm >= 4.01,
+                                                                                                                                'bg-warning': driver.rating.ratingProm >= 3.01 && 4 >= driver.rating.ratingProm ,
+                                                                                                                                'bg-danger':  3.0 >= driver.rating.ratingProm}">
+                        <span class="sr-only">{{ratingAverage}} Complete</span>
                     </div>
                 </div>
             </div>

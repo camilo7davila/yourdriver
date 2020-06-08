@@ -102,7 +102,7 @@
                     Profits
                 </div>
                 <div class="ml-auto">
-                    <h2 class="m-b-0 font-light">{{totalPrice}}</h2>
+                    <h2 class="m-b-0 font-light">{{totalPrice | currency:'USD':'symbol':'1.0-2'}}</h2>
                 </div>
             </div>
         </div>
@@ -137,10 +137,10 @@
                     </span>
                 </div>
                 <div>
-                    Drivers busy
+                    Trips cancel by driver
                 </div>
                 <div class="ml-auto">
-                    <h2 class="m-b-0 font-light">{{driversBusy}}</h2>
+                    <h2 class="m-b-0 font-light">{{tripsCancelByDriver}}</h2>
                 </div>
             </div>
         </div>
@@ -156,10 +156,10 @@
                     </span>
                 </div>
                 <div>
-                    Trip cancel
+                    Trips cancel by user
                 </div>
                 <div class="ml-auto">
-                    <h2 class="m-b-0 font-light">{{totalTrips}}</h2>
+                    <h2 class="m-b-0 font-light">{{tripsCancelByUser}}</h2>
                 </div>
             </div>
         </div>

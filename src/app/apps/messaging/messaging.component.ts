@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessagingService } from 'src/app/core/services/messaging/messaging.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import 'firebase/database';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-messaging',
@@ -10,13 +11,18 @@ import 'firebase/database';
 })
 export class MessagingComponent implements OnInit {
 
-  form: FormGroup
-  group: any[]
+  form: FormGroup;
+  formPerson: FormGroup;
+  group: any[];
+  isGroup: boolean = true
+  users: { AccountType: number; Email: String; LastName: String; Name: String; PhoneNumber: String; profileImageUrl: String; key: string; }[];
 
   constructor(private mS: MessagingService,
-              private fB: FormBuilder) { 
-                this.formBuild()
-              }
+    private fB: FormBuilder,
+    private userService: UserService) {
+    this.formBuild()
+    this.formBuildPerson()
+  }
 
   ngOnInit() {
     this.mS.getGroups().valueChanges().subscribe(data => {
@@ -24,21 +30,50 @@ export class MessagingComponent implements OnInit {
     })
   }
 
-  private formBuild(){
+  private formBuild() {
     this.form = this.fB.group({
-      title: ['YourDriver'],
+      title: [{ value: 'YourDriver', disabled: true }],
       body: ['', Validators.required],
       to: ['', Validators.required]
     })
   }
 
-  send(){
-    this.form.get('title').setValue('YourDriver')
-    this.mS.sendApi(this.form.value).subscribe(data => {
-      alert('Se envio mensaje exitosamente'+ JSON.stringify(data))
-    },error => {
-      console.log('Ocurrio un error' + JSON.stringify(error) );
-    } )
+  private formBuildPerson() {
+    this.formPerson = this.fB.group({
+      title: [{ value: 'YourDriver', disabled: true }],
+      to: ['', Validators.required],
+      body: ['', Validators.required]
+    })
+  }
+
+  setIsGroupTrue() {
+    this.isGroup = true
+  }
+
+  setIsGroupFalse() {
+    this.userService.getUsers().subscribe(data => {
+      this.users = data
+      this.isGroup = false
+    })
+  }
+
+  sendGroup() {
+    this.mS.sendApi(this.form.getRawValue()).subscribe(data => {
+      alert('Se envio mensaje exitosamente' + JSON.stringify(data))
+    }, error => {
+      console.log('Ocurrio un error' + JSON.stringify(error));
+    })
+  }
+
+  sendToPerson() {
+
+    //Cambiar por nueva api
+
+    // this.mS.sendApi(this.formPerson.getRawValue()).subscribe(data => {
+    //   alert('Se envio mensaje exitosamente' + JSON.stringify(data))
+    // }, error => {
+    //   console.log('Ocurrio un error' + JSON.stringify(error));
+    // })
   }
 
 }

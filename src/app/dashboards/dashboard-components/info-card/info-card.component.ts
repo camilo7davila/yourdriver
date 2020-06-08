@@ -1,17 +1,17 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as c3 from 'c3';
 import { UserService } from 'src/app/core/services/user/user.service';
 import 'firebase/database';
 import { Drivers, User, Trip } from 'src/app/interface/user.interface';
 import { PriceService } from 'src/app/core/services/price-value/price.service';
-import { StatusDriverService } from 'src/app/core/services/status-driver/status-driver.service';
+import { TripService } from 'src/app/core/services/trip/trip.service';
 
 @Component({
   selector: 'app-info-card',
   templateUrl: './info-card.component.html',
   styleUrls: ['./info-card.component.scss']
 })
-export class InfocardComponent implements OnInit, AfterViewInit {
+export class InfocardComponent implements OnInit {
 
   drivers: Drivers[]
   driversPending: number
@@ -25,13 +25,15 @@ export class InfocardComponent implements OnInit, AfterViewInit {
 
   totalPrice: number = 0
   driversAvaible: number = 0;
-  driversBusy: number = 0;
+  // driversBusy: number = 0;
+  tripsCancelByDriver: number = 0
+  tripsCancelByUser: number = 0
 
 
 
   constructor(private userService: UserService,
             private priceService: PriceService,
-            private statusService: StatusDriverService) { }
+            private tripService: TripService) { }
 
   ngOnInit() {
     this.userService.getDriversPending().valueChanges().subscribe(data => {
@@ -55,73 +57,24 @@ export class InfocardComponent implements OnInit, AfterViewInit {
       this.totalPrice = data.totalPayments
     })
 
-    this.statusService.getDriveStatus().valueChanges().subscribe(data =>{
-      this.driversAvaible = data.Available.Total
-      this.driversBusy = data.Busy.Total
-      console.log(data);
+    this.tripService.getTripsCancel().valueChanges().subscribe(data => {
+      this.tripsCancelByDriver = data.length
     })
+
+    this.tripService.getTripsCancelUser().valueChanges().subscribe(data => {
+      this.tripsCancelByUser = data.length
+    })
+
+    // this.statusService.getDriveStatus().valueChanges().subscribe(data =>{
+    //   this.driversAvaible = data.Available.Total
+    //   this.driversBusy = data.Busy.Total
+    //   console.log(data);
+    // })
 
     // this.statusService.getDriversLocationsBusy().subscribe(data =>{
     //   this.driversBusy = data.length
     // })
   }
 
-  public lineChartData: Array<any> = [
-    { data: [12, 19, 3, 5, 2, 3], label: 'Balance $' }
-  ];
-  public lineChartLabels: Array<any> = [
-    '2012',
-    '2013',
-    '2014',
-    '2015',
-    '2016',
-    '2017'
-  ];
-  public lineChartOptions: any = {
-    responsive: true,
-    elements: {
-      point: {
-        radius: 2
-      }
-    },
-    scales: {
-      xAxes: [
-        {
-          gridLines: {
-            display: false,
-            drawBorder: false
-          },
-          ticks: {
-            display: false
-          }
-        }
-      ],
-      yAxes: [
-        {
-          gridLines: {
-            display: false,
-            drawBorder: false
-          },
-          ticks: {
-            display: false
-          }
-        }
-      ]
-    }
-  };
-  public lineChartColors: Array<any> = [
-    {
-      backgroundColor: 'transparent',
-      borderColor: '#4dc8ff',
-      pointBackgroundColor: '#4dc8ff',
-      pointBorderColor: '#4dc8ff',
-      pointHoverBackgroundColor: '#4dc8ff',
-      pointHoverBorderColor: '#4dc8ff'
-    }
-  ];
-  public lineChartLegend = false;
-  public lineChartType = 'line';
-
-  ngAfterViewInit() {
-  }
+  
 }

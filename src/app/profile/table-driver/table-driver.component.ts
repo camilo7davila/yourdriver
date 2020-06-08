@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Drivers, Trip } from 'src/app/interface/user.interface';
@@ -11,9 +11,13 @@ import 'firebase/database';
   templateUrl: './table-driver.component.html',
   styleUrls: ['./table-driver.component.css']
 })
-export class TableDriverComponent implements OnInit, AfterViewInit {
+export class TableDriverComponent implements OnInit {
 
-  @ViewChild('inputView', { static: true }) myProgressBar: any
+  private contentPlace: ElementRef;
+
+  @ViewChild('progressBarView', { static: false }) set content(myProgressBar: ElementRef) {
+    this.contentPlace = myProgressBar
+  }
 
   iconOrigin = {
     url: '../../../assets/map/driver.png',
@@ -50,6 +54,7 @@ export class TableDriverComponent implements OnInit, AfterViewInit {
       this.driverId = parametros.id;
       this.userService.getDriverById(this.driverId).valueChanges().subscribe(dataDriver => {
         this.driver = dataDriver;
+        this.changeDetectorRef.detectChanges();
         this.form.patchValue(dataDriver)
         this.skillsSet(this.driver);
       })
@@ -72,19 +77,9 @@ export class TableDriverComponent implements OnInit, AfterViewInit {
     })
   }
 
-  ngAfterViewInit() {
-    console.log(this.myProgressBar);
-  }
-
   skillsSet(driver) {
-    this.changeDetectorRef.detectChanges();
-    console.log(this.myProgressBar);
     this.ratingAverage = Math.round((driver.rating.ratingProm * 100) / 5)
-    // this.myProgressBar.nativeElement.style.width = `${this.ratingAverage}%`
-
-    // this.render.setStyle(this.myProgressBar, "width", `${this.ratingAverage}%`)
-    // console.log(`${this.ratingAverage}%`);
-    // document.getElementById('progressBarView').style.width = `${this.ratingAverage}%`
+    this.contentPlace.nativeElement.style.width = `${this.ratingAverage}%`
   }
 
   orderByDate(trips: Trip[]) {

@@ -108,8 +108,7 @@ export class MapOnlineComponent implements OnInit {
   inTripPercent: number = 0
 
   availableData: StatusDriver[] = []
-  busyData: StatusDriver[]
-  inTripData: StatusDriver[]
+  driverOnline: any[] = []
 
   iconAvailable = {
     url: '../../../assets/map/gre.png',
@@ -141,6 +140,7 @@ export class MapOnlineComponent implements OnInit {
     this.userService.getDriversOnLine().snapshotChanges().pipe(map(changes => {
       return changes.map(a => ({ key: a.payload.key, ...a.payload.val() }))
     })).subscribe(data => {
+      this.driverOnline = data
       data.forEach(driver => {
         this.satatusService.getDriverLocationById(driver.key).valueChanges().subscribe(location => {
           this.availableData.push(location)

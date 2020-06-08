@@ -29,7 +29,7 @@ export class StatusDriverService {
   // }
 
   getDriveLocationinTripByid(id) {
-    return this.angularDB.object<StatusDriver>('Drivers-Locations-InTrip/' + id)
+    return this.angularDB.object<StatusDriver>('Drivers-Locations/' + id)
   }
 
   getDriveStatus() {

@@ -82,6 +82,7 @@ export class UserService {
   editUser(id, user) {
     return this.angularDB.object('/Users/' + id).update(user)
   }
+
   editDriver(id, driver) {
     return this.angularDB.object('/Drivers/' + id).update(driver)
   }

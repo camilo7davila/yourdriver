@@ -1,21 +1,47 @@
 <div class="card-body compose">
-    <form [formGroup]="form" (ngSubmit)="send()">
+    <div>
+        <input type="radio" name="isGroup" id="isGroup" (input)="setIsGroupTrue()">Grupo
+        <input type="radio" name="isGroup" id="isGroup" (input)="setIsGroupFalse()">Persona
+    </div>
+    <form [formGroup]="form" (ngSubmit)="sendGroup()" *ngIf="isGroup == true">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Title" name="title" formControlName="title" disabled>
+            <input type="text" class="form-control" placeholder="Title" name="title" formControlName="title">
         </div>
         <div class="form-group">
             <select name="to" id="to" formControlName="to" class="form-control">
                 <option value="" disabled selected>Select a group</option>
                 <ng-container *ngFor="let group of group">
-                    <option [value]="group.notification_key" >{{group.name}}</option>
+                    <option [value]="group.notification_key">{{group.name}}</option>
                 </ng-container>
             </select>
         </div>
         <div class="form-group">
-            <textarea class="form-control" placeholder="Message" rows="10" name="body" formControlName="body"></textarea>
+            <textarea class="form-control" placeholder="Message" rows="10" name="body"
+                formControlName="body"></textarea>
         </div>
         <div class="form-group pull-right">
             <button class="btn btn-main" type="submit" [disabled]="form.invalid">Send</button>
+        </div>
+    </form>
+
+    <form [formGroup]="formPerson" (ngSubmit)="sendToPerson()" *ngIf="isGroup == false">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Title" name="title" formControlName="title">
+        </div>
+        <div class="form-group">
+            <select name="to" id="to" formControlName="to" class="form-control">
+                <option value="" disabled selected>Select a person</option>
+                <ng-container *ngFor="let user of users">
+                    <option [value]="user.Token">{{user.Name}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" placeholder="Message" rows="10" name="body"
+                formControlName="body"></textarea>
+        </div>
+        <div class="form-group pull-right">
+            <button class="btn btn-main" type="submit" [disabled]="formPerson.invalid">Send</button>
         </div>
     </form>
 </div>
