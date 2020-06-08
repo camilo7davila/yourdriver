@@ -45,6 +45,3 @@ export class TopsellComponent implements OnInit {
 
 
 }
-
-
-
