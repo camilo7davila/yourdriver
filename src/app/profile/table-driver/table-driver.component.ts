@@ -5,6 +5,7 @@ import { Drivers, Trip } from 'src/app/interface/user.interface';
 import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'firebase/database';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table-driver',
@@ -120,9 +121,21 @@ export class TableDriverComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       this.userService.editDriver(this.driverId, this.form.value).then(() => {
-        alert('Editado exitosamente')
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Editado exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }).catch(e => {
-        alert('Algo salio mal y no se pudo editar el perfil')
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Algo salio mal y no se pudo editar el perfil',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
     }
   }

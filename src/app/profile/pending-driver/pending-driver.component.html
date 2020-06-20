@@ -25,10 +25,11 @@
                     <div class="botones mt-3">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                            data-target="#exampleModal">
+                            data-target="#exampleModal" (click)="setVariableFalse()">
                             deny access
                         </button>
-                        <button class="btn btn-outline-success" (click)="driveAccepted()">provide access</button>
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal"
+                            (click)="setVariableTrue()">provide access</button>
                     </div>
                 </div>
             </div>
@@ -47,10 +48,10 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" *ngIf="isAccepetd === false">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Cancel driver</h5>
+                <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -61,10 +62,82 @@
                     </div>
                     <textarea [(ngModel)]="reason" class="form-control" aria-label="With textarea"></textarea>
                 </div>
+                <div style="display: flex; justify-content: space-between; align-self: center;">
+                    <div>
+                        <span>Configuración en db</span>
+                        <div class="icon-container" *ngIf="isUpdateDb === true">
+                            <i style="color: green; font-size: 50px;" class="far fa-check-circle"></i>
+                        </div>
+                        <div class="icon-container" *ngIf="isUpdateDb === false">
+                            <i style="color: red;font-size: 50px;" class="far fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Enviando correo</span>
+                        <div class="icon-container" *ngIf="isSendEmail === true">
+                            <i style="color: green;font-size: 50px;" class="far fa-check-circle"></i>
+                        </div>
+                        <div class="icon-container" *ngIf="isSendEmail === false">
+                            <i style="color: red;font-size: 50px;" class="far fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Enviando correo</span>
+                        <div class="icon-container" *ngIf="isSendNotification === true">
+                            <i style="color: green;font-size: 50px;" class="far fa-check-circle"></i>
+                        </div>
+                        <div class="icon-container" *ngIf="isSendNotification === false">
+                            <i style="color: red;font-size: 50px;" class="far fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" (click)="driveDeny()">Send</button>
+            </div>
+        </div>
+        <div class="modal-content" *ngIf="isAccepetd === true">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Estado de acceptación</h5>
+                <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; justify-content: space-between; align-self: center;">
+                    <div>
+                        <span>Configuración en db</span>
+                        <div class="icon-container" *ngIf="isUpdateDb === true">
+                            <i style="color: green; font-size: 50px;" class="far fa-check-circle"></i>
+                        </div>
+                        <div class="icon-container" *ngIf="isUpdateDb === false">
+                            <i style="color: red;font-size: 50px;" class="far fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Enviando correo</span>
+                        <div class="icon-container" *ngIf="isSendEmail === true">
+                            <i style="color: green;font-size: 50px;" class="far fa-check-circle"></i>
+                        </div>
+                        <div class="icon-container" *ngIf="isSendEmail === false">
+                            <i style="color: red;font-size: 50px;" class="far fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Enviando correo</span>
+                        <div class="icon-container" *ngIf="isSendNotification === true">
+                            <i style="color: green;font-size: 50px;" class="far fa-check-circle"></i>
+                        </div>
+                        <div class="icon-container" *ngIf="isSendNotification === false">
+                            <i style="color: red;font-size: 50px;" class="far fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="driveAccepted()">Send</button>
             </div>
         </div>
     </div>

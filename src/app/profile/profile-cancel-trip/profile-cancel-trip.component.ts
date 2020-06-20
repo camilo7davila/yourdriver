@@ -7,6 +7,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import 'firebase/database';
 import { SquareService } from 'src/app/core/services/square/square.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile-cancel-trip',
@@ -114,14 +115,42 @@ export class ProfileCancelTripComponent implements OnInit {
         }
         this.userService.postHistoryTrip(this.uid, finalTrip).then(() => {
           this.userService.deleteTripCanceledDriver(this.uid).then(() => {
-            this.router.navigate(['/tables/canceltriptable']) 
-          }).catch(e => console.log('Ocurrio un error borrando'))
-        }).catch(e => console.log('error en crear post'))
-      }else {
-        alert('servicio respondio diferente de completed')
+            this.router.navigate(['/tables/canceltriptable'])
+          }).catch(e =>
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Ocurrio un error borrando',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          )
+        }).catch(e =>
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'error en crear post',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        )
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'servicio respondio diferente de completed',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     }, error => {
-      alert(`error : ${error.error.errorMessage}`)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `error : ${error.error.errorMessage}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 
@@ -155,14 +184,41 @@ export class ProfileCancelTripComponent implements OnInit {
         }
         this.userService.postHistoryTrip(this.uid, finalTrip).then(() => {
           this.userService.deleteTripCanceledDriver(this.uid).then(() => {
-            this.router.navigate(['/tables/canceltriptable']) 
-          }).catch(e => console.log('Ocurrio un error borrando'))
-        }).catch(e => console.log('error en crear post'))
-      }else {
-        alert('servicio respondio diferente de canceled')
+            this.router.navigate(['/tables/canceltriptable'])
+          }).catch(e => Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: `error : ${e.error.errorMessage}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+          )
+        }).catch(e =>
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'servicio respondio diferente de canceled',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        )
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'servicio respondio diferente de canceled',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     }, error => {
-      alert(`error : ${error.error.errorMessage}`)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `error : ${error.error.errorMessage}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 
@@ -193,21 +249,49 @@ export class ProfileCancelTripComponent implements OnInit {
           payment_Id_Cancel: this.tripCancel.payment_Id_Cancel,
           pickupCoordinatesLatitude: this.tripCancel.pickupCoordinatesLatitude,
           pickupCoordinatesLongitude: this.tripCancel.pickupCoordinatesLongitude,
-          priceCancelFee:this.tripCancel.priceCancelFee,
+          priceCancelFee: this.tripCancel.priceCancelFee,
           priceTrip: 5.30,
           reason: this.tripCancel.reason,
           tripStatus: this.tripCancel.tripStatus
         }
-        this.userService.postHistoryTrip(this.uid,finalTrip).then(()=> {
-          this.userService.deleteTripsCanceledUser(this.uid).then(()=> {
-            this.router.navigate(['/tables/cancelusertriptable']) 
-          }).catch(e => console.log('Ocurrio un error borrando'))
-        }).catch(e => console.log('error en crear post'))
-      }else {
-        alert('servicio respondio diferente de COMPLETED')
+        this.userService.postHistoryTrip(this.uid, finalTrip).then(() => {
+          this.userService.deleteTripsCanceledUser(this.uid).then(() => {
+            this.router.navigate(['/tables/cancelusertriptable'])
+          }).catch(e =>
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Ocurrio un error borrando',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          )
+        }).catch(e =>
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'error en crear post',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        )
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: `servicio respondio diferente de COMPLETED`,
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     }, error => {
-      alert(`error : ${error.error.errorMessage}`)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `error : ${error.error.errorMessage}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 
@@ -237,22 +321,49 @@ export class ProfileCancelTripComponent implements OnInit {
           payment_Id_Cancel: this.tripCancel.payment_Id_Cancel,
           pickupCoordinatesLatitude: this.tripCancel.pickupCoordinatesLatitude,
           pickupCoordinatesLongitude: this.tripCancel.pickupCoordinatesLongitude,
-          priceCancelFee:this.tripCancel.priceCancelFee,
+          priceCancelFee: this.tripCancel.priceCancelFee,
           priceTrip: 0,
           reason: this.tripCancel.reason,
           tripStatus: 6,
         }
-        this.userService.postHistoryTrip(this.uid,finalTrip).then(()=> {
-          this.userService.deleteTripsCanceledUser(this.uid).then(()=> {
-            this.router.navigate(['/tables/cancelusertriptable']) 
-          }).catch(e => console.log('Ocurrio un error borrando'))
-        }).catch(e => console.log('error en crear post'))
-      }else {
-        alert('servicio respondio diferente de CANCELED')
-        console.log(data);
+        this.userService.postHistoryTrip(this.uid, finalTrip).then(() => {
+          this.userService.deleteTripsCanceledUser(this.uid).then(() => {
+            this.router.navigate(['/tables/cancelusertriptable'])
+          }).catch(e =>
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: `Ocurrio un error borrando`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+          )
+        }).catch(e =>
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: `error en crear post`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        )
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: `servicio respondio diferente de CANCELED`,
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     }, error => {
-      alert(`error : ${error.error.errorMessage}`)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `error : ${error.error.errorMessage}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 

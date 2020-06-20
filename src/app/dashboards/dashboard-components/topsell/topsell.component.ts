@@ -12,8 +12,8 @@ import { TripService } from 'src/app/core/services/trip/trip.service';
 export class TopsellComponent implements OnInit {
 
   tripAndDrivers: any[] = [];
-  passengerSet: User
-  driverSet: Drivers;
+  passengerSet: any
+  driverSet: any;
 
   constructor(private userService: UserService,
     private tripService: TripService) { }
@@ -33,15 +33,24 @@ export class TopsellComponent implements OnInit {
 
   setPassenger(uid) {
     this.userService.getUserById(uid).valueChanges().subscribe(data => {
-      this.passengerSet = data
+      this.passengerSet = {
+        ...data,
+        key: uid
+      }
     })
   }
 
   setDriver(uid) {
     this.userService.getDriverById(uid).valueChanges().subscribe(data => {
-      this.driverSet = data
+      this.driverSet = {
+        ...data,
+        key: uid
+      }
     })
   }
 
+  closeModal() {
+    document.getElementById('close').click()
+  }
 
 }

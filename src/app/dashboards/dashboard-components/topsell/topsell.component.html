@@ -78,7 +78,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Info driver and passenger</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -93,7 +93,8 @@
                                     <img [src]="passengerSet.profileImageUrl" class="rounded img-thumbnail" alt="">
                                 </div>
                                 <div class="container-buttons-popup">
-                                    <a type="button" class="btn" [routerLink]="['/profile/userprofile', passengerSet.key]">View Profile</a>
+                                    <a type="button" class="btn" (click)="closeModal()"
+                                        [routerLink]="['/profile/userprofile', passengerSet.key]">View Profile</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -103,7 +104,8 @@
                                     <img [src]="driverSet.profileImageUrl" class="rounded img-thumbnail" alt="">
                                 </div>
                                 <div class="container-buttons-popup">
-                                    <a type="button" class="btn" [routerLink]="['/profile/driverprofile', driverSet.key]">View Profile</a>
+                                    <a type="button" class="btn" (click)="closeModal()"
+                                        [routerLink]="['/profile/driverprofile', driverSet.key]">View Profile</a>
                                 </div>
                             </div>
                         </div>

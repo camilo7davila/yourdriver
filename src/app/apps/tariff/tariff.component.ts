@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PriceService } from 'src/app/core/services/price-value/price.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tariff',
@@ -16,7 +17,7 @@ export class TariffComponent implements OnInit {
 
   constructor(private formBuilter: FormBuilder,
     private priceService: PriceService) {
-      this.buildForm()
+    this.buildForm()
     this.isLogged = false
   }
 
@@ -30,14 +31,26 @@ export class TariffComponent implements OnInit {
         this.form.patchValue(data)
       })
     } else {
-      alert('clave no valida')
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `clave no valida`,
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
   }
 
-  async updateTariff (event) {
+  async updateTariff(event) {
     console.log(this.form.value);
     await this.priceService.editPriceValue(this.form.value)
-    alert('editado correctamente')
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Editado exitosamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   async resetPayments() {
@@ -45,7 +58,13 @@ export class TariffComponent implements OnInit {
       totalPayments: 0
     }
     await this.priceService.editPriceValue(payment)
-    alert('se reinicio los pagos')
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Se reinicio los pagos',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   private buildForm() {
@@ -55,7 +74,7 @@ export class TariffComponent implements OnInit {
       priceperSeg: ['', [Validators.required, Validators.min(0.001)]],
       priceperTripCanceled: ['', [Validators.required, Validators.min(0.01)]],
       taxes: ['', [Validators.required, Validators.min(0.01)]],
-      totalPayments: [{value:'', disabled: true}, Validators.required]
+      totalPayments: [{ value: '', disabled: true }, Validators.required]
     })
   }
 

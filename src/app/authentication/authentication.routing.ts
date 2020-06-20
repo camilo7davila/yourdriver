@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { NotfoundComponent } from './404/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { AdminGuard } from '../core/guards/admin.guard';
+import { SuperAdminGuard } from '../core/guards/super-admin.guard';
 
 export const AuthenticationRoutes: Routes = [
   {
@@ -19,7 +19,7 @@ export const AuthenticationRoutes: Routes = [
       },
       {
         path: 'signup',
-        canActivate: [AdminGuard],
+        canActivate: [SuperAdminGuard],
         component: SignupComponent
       }
     ]

@@ -127,22 +127,6 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
-    title: 'Maps',
-    icon: 'mdi mdi-dots-horizontal',
-    class: 'nav-small-cap',
-    extralink: true,
-    submenu: []
-  },
-  {
-    path: '/maps/google',
-    title: 'Google Maps',
-    icon: 'icon-Location-2',
-    class: '',
-    extralink: false,
-    submenu: []
-  },
-  {
-    path: '',
     title: 'Pages',
     icon: 'mdi mdi-dots-horizontal',
     class: 'nav-small-cap',
@@ -176,7 +160,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/apps/tariff',
-    title: 'Form',
+    title: 'Price',
     icon: 'icon-Location-2',
     class: '',
     extralink: false,

@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User, Trip } from 'src/app/interface/user.interface';
 import { map } from 'rxjs/operators';
 import 'firebase/database';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -57,7 +58,7 @@ export class TableUserComponent implements OnInit {
         this.tripsTotal = trips.length
         if (trips.length === 0) {
           this.flag = false
-        }else {
+        } else {
           this.reducer(trips)
           this.orderByDate(trips)
         }
@@ -78,10 +79,10 @@ export class TableUserComponent implements OnInit {
 
   orderByDate(trips: Trip[]) {
     trips.sort((a, b) => {
-      if(a.dateStart < b.dateStart) {
+      if (a.dateStart < b.dateStart) {
         return 1
       }
-      if(a.dateStart > b.dateStart) {
+      if (a.dateStart > b.dateStart) {
         return -1
       }
       return 0
@@ -109,9 +110,21 @@ export class TableUserComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       this.userService.editUser(this.userId, this.form.value).then(() => {
-        alert('Datos actualizados')
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Editado exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }).catch(e => {
-        alert('ocurrio un error' + e)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: `ocurrio un error ${e}`,
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
     }
   }

@@ -34,7 +34,9 @@ export const Approutes: Routes = [
         canActivate: [AdminGuard],
         loadChildren: () => import('./apps/email/mail.module').then(m => m.MailModule)
       },
-      { path: 'maps', canActivate: [AdminGuard], loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule) },
+      { path: 'maps',
+        canActivate: [AdminGuard], 
+        loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule) },
     ]
   },
   {
