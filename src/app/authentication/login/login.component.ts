@@ -12,45 +12,46 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form: FormGroup
-  
+
   constructor(private adminService: AdministradorService,
     private formBuilter: FormBuilder,
     private router: Router) {
-      this.buildForm()
-    }
-  
+    this.buildForm()
+  }
+
   ngOnInit() { }
 
-  login(email, password){
+  login(email, password) {
     this.adminService.login(email, password).then(data => {
-      this.router.navigate(['/dashboard/dashboard1'])
+      console.log('esto responde firebase', data);
+      // this.router.navigate(['/dashboard/dashboard1'])
     }).catch(e => {
-      alert('Ocurrio un error: '+e)
+      console.log('error en firebase',e);
+      alert('Ocurrio un error: ' + e)
     })
   }
 
-  validatorRol(email){
+  validatorRol(email) {
     this.adminService.getAdminByEmail(email).subscribe(data => {
-      console.log('esto es data'+ data);
-      if(data.length !== 0){
+      console.log('esto es data', data);
+      if (data.length !== 0) {
         this.login(this.form.get('email').value, this.form.get('password').value)
-      }else{
+      } else {
         alert('Este correo no tiene permisos de administrador')
       }
     }, error => {
-      console.log('este correo no tiene permisos de administrador'+ error);
+      console.log('este correo no tiene permisos de administrador' + error);
     })
   }
 
-  private buildForm(){
+  save() {
+    this.validatorRol(this.form.get('email').value)
+  }
+
+  private buildForm() {
     this.form = this.formBuilter.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
-
-  save(){
-    this.validatorRol(this.form.get('email').value)
-  }
-
 }
