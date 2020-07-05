@@ -3,6 +3,7 @@ import { MessagingService } from 'src/app/core/services/messaging/messaging.serv
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import 'firebase/database';
 import { UserService } from 'src/app/core/services/user/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-messaging',
@@ -59,8 +60,21 @@ export class MessagingComponent implements OnInit {
 
   sendGroup() {
     this.mS.sendApi(this.form.getRawValue()).subscribe(data => {
-      alert('Se envio mensaje exitosamente' + JSON.stringify(data))
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Mensaje enviado',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }, error => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `Ocurrio un erro al enviar el msj ${error}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
       console.log('Ocurrio un error' + JSON.stringify(error));
     })
   }

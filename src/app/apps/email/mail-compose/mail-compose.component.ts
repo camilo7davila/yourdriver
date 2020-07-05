@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation , OnInit} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { CorreoService } from 'src/app/core/services/correo/correo.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mail-compose',
@@ -9,19 +10,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./mail-compose.component.scss'],
 })
 export class MailComposeComponent implements OnInit {
-  
-  form: FormGroup; 
+
+  form: FormGroup;
 
   constructor(private cS: CorreoService,
-              private formBuilter: FormBuilder) {
-                this.buildForm()
-              }
-
-  ngOnInit(){
-    
+    private formBuilter: FormBuilder) {
+    this.buildForm()
   }
 
-  private buildForm(){
+  ngOnInit() {
+
+  }
+
+  private buildForm() {
     this.form = this.formBuilter.group({
       subject: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -29,12 +30,24 @@ export class MailComposeComponent implements OnInit {
     })
   }
 
-  send(){
+  send() {
     this.cS.sendEmail(this.form.value).subscribe(data => {
-      alert('el mensaje fue enviado exitosamente')
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Mensaje enviado',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.form.reset()
-    },error => {
-      alert('Ocurrio un error al enviar el msj' + error)
+    }, error => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `Ocurrio un erro al enviar el msj ${error}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 
